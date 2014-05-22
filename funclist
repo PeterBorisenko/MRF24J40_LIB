@@ -1,0 +1,7 @@
+__stringtab: STRING, 2 0 6
+__stringdata: STRING, 8 0 48
+_main: CODE, 1979 0 55
+__initialization: CODE, 2034 0 11
+_waitForSPI: CODE, 1957 0 5
+_SPI_Init: CODE, 1962 0 17
+Total: 142
