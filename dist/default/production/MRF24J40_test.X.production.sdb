@@ -103,73 +103,93 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 D:\Microchip\xc8\v1.31\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"31 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\main.c
+"28 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\main.c
+[v _blink blink `(v  1 e 0 0 ]
+"33
+[v _exception exception `(v  1 e 0 0 ]
+"46
 [v _main main `(v  1 e 0 0 ]
-"7 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.c
+"8 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.c
 [v _SPI_Init SPI_Init `(v  1 e 0 0 ]
-"21
+"22
 [v _chipSelect chipSelect `T(v  1 e 0 0 ]
-"25
+"26
 [v _chipRelease chipRelease `T(v  1 e 0 0 ]
-"29
+"30
 [v _SPI_WriteByte SPI_WriteByte `(v  1 e 0 0 ]
-"37
+"38
 [v _SPI_ReadByte SPI_ReadByte `(uc  1 e 1 0 ]
-"49
+"50
 [v _SPI_WriteArray SPI_WriteArray `(v  1 e 0 0 ]
-"61
+"62
 [v _SPI_ReadArray SPI_ReadArray `(v  1 e 0 0 ]
-"74
+"75
 [v _waitForSPI waitForSPI `T(v  1 e 0 0 ]
-"80
+"81
 [v _addrWriteSA addrWriteSA `(v  1 e 0 0 ]
-"88
+"89
 [v _addrWriteLA addrWriteLA `(v  1 e 0 0 ]
-"98
+"99
 [v _byteReadSA byteReadSA `(uc  1 e 1 0 ]
-"107
+"108
 [v _byteWriteSA byteWriteSA `(v  1 e 0 0 ]
-"115
+"116
 [v _bitWriteSA bitWriteSA `(v  1 e 0 0 ]
-"121
+"122
 [v _dataReadSA dataReadSA `(v  1 e 0 0 ]
-"133
+"135
 [v _dataWriteSA dataWriteSA `(v  1 e 0 0 ]
-"143
+"146
 [v _byteReadLA byteReadLA `(uc  1 e 1 0 ]
-"152
+"155
 [v _byteWriteLA byteWriteLA `(v  1 e 0 0 ]
-"160
+"163
 [v _bitWriteLA bitWriteLA `(v  1 e 0 0 ]
-"166
+"169
 [v _dataReadLA dataReadLA `(v  1 e 0 0 ]
-"178
+"182
 [v _dataWriteLA dataWriteLA `(v  1 e 0 0 ]
-"192
+"196
+[v _deviceReset deviceReset `(v  1 e 0 0 ]
+"203
 [v _deviceInit deviceInit `(v  1 e 0 0 ]
-"217
+"224
+[v _readRSSI readRSSI `(uc  1 e 1 0 ]
+"245
 [v _setSecurityChipher setSecurityChipher `(v  1 e 0 0 ]
 "219 D:/Microchip/xc8/v1.31/include\pic16f88.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
+[s S43 . 1 `uc 1 RB0 1 0 :1:0 
+`uc 1 RB1 1 0 :1:1 
+`uc 1 RB2 1 0 :1:2 
+`uc 1 RB3 1 0 :1:3 
+`uc 1 RB4 1 0 :1:4 
+`uc 1 RB5 1 0 :1:5 
+`uc 1 RB6 1 0 :1:6 
+`uc 1 RB7 1 0 :1:7 
+]
+"236
+[u S52 . 1 `S43 1 . 1 0 ]
+[v _PORTBbits PORTBbits `VES52  1 e 1 @6 ]
 "629
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
-[s S44 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S65 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "655
-[s S50 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S71 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S55 . 1 `S44 1 . 1 0 `S50 1 . 1 0 ]
-[v _SSPCONbits SSPCONbits `VES55  1 e 1 @20 ]
+[u S76 . 1 `S65 1 . 1 0 `S71 1 . 1 0 ]
+[v _SSPCONbits SSPCONbits `VES76  1 e 1 @20 ]
 "1116
 [v _TRISB TRISB `VEuc  1 e 1 @134 ]
-[s S70 . 1 `uc 1 BF 1 0 :1:0 
+[s S91 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -179,39 +199,39 @@
 `uc 1 SMP 1 0 :1:7 
 ]
 "1491
-[s S79 . 1 `uc 1 . 1 0 :2:0 
+[s S100 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S84 . 1 `uc 1 . 1 0 :2:0 
+[s S105 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 I2C_READ 1 0 :1:2 
 `uc 1 I2C_START 1 0 :1:3 
 `uc 1 I2C_STOP 1 0 :1:4 
 `uc 1 I2C_DATA 1 0 :1:5 
 ]
-[s S90 . 1 `uc 1 . 1 0 :2:0 
+[s S111 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S95 . 1 `uc 1 . 1 0 :2:0 
+[s S116 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S100 . 1 `uc 1 . 1 0 :2:0 
+[s S121 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S105 . 1 `uc 1 . 1 0 :2:0 
+[s S126 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 READ_WRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 DATA_ADDRESS 1 0 :1:5 
 ]
-[u S110 . 1 `S70 1 . 1 0 `S79 1 . 1 0 `S84 1 . 1 0 `S90 1 . 1 0 `S95 1 . 1 0 `S100 1 . 1 0 `S105 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES110  1 e 1 @148 ]
+[u S131 . 1 `S91 1 . 1 0 `S100 1 . 1 0 `S105 1 . 1 0 `S111 1 . 1 0 `S116 1 . 1 0 `S121 1 . 1 0 `S126 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES131  1 e 1 @148 ]
 "1989 D:\Microchip\xc8\v1.31\include\pic16f88.h
 [v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
 "1995
@@ -230,30 +250,63 @@
 [v _WR WR `VEb  1 e 0 @3169 ]
 "2463
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"803 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.h
+"819 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.h
 [v _aTurnaroundTime aTurnaroundTime `uc  1 e 1 0 ]
-"804
+"820
 [v _aMinLIFSPeriod aMinLIFSPeriod `uc  1 e 1 0 ]
-"805
+"821
 [v _aMinSIFSPeriod aMinSIFSPeriod `uc  1 e 1 0 ]
-"31 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\main.c
+"46 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\main.c
 [v _main main `(v  1 e 0 0 ]
 {
-"35
-[v main@command command `ui  1 a 2 8 ]
-"33
-[v main@addr addr `ui  1 a 2 6 ]
-"34
-[v main@data data `uc  1 a 1 5 ]
-"46
+"55
 } 0
-"74 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.c
+"224 C:\Users\Disgust\Documents\MPLABXProjects\MRF24J40_test.X\MRF24J40.c
+[v _readRSSI readRSSI `(uc  1 e 1 0 ]
+{
+"226
+} 0
+"146
+[v _byteReadLA byteReadLA `(uc  1 e 1 0 ]
+{
+"147
+[v byteReadLA@report report `uc  1 a 1 12 ]
+"146
+[v byteReadLA@addr addr `ui  1 p 2 9 ]
+"153
+} 0
+"22
+[v _chipSelect chipSelect `T(v  1 e 0 0 ]
+{
+"24
+} 0
+"26
+[v _chipRelease chipRelease `T(v  1 e 0 0 ]
+{
+"28
+} 0
+"89
+[v _addrWriteLA addrWriteLA `(v  1 e 0 0 ]
+{
+"92
+[v addrWriteLA@command command `ui  1 a 2 7 ]
+"89
+[v addrWriteLA@addr addr `ui  1 p 2 0 ]
+[v addrWriteLA@op op `uc  1 p 1 2 ]
+"97
+} 0
+"75
 [v _waitForSPI waitForSPI `T(v  1 e 0 0 ]
 {
-"76
+"77
 } 0
-"7
+"203
+[v _deviceInit deviceInit `(v  1 e 0 0 ]
+{
+"216
+} 0
+"8
 [v _SPI_Init SPI_Init `(v  1 e 0 0 ]
 {
-"19
+"20
 } 0

@@ -1364,15 +1364,12 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 16 "D:/Microchip/xc8/v1.31/include\assert.h"
-extern void _fassert(int, const char *, const char *);
-
-# 803 "MRF24J40.h"
+# 819 "MRF24J40.h"
 uint8_t aTurnaroundTime= 12;
 uint8_t aMinLIFSPeriod= 40;
 uint8_t aMinSIFSPeriod= 12;
 
-# 814
+# 830
 void SPI_Init(void);
 inline void chipSelect(void);
 inline void chipRelease(void);
@@ -1408,8 +1405,9 @@ void macAckWaitDuration(uint8_t);
 
 void deviceReset();
 void deviceInit();
+void deviceSleep();
 void deviceSetInterrupt(uint8_t, bool);
-void channelSelect(uint8_t);
+void deviceChannelSelect(uint8_t);
 void clearChannelAssesstment(uint8_t);
 void setRSSIMode(uint8_t);
 uint8_t readRSSI();
@@ -1418,15 +1416,27 @@ void deviceSetShortAddress(uint8_t);
 void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
+void batMonEnable();
+void batMonDisable();
 void setSecurityChipher(uint8_t);
+void deviceEncription();
+void deviceNoEncription();
 
-# 7 "MRF24J40.c"
+void setSleepClock(uint8_t);
+void setWakeTime(uint8_t);
+void startSleepCalibration();
+
+uint8_t readRFState();
+void setSmallScaleTXPower(uint8_t);
+void setLargeScaleTXPower(uint8_t);
+
+# 8 "MRF24J40.c"
 void SPI_Init()
 {
 
-TRISB&= ~(1 << 5)&~(1<<2)&~(1<<4);
-TRISB|= (1 << 1);
-PORTB|= (1 << 5);
+TRISB&= ~(1 << PORTBbits.RB5)&~(1<<PORTBbits.RB2)&~(1<<PORTBbits.RB4);
+TRISB|= (1 << PORTBbits.RB1);
+PORTB|= (1 << PORTBbits.RB5);
 
 
 SSPCONbits.SSPEN= 1;
@@ -1436,11 +1446,11 @@ SSPSTATbits.CKE= 0;
 }
 
 inline void chipSelect(){
-PORTB &= ~(1<<5);
+PORTB &= ~(1<<PORTBbits.RB5);
 }
 
 inline void chipRelease(){
-PORTB |= (1<<5);
+PORTB |= (1<<PORTBbits.RB5);
 }
 
 void SPI_WriteByte(uint8_t data)
@@ -1492,10 +1502,10 @@ inline void waitForSPI(){
 while(SSPSTATbits.BF);
 }
 
-# 80
+# 81
 void addrWriteSA(uint8_t addr, uint8_t op) {
 
-if(!(addr < 0x3F)) {_fassert(82, "MRF24J40.c", "addr < 0x3F");};
+
 uint8_t command= (op?(((addr<<1) )|0b00000001):(((addr<<1)&0b01111111)&0b11111110));
 SSPBUF= command;
 waitForSPI();
@@ -1503,7 +1513,7 @@ waitForSPI();
 
 void addrWriteLA(uint16_t addr, uint8_t op) {
 
-if(!(addr < 0x38F)) {_fassert(90, "MRF24J40.c", "addr < 0x38F");};
+
 uint16_t command= (op?(((addr<<1)&0b100000000000)|0b000000000001):(((addr<<1)|0b100000000000 )));
 SSPBUF= (command>>8);
 waitForSPI();
@@ -1535,6 +1545,7 @@ byteWriteSA(addr, temp);
 }
 
 void dataReadSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+
 chipSelect();
 
 for(int i= num; i>0; i--){
@@ -1547,6 +1558,7 @@ chipRelease();
 }
 
 void dataWriteSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+
 chipSelect();
 addrWriteSA(addr, 0);
 for(int i= num; i>0; i--){
@@ -1580,6 +1592,7 @@ byteWriteLA(addr, temp);
 }
 
 void dataReadLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+
 chipSelect();
 
 for(int i= num; i>0; i--){
@@ -1592,6 +1605,7 @@ chipRelease();
 }
 
 void dataWriteLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+
 chipSelect();
 addrWriteLA(addr, 0);
 for(int i= num; i>0; i--){
@@ -1601,30 +1615,49 @@ waitForSPI();
 chipRelease();
 }
 
-# 191
-void deviceReset();
+# 196
+void deviceReset() {
+PORTB&= ~(1<<PORTBbits.RB6);
+_delay((unsigned long)((5)*(8000000/4000000.0)));
+PORTB|= (1<<PORTBbits.RB6);
+_delay((unsigned long)((2)*(8000000/4000.0)));
+}
+
 void deviceInit() {
+
+# 210
+TRISB|= (1<<PORTBbits.RB6)|(1<<PORTBbits.RB3);
+1?(PORTB|= (1<<PORTBbits.RB6)):(PORTB&=~(1<<PORTBbits.RB6));
+1?(PORTB|= (1<<PORTBbits.RB3)):(PORTB&=~(1<<PORTBbits.RB3));
 SPI_Init();
 
+
 }
+
+void deviceSleep();
 void deviceSetInterrupt(uint8_t val, bool state);
-void channelSelect(uint8_t chan);
+void deviceChannelSelect(uint8_t chan);
 void clearChannelAssesstment(uint8_t val);
 void setRSSIMode(uint8_t val);
-uint8_t readRSSI();
+
+uint8_t readRSSI() {
+return byteReadLA(0x210);
+}
+
 void deviceSetAddress(uint32_t addr_H, uint32_t addr_L);
 void deviceSetShortAddress(uint8_t addr);
+
 void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
 
-# 217
+# 245
 void setSecurityChipher(uint8_t chipher){
-if(!(chipher < 8)) {_fassert(218, "MRF24J40.c", "chipher < 8");};
+
 
 }
 
-# 225
+# 253
 void macBeaconOrder(uint8_t val);
 void macSuperframeOrder(uint8_t val);
 void macMinBE(uint8_t val);

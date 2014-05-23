@@ -1,6 +1,12 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "1116 D:/Microchip/xc8/v1.31/include\pic16f88.h
 [v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+[s S9 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S9 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+[u S8 `S9 1 ]
+[n S8 . . ]
+"236
+[v _PORTBbits `VS8 ~T0 @X0 0 e@6 ]
 "219
 [v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [s S26 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -31,8 +37,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _SSPSTATbits `VS61 ~T0 @X0 0 e@148 ]
 "629
 [v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
-"16 D:/Microchip/xc8/v1.31/include\assert.h
-[v __fassert `(v ~T0 @X0 0 ef3`i`*Cuc`*Cuc ]
+[v F974 `(v ~T0 @X0 1 tf1`ul ]
+"154 D:/Microchip/xc8/v1.31/include\pic.h
+[v __delay `JF974 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;include\htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;include\htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;include\pic16f88.h: 47: extern volatile unsigned char INDF @ 0x000;
@@ -970,782 +978,809 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;include\stdint.h: 205: typedef uint32_t uintmax_t;
 [; ;include\stdint.h: 210: typedef int16_t intptr_t;
 [; ;include\stdint.h: 215: typedef uint16_t uintptr_t;
-[; ;include\assert.h: 16: extern void _fassert(int, const char *, const char *);
-"803 MRF24J40.h
+"819 MRF24J40.h
 [v _aTurnaroundTime `uc ~T0 @X0 1 e ]
 [i _aTurnaroundTime
 -> -> 12 `i `uc
 ]
-[; ;MRF24J40.h: 803: uint8_t aTurnaroundTime= 12;
-"804
+[; ;MRF24J40.h: 819: uint8_t aTurnaroundTime= 12;
+"820
 [v _aMinLIFSPeriod `uc ~T0 @X0 1 e ]
 [i _aMinLIFSPeriod
 -> -> 40 `i `uc
 ]
-[; ;MRF24J40.h: 804: uint8_t aMinLIFSPeriod= 40;
-"805
+[; ;MRF24J40.h: 820: uint8_t aMinLIFSPeriod= 40;
+"821
 [v _aMinSIFSPeriod `uc ~T0 @X0 1 e ]
 [i _aMinSIFSPeriod
 -> -> 12 `i `uc
 ]
-[; ;MRF24J40.h: 805: uint8_t aMinSIFSPeriod= 12;
-[; ;MRF24J40.h: 814: void SPI_Init(void);
-[; ;MRF24J40.h: 815: inline void chipSelect(void);
-[; ;MRF24J40.h: 816: inline void chipRelease(void);
-[; ;MRF24J40.h: 817: inline void waitForSPI(void);
-[; ;MRF24J40.h: 818: void SPI_WriteByte(uint8_t);
-[; ;MRF24J40.h: 819: uint8_t SPI_ReadByte(uint8_t);
-[; ;MRF24J40.h: 820: void SPI_WriteArray(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 821: void SPI_ReadArray(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 825: void addrWriteSA(uint8_t, uint8_t);
-[; ;MRF24J40.h: 826: uint8_t byteReadSA(uint8_t);
-[; ;MRF24J40.h: 827: void byteWriteSA(uint8_t, uint8_t);
-[; ;MRF24J40.h: 828: void bitWriteSA(uint8_t, uint8_t, bool);
-[; ;MRF24J40.h: 829: void dataReadSA(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 830: void dataWriteSA(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 832: void addrWriteLA(uint16_t, uint8_t);
-[; ;MRF24J40.h: 833: uint8_t byteReadLA(uint16_t);
-[; ;MRF24J40.h: 834: void byteWriteLA(uint16_t, uint8_t);
-[; ;MRF24J40.h: 835: void bitWriteLA(uint16_t, uint8_t, bool);
-[; ;MRF24J40.h: 836: void dataReadLA(uint16_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 837: void dataWriteLA(uint16_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 840: void macBeaconOrder(uint8_t);
-[; ;MRF24J40.h: 841: void macSuperframeOrder(uint8_t);
-[; ;MRF24J40.h: 842: void macMinBE(uint8_t);
-[; ;MRF24J40.h: 843: void macMaxCSMABackoff(uint8_t);
-[; ;MRF24J40.h: 844: void macAckWaitDuration(uint8_t);
-[; ;MRF24J40.h: 847: void deviceReset();
-[; ;MRF24J40.h: 848: void deviceInit();
-[; ;MRF24J40.h: 849: void deviceSetInterrupt(uint8_t, bool);
-[; ;MRF24J40.h: 850: void channelSelect(uint8_t);
-[; ;MRF24J40.h: 851: void clearChannelAssesstment(uint8_t);
-[; ;MRF24J40.h: 852: void setRSSIMode(uint8_t);
-[; ;MRF24J40.h: 853: uint8_t readRSSI();
-[; ;MRF24J40.h: 854: void deviceSetAddress(uint32_t, uint32_t);
-[; ;MRF24J40.h: 855: void deviceSetShortAddress(uint8_t);
-[; ;MRF24J40.h: 856: void setBattThreshold(uint8_t);
-[; ;MRF24J40.h: 857: void battLifeExt();
-[; ;MRF24J40.h: 858: void noBattLifeExt();
-[; ;MRF24J40.h: 859: void setSecurityChipher(uint8_t);
-"7 MRF24J40.c
+[; ;MRF24J40.h: 821: uint8_t aMinSIFSPeriod= 12;
+[; ;MRF24J40.h: 830: void SPI_Init(void);
+[; ;MRF24J40.h: 831: inline void chipSelect(void);
+[; ;MRF24J40.h: 832: inline void chipRelease(void);
+[; ;MRF24J40.h: 833: inline void waitForSPI(void);
+[; ;MRF24J40.h: 834: void SPI_WriteByte(uint8_t);
+[; ;MRF24J40.h: 835: uint8_t SPI_ReadByte(uint8_t);
+[; ;MRF24J40.h: 836: void SPI_WriteArray(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 837: void SPI_ReadArray(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 841: void addrWriteSA(uint8_t, uint8_t);
+[; ;MRF24J40.h: 842: uint8_t byteReadSA(uint8_t);
+[; ;MRF24J40.h: 843: void byteWriteSA(uint8_t, uint8_t);
+[; ;MRF24J40.h: 844: void bitWriteSA(uint8_t, uint8_t, bool);
+[; ;MRF24J40.h: 845: void dataReadSA(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 846: void dataWriteSA(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 848: void addrWriteLA(uint16_t, uint8_t);
+[; ;MRF24J40.h: 849: uint8_t byteReadLA(uint16_t);
+[; ;MRF24J40.h: 850: void byteWriteLA(uint16_t, uint8_t);
+[; ;MRF24J40.h: 851: void bitWriteLA(uint16_t, uint8_t, bool);
+[; ;MRF24J40.h: 852: void dataReadLA(uint16_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 853: void dataWriteLA(uint16_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 856: void macBeaconOrder(uint8_t);
+[; ;MRF24J40.h: 857: void macSuperframeOrder(uint8_t);
+[; ;MRF24J40.h: 858: void macMinBE(uint8_t);
+[; ;MRF24J40.h: 859: void macMaxCSMABackoff(uint8_t);
+[; ;MRF24J40.h: 860: void macAckWaitDuration(uint8_t);
+[; ;MRF24J40.h: 863: void deviceReset();
+[; ;MRF24J40.h: 864: void deviceInit();
+[; ;MRF24J40.h: 865: void deviceSleep();
+[; ;MRF24J40.h: 866: void deviceSetInterrupt(uint8_t, bool);
+[; ;MRF24J40.h: 867: void deviceChannelSelect(uint8_t);
+[; ;MRF24J40.h: 868: void clearChannelAssesstment(uint8_t);
+[; ;MRF24J40.h: 869: void setRSSIMode(uint8_t);
+[; ;MRF24J40.h: 870: uint8_t readRSSI();
+[; ;MRF24J40.h: 871: void deviceSetAddress(uint32_t, uint32_t);
+[; ;MRF24J40.h: 872: void deviceSetShortAddress(uint8_t);
+[; ;MRF24J40.h: 873: void setBattThreshold(uint8_t);
+[; ;MRF24J40.h: 874: void battLifeExt();
+[; ;MRF24J40.h: 875: void noBattLifeExt();
+[; ;MRF24J40.h: 876: void batMonEnable();
+[; ;MRF24J40.h: 877: void batMonDisable();
+[; ;MRF24J40.h: 878: void setSecurityChipher(uint8_t);
+[; ;MRF24J40.h: 879: void deviceEncription();
+[; ;MRF24J40.h: 880: void deviceNoEncription();
+[; ;MRF24J40.h: 882: void setSleepClock(uint8_t);
+[; ;MRF24J40.h: 883: void setWakeTime(uint8_t);
+[; ;MRF24J40.h: 884: void startSleepCalibration();
+[; ;MRF24J40.h: 886: uint8_t readRFState();
+[; ;MRF24J40.h: 887: void setSmallScaleTXPower(uint8_t);
+[; ;MRF24J40.h: 888: void setLargeScaleTXPower(uint8_t);
+"8 MRF24J40.c
 [v _SPI_Init `(v ~T0 @X0 1 ef ]
-"8
+"9
 {
-[; ;MRF24J40.c: 7: void SPI_Init()
-[; ;MRF24J40.c: 8: {
+[; ;MRF24J40.c: 8: void SPI_Init()
+[; ;MRF24J40.c: 9: {
 [e :U _SPI_Init ]
 [f ]
-[; ;MRF24J40.c: 10: TRISB&= ~(1 << 5)&~(1<<2)&~(1<<4);
-"10
-[e =& _TRISB -> & & ~ << -> 1 `i -> 5 `i ~ << -> 1 `i -> 2 `i ~ << -> 1 `i -> 4 `i `uc ]
-[; ;MRF24J40.c: 11: TRISB|= (1 << 1);
+[; ;MRF24J40.c: 11: TRISB&= ~(1 << PORTBbits.RB5)&~(1<<PORTBbits.RB2)&~(1<<PORTBbits.RB4);
 "11
-[e =| _TRISB -> << -> 1 `i -> 1 `i `uc ]
-[; ;MRF24J40.c: 12: PORTB|= (1 << 5);
+[e =& _TRISB -> & & ~ << -> 1 `i . . _PORTBbits 0 5 ~ << -> 1 `i . . _PORTBbits 0 2 ~ << -> 1 `i . . _PORTBbits 0 4 `uc ]
+[; ;MRF24J40.c: 12: TRISB|= (1 << PORTBbits.RB1);
 "12
-[e =| _PORTB -> << -> 1 `i -> 5 `i `uc ]
-[; ;MRF24J40.c: 15: SSPCONbits.SSPEN= 1;
-"15
-[e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 16: SSPCONbits.SSPM0= 1;
+[e =| _TRISB -> << -> 1 `i . . _PORTBbits 0 1 `uc ]
+[; ;MRF24J40.c: 13: PORTB|= (1 << PORTBbits.RB5);
+"13
+[e =| _PORTB -> << -> 1 `i . . _PORTBbits 0 5 `uc ]
+[; ;MRF24J40.c: 16: SSPCONbits.SSPEN= 1;
 "16
-[e = . . _SSPCONbits 1 0 -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 17: SSPSTATbits.SMP= 1;
+[e = . . _SSPCONbits 0 2 -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 17: SSPCONbits.SSPM0= 1;
 "17
-[e = . . _SSPSTATbits 0 7 -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 18: SSPSTATbits.CKE= 0;
+[e = . . _SSPCONbits 1 0 -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 18: SSPSTATbits.SMP= 1;
 "18
-[e = . . _SSPSTATbits 0 6 -> -> 0 `i `uc ]
-[; ;MRF24J40.c: 19: }
+[e = . . _SSPSTATbits 0 7 -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 19: SSPSTATbits.CKE= 0;
 "19
+[e = . . _SSPSTATbits 0 6 -> -> 0 `i `uc ]
+[; ;MRF24J40.c: 20: }
+"20
 [e :UE 89 ]
 }
-[v F1015 `(v ~T0 @X0 1 tf ]
-"21
-[v _chipSelect `TF1015 ~T0 @X0 1 e ]
+[v F1011 `(v ~T0 @X0 1 tf ]
+"22
+[v _chipSelect `TF1011 ~T0 @X0 1 e ]
 {
-[; ;MRF24J40.c: 21: inline void chipSelect(){
+[; ;MRF24J40.c: 22: inline void chipSelect(){
 [e :U _chipSelect ]
 [f ]
-[; ;MRF24J40.c: 22: PORTB &= ~(1<<5);
-"22
-[e =& _PORTB -> ~ << -> 1 `i -> 5 `i `uc ]
-[; ;MRF24J40.c: 23: }
+[; ;MRF24J40.c: 23: PORTB &= ~(1<<PORTBbits.RB5);
 "23
+[e =& _PORTB -> ~ << -> 1 `i . . _PORTBbits 0 5 `uc ]
+[; ;MRF24J40.c: 24: }
+"24
 [e :UE 90 ]
 }
-[v F1018 `(v ~T0 @X0 1 tf ]
-"25
-[v _chipRelease `TF1018 ~T0 @X0 1 e ]
+[v F1014 `(v ~T0 @X0 1 tf ]
+"26
+[v _chipRelease `TF1014 ~T0 @X0 1 e ]
 {
-[; ;MRF24J40.c: 25: inline void chipRelease(){
+[; ;MRF24J40.c: 26: inline void chipRelease(){
 [e :U _chipRelease ]
 [f ]
-[; ;MRF24J40.c: 26: PORTB |= (1<<5);
-"26
-[e =| _PORTB -> << -> 1 `i -> 5 `i `uc ]
-[; ;MRF24J40.c: 27: }
+[; ;MRF24J40.c: 27: PORTB |= (1<<PORTBbits.RB5);
 "27
+[e =| _PORTB -> << -> 1 `i . . _PORTBbits 0 5 `uc ]
+[; ;MRF24J40.c: 28: }
+"28
 [e :UE 91 ]
 }
-"29
+"30
 [v _SPI_WriteByte `(v ~T0 @X0 1 ef1`uc ]
-"30
-{
-[; ;MRF24J40.c: 29: void SPI_WriteByte(uint8_t data)
-[; ;MRF24J40.c: 30: {
-[e :U _SPI_WriteByte ]
-"29
-[v _data `uc ~T0 @X0 1 r1 ]
-"30
-[f ]
-[; ;MRF24J40.c: 31: chipSelect();
 "31
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 32: SSPBUF = data;
+{
+[; ;MRF24J40.c: 30: void SPI_WriteByte(uint8_t data)
+[; ;MRF24J40.c: 31: {
+[e :U _SPI_WriteByte ]
+"30
+[v _data `uc ~T0 @X0 1 r1 ]
+"31
+[f ]
+[; ;MRF24J40.c: 32: chipSelect();
 "32
-[e = _SSPBUF _data ]
-[; ;MRF24J40.c: 33: while(SSPSTATbits.BF);
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 33: SSPBUF = data;
 "33
+[e = _SSPBUF _data ]
+[; ;MRF24J40.c: 34: while(SSPSTATbits.BF);
+"34
 [e $U 93  ]
 [e :U 94 ]
 [e :U 93 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 94  ]
 [e :U 95 ]
-[; ;MRF24J40.c: 34: chipRelease();
-"34
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 35: }
+[; ;MRF24J40.c: 35: chipRelease();
 "35
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 36: }
+"36
 [e :UE 92 ]
 }
-"37
+"38
 [v _SPI_ReadByte `(uc ~T0 @X0 1 ef1`uc ]
-"38
-{
-[; ;MRF24J40.c: 37: uint8_t SPI_ReadByte(uint8_t addr)
-[; ;MRF24J40.c: 38: {
-[e :U _SPI_ReadByte ]
-"37
-[v _addr `uc ~T0 @X0 1 r1 ]
-"38
-[f ]
 "39
-[v _report `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 39: uint8_t report;
-[; ;MRF24J40.c: 40: chipSelect();
+{
+[; ;MRF24J40.c: 38: uint8_t SPI_ReadByte(uint8_t addr)
+[; ;MRF24J40.c: 39: {
+[e :U _SPI_ReadByte ]
+"38
+[v _addr `uc ~T0 @X0 1 r1 ]
+"39
+[f ]
 "40
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 41: SSPBUF = addr;
+[v _report `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 40: uint8_t report;
+[; ;MRF24J40.c: 41: chipSelect();
 "41
-[e = _SSPBUF _addr ]
-[; ;MRF24J40.c: 42: while(SSPSTATbits.BF);
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 42: SSPBUF = addr;
 "42
+[e = _SSPBUF _addr ]
+[; ;MRF24J40.c: 43: while(SSPSTATbits.BF);
+"43
 [e $U 97  ]
 [e :U 98 ]
 [e :U 97 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 98  ]
 [e :U 99 ]
-[; ;MRF24J40.c: 43: report = SSPBUF;
-"43
-[e = _report _SSPBUF ]
-[; ;MRF24J40.c: 44: chipRelease();
+[; ;MRF24J40.c: 44: report = SSPBUF;
 "44
+[e = _report _SSPBUF ]
+[; ;MRF24J40.c: 45: chipRelease();
+"45
 [e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 46: return report;
-"46
+[; ;MRF24J40.c: 47: return report;
+"47
 [e ) _report ]
 [e $UE 96  ]
-[; ;MRF24J40.c: 47: }
-"47
+[; ;MRF24J40.c: 48: }
+"48
 [e :UE 96 ]
 }
-"49
-[v _SPI_WriteArray `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
 "50
+[v _SPI_WriteArray `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
+"51
 {
-[; ;MRF24J40.c: 49: void SPI_WriteArray(uint8_t command, uint8_t num, uint8_t *buffer)
-[; ;MRF24J40.c: 50: {
+[; ;MRF24J40.c: 50: void SPI_WriteArray(uint8_t command, uint8_t num, uint8_t *buffer)
+[; ;MRF24J40.c: 51: {
 [e :U _SPI_WriteArray ]
-"49
+"50
 [v _command `uc ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
-"50
-[f ]
-[; ;MRF24J40.c: 51: chipSelect();
 "51
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 52: SPI_WriteByte(command);
+[f ]
+[; ;MRF24J40.c: 52: chipSelect();
 "52
-[e ( _SPI_WriteByte (1 _command ]
-[; ;MRF24J40.c: 53: while(SSPSTATbits.BF);
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 53: SPI_WriteByte(command);
 "53
+[e ( _SPI_WriteByte (1 _command ]
+[; ;MRF24J40.c: 54: while(SSPSTATbits.BF);
+"54
 [e $U 101  ]
 [e :U 102 ]
 [e :U 101 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 102  ]
 [e :U 103 ]
-[; ;MRF24J40.c: 54: while(num--){
-"54
+[; ;MRF24J40.c: 55: while(num--){
+"55
 [e $U 104  ]
 [e :U 105 ]
 {
-[; ;MRF24J40.c: 55: SSPBUF = *buffer++;
-"55
-[e = _SSPBUF *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-[; ;MRF24J40.c: 56: while(SSPSTATbits.BF);
+[; ;MRF24J40.c: 56: SSPBUF = *buffer++;
 "56
+[e = _SSPBUF *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
+[; ;MRF24J40.c: 57: while(SSPSTATbits.BF);
+"57
 [e $U 107  ]
 [e :U 108 ]
 [e :U 107 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 108  ]
 [e :U 109 ]
-"57
+"58
 }
 [e :U 104 ]
-"54
+"55
 [e $ != -> -- _num -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 105  ]
 [e :U 106 ]
-[; ;MRF24J40.c: 57: }
-[; ;MRF24J40.c: 58: chipRelease();
-"58
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 59: }
+[; ;MRF24J40.c: 58: }
+[; ;MRF24J40.c: 59: chipRelease();
 "59
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 60: }
+"60
 [e :UE 100 ]
 }
-"61
-[v _SPI_ReadArray `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
 "62
+[v _SPI_ReadArray `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
+"63
 {
-[; ;MRF24J40.c: 61: void SPI_ReadArray(uint8_t command, uint8_t num, uint8_t *buffer)
-[; ;MRF24J40.c: 62: {
+[; ;MRF24J40.c: 62: void SPI_ReadArray(uint8_t command, uint8_t num, uint8_t *buffer)
+[; ;MRF24J40.c: 63: {
 [e :U _SPI_ReadArray ]
-"61
+"62
 [v _command `uc ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
-"62
-[f ]
-[; ;MRF24J40.c: 63: chipSelect();
 "63
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 64: SPI_WriteByte(command);
+[f ]
+[; ;MRF24J40.c: 64: chipSelect();
 "64
-[e ( _SPI_WriteByte (1 _command ]
-[; ;MRF24J40.c: 65: while(SSPSTATbits.BF);
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 65: SPI_WriteByte(command);
 "65
+[e ( _SPI_WriteByte (1 _command ]
+[; ;MRF24J40.c: 66: while(SSPSTATbits.BF);
+"66
 [e $U 111  ]
 [e :U 112 ]
 [e :U 111 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 112  ]
 [e :U 113 ]
-[; ;MRF24J40.c: 66: while(num--){
-"66
+[; ;MRF24J40.c: 67: while(num--){
+"67
 [e $U 114  ]
 [e :U 115 ]
 {
-[; ;MRF24J40.c: 68: while(SSPSTATbits.BF);
-"68
+[; ;MRF24J40.c: 69: while(SSPSTATbits.BF);
+"69
 [e $U 117  ]
 [e :U 118 ]
 [e :U 117 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 118  ]
 [e :U 119 ]
-[; ;MRF24J40.c: 69: *buffer++ = SSPBUF;
-"69
-[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x _SSPBUF ]
+[; ;MRF24J40.c: 70: *buffer++ = SSPBUF;
 "70
+[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x _SSPBUF ]
+"71
 }
 [e :U 114 ]
-"66
+"67
 [e $ != -> -- _num -> -> 1 `i `uc `i -> -> -> 0 `i `uc `i 115  ]
 [e :U 116 ]
-[; ;MRF24J40.c: 70: }
-[; ;MRF24J40.c: 71: chipRelease();
-"71
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 72: }
+[; ;MRF24J40.c: 71: }
+[; ;MRF24J40.c: 72: chipRelease();
 "72
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 73: }
+"73
 [e :UE 110 ]
 }
-[v F1021 `(v ~T0 @X0 1 tf ]
-"74
-[v _waitForSPI `TF1021 ~T0 @X0 1 e ]
+[v F1017 `(v ~T0 @X0 1 tf ]
+"75
+[v _waitForSPI `TF1017 ~T0 @X0 1 e ]
 {
-[; ;MRF24J40.c: 74: inline void waitForSPI(){
+[; ;MRF24J40.c: 75: inline void waitForSPI(){
 [e :U _waitForSPI ]
 [f ]
-[; ;MRF24J40.c: 75: while(SSPSTATbits.BF);
-"75
+[; ;MRF24J40.c: 76: while(SSPSTATbits.BF);
+"76
 [e $U 121  ]
 [e :U 122 ]
 [e :U 121 ]
 [e $ != -> . . _SSPSTATbits 0 0 `i -> -> -> 0 `i `Vuc `i 122  ]
 [e :U 123 ]
-[; ;MRF24J40.c: 76: }
-"76
+[; ;MRF24J40.c: 77: }
+"77
 [e :UE 120 ]
 }
-"80
+"81
 [v _addrWriteSA `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;MRF24J40.c: 80: void addrWriteSA(uint8_t addr, uint8_t op) {
+[; ;MRF24J40.c: 81: void addrWriteSA(uint8_t addr, uint8_t op) {
 [e :U _addrWriteSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _op `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;MRF24J40.c: 82: if(!(addr < 0x3F)) {_fassert(82, "MRF24J40.c", "addr < 0x3F");};
-"82
-[e $ ! ! < -> _addr `i -> 63 `i 125  ]
-{
-[e ( __fassert (3 , , -> 82 `i :s 1C :s 2C ]
-}
-[e :U 125 ]
-"83
-[v _command `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 83: uint8_t command= (op?(((addr<<1) )|0b00000001):(((addr<<1)&0b01111111)&0b11111110));
-[e = _command -> ? != -> _op `i -> -> -> 0 `i `uc `i : | << -> _addr `i -> 1 `i -> 1 `i & & << -> _addr `i -> 1 `i -> 127 `i -> 254 `i `uc ]
-[; ;MRF24J40.c: 84: SSPBUF= command;
 "84
-[e = _SSPBUF _command ]
-[; ;MRF24J40.c: 85: waitForSPI();
+[v _command `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 84: uint8_t command= (op?(((addr<<1) )|0b00000001):(((addr<<1)&0b01111111)&0b11111110));
+[e = _command -> ? != -> _op `i -> -> -> 0 `i `uc `i : | << -> _addr `i -> 1 `i -> 1 `i & & << -> _addr `i -> 1 `i -> 127 `i -> 254 `i `uc ]
+[; ;MRF24J40.c: 85: SSPBUF= command;
 "85
-[e ( _waitForSPI ..  ]
-[; ;MRF24J40.c: 86: }
+[e = _SSPBUF _command ]
+[; ;MRF24J40.c: 86: waitForSPI();
 "86
+[e ( _waitForSPI ..  ]
+[; ;MRF24J40.c: 87: }
+"87
 [e :UE 124 ]
 }
-"88
+"89
 [v _addrWriteLA `(v ~T0 @X0 1 ef2`ui`uc ]
 {
-[; ;MRF24J40.c: 88: void addrWriteLA(uint16_t addr, uint8_t op) {
+[; ;MRF24J40.c: 89: void addrWriteLA(uint16_t addr, uint8_t op) {
 [e :U _addrWriteLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [v _op `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;MRF24J40.c: 90: if(!(addr < 0x38F)) {_fassert(90, "MRF24J40.c", "addr < 0x38F");};
-"90
-[e $ ! ! < _addr -> -> 911 `i `ui 127  ]
-{
-[e ( __fassert (3 , , -> 90 `i :s 3C :s 4C ]
-}
-[e :U 127 ]
-"91
-[v _command `ui ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 91: uint16_t command= (op?(((addr<<1)&0b100000000000)|0b000000000001):(((addr<<1)|0b100000000000 )));
-[e = _command ? != -> _op `i -> -> -> 0 `i `uc `i : | & << _addr -> 1 `i -> -> 2048 `i `ui -> -> 1 `i `ui | << _addr -> 1 `i -> -> 2048 `i `ui ]
-[; ;MRF24J40.c: 92: SSPBUF= (command>>8);
 "92
-[e = _SSPBUF -> >> _command -> 8 `i `uc ]
-[; ;MRF24J40.c: 93: waitForSPI();
+[v _command `ui ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 92: uint16_t command= (op?(((addr<<1)&0b100000000000)|0b000000000001):(((addr<<1)|0b100000000000 )));
+[e = _command ? != -> _op `i -> -> -> 0 `i `uc `i : | & << _addr -> 1 `i -> -> 2048 `i `ui -> -> 1 `i `ui | << _addr -> 1 `i -> -> 2048 `i `ui ]
+[; ;MRF24J40.c: 93: SSPBUF= (command>>8);
 "93
-[e ( _waitForSPI ..  ]
-[; ;MRF24J40.c: 94: SSPBUF= (command&0xFF);
+[e = _SSPBUF -> >> _command -> 8 `i `uc ]
+[; ;MRF24J40.c: 94: waitForSPI();
 "94
-[e = _SSPBUF -> & _command -> -> 255 `i `ui `uc ]
-[; ;MRF24J40.c: 95: waitForSPI();
-"95
 [e ( _waitForSPI ..  ]
-[; ;MRF24J40.c: 96: }
+[; ;MRF24J40.c: 95: SSPBUF= (command&0xFF);
+"95
+[e = _SSPBUF -> & _command -> -> 255 `i `ui `uc ]
+[; ;MRF24J40.c: 96: waitForSPI();
 "96
-[e :UE 126 ]
+[e ( _waitForSPI ..  ]
+[; ;MRF24J40.c: 97: }
+"97
+[e :UE 125 ]
 }
-"98
+"99
 [v _byteReadSA `(uc ~T0 @X0 1 ef1`uc ]
 {
-[; ;MRF24J40.c: 98: uint8_t byteReadSA(uint8_t addr){
+[; ;MRF24J40.c: 99: uint8_t byteReadSA(uint8_t addr){
 [e :U _byteReadSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [f ]
-"99
-[v _report `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 99: uint8_t report;
-[; ;MRF24J40.c: 100: chipSelect();
 "100
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 101: addrWriteSA(addr, 1);
+[v _report `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 100: uint8_t report;
+[; ;MRF24J40.c: 101: chipSelect();
 "101
-[e ( _addrWriteSA (2 , _addr -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 102: report = SSPBUF;
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 102: addrWriteSA(addr, 1);
 "102
-[e = _report _SSPBUF ]
-[; ;MRF24J40.c: 103: chipRelease();
+[e ( _addrWriteSA (2 , _addr -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 103: report = SSPBUF;
 "103
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 104: return report;
+[e = _report _SSPBUF ]
+[; ;MRF24J40.c: 104: chipRelease();
 "104
-[e ) _report ]
-[e $UE 128  ]
-[; ;MRF24J40.c: 105: }
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 105: return report;
 "105
-[e :UE 128 ]
+[e ) _report ]
+[e $UE 126  ]
+[; ;MRF24J40.c: 106: }
+"106
+[e :UE 126 ]
 }
-"107
+"108
 [v _byteWriteSA `(v ~T0 @X0 1 ef2`uc`uc ]
 {
-[; ;MRF24J40.c: 107: void byteWriteSA(uint8_t addr, uint8_t data){
+[; ;MRF24J40.c: 108: void byteWriteSA(uint8_t addr, uint8_t data){
 [e :U _byteWriteSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;MRF24J40.c: 108: chipSelect();
-"108
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 109: addrWriteSA(addr, 0);
+[; ;MRF24J40.c: 109: chipSelect();
 "109
-[e ( _addrWriteSA (2 , _addr -> -> 0 `i `uc ]
-[; ;MRF24J40.c: 110: SSPBUF= data;
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 110: addrWriteSA(addr, 0);
 "110
-[e = _SSPBUF _data ]
-[; ;MRF24J40.c: 111: waitForSPI();
+[e ( _addrWriteSA (2 , _addr -> -> 0 `i `uc ]
+[; ;MRF24J40.c: 111: SSPBUF= data;
 "111
-[e ( _waitForSPI ..  ]
-[; ;MRF24J40.c: 112: chipRelease();
+[e = _SSPBUF _data ]
+[; ;MRF24J40.c: 112: waitForSPI();
 "112
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 113: }
+[e ( _waitForSPI ..  ]
+[; ;MRF24J40.c: 113: chipRelease();
 "113
-[e :UE 129 ]
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 114: }
+"114
+[e :UE 127 ]
 }
-"115
+"116
 [v _bitWriteSA `(v ~T0 @X0 1 ef3`uc`uc`uc ]
 {
-[; ;MRF24J40.c: 115: void bitWriteSA(uint8_t addr, uint8_t bitname, bool state) {
+[; ;MRF24J40.c: 116: void bitWriteSA(uint8_t addr, uint8_t bitname, bool state) {
 [e :U _bitWriteSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _bitname `uc ~T0 @X0 1 r2 ]
 [v _state `uc ~T0 @X0 1 r3 ]
 [f ]
-"116
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 116: uint8_t temp= byteReadSA(addr);
-[e = _temp ( _byteReadSA (1 _addr ]
-[; ;MRF24J40.c: 117: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
 "117
-[e ? != -> _state `i -> -> -> 0 `i `uc `i : -> =| _temp -> << -> 1 `i _bitname `uc `i -> =& _temp -> ~ << -> 1 `i _bitname `uc `i ]
-[; ;MRF24J40.c: 118: byteWriteSA(addr, temp);
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 117: uint8_t temp= byteReadSA(addr);
+[e = _temp ( _byteReadSA (1 _addr ]
+[; ;MRF24J40.c: 118: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
 "118
-[e ( _byteWriteSA (2 , _addr _temp ]
-[; ;MRF24J40.c: 119: }
+[e ? != -> _state `i -> -> -> 0 `i `uc `i : -> =| _temp -> << -> 1 `i _bitname `uc `i -> =& _temp -> ~ << -> 1 `i _bitname `uc `i ]
+[; ;MRF24J40.c: 119: byteWriteSA(addr, temp);
 "119
-[e :UE 130 ]
+[e ( _byteWriteSA (2 , _addr _temp ]
+[; ;MRF24J40.c: 120: }
+"120
+[e :UE 128 ]
 }
-"121
+"122
 [v _dataReadSA `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
 {
-[; ;MRF24J40.c: 121: void dataReadSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+[; ;MRF24J40.c: 122: void dataReadSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
 [e :U _dataReadSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;MRF24J40.c: 122: chipSelect();
-"122
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 124: for(int i= num; i>0; i--){
+[; ;MRF24J40.c: 124: chipSelect();
 "124
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 126: for(int i= num; i>0; i--){
+"126
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> _num `i ]
-[e $ > _i -> 0 `i 132  ]
-[e $U 133  ]
-[e :U 132 ]
+[e $ > _i -> 0 `i 130  ]
+[e $U 131  ]
+[e :U 130 ]
 {
-[; ;MRF24J40.c: 125: addrWriteSA(addr++, 1);
-"125
-[e ( _addrWriteSA (2 , ++ _addr -> -> 1 `i `uc -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 127: *buffer++ = SSPBUF;
+[; ;MRF24J40.c: 127: addrWriteSA(addr++, 1);
 "127
+[e ( _addrWriteSA (2 , ++ _addr -> -> 1 `i `uc -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 129: *buffer++ = SSPBUF;
+"129
 [e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x _SSPBUF ]
-[; ;MRF24J40.c: 128: waitForSPI();
-"128
-[e ( _waitForSPI ..  ]
-"129
-}
-"124
-[e -- _i -> 1 `i ]
-[e $ > _i -> 0 `i 132  ]
-[e :U 133 ]
-"129
-}
-[; ;MRF24J40.c: 129: }
-[; ;MRF24J40.c: 130: chipRelease();
+[; ;MRF24J40.c: 130: waitForSPI();
 "130
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 131: }
+[e ( _waitForSPI ..  ]
 "131
-[e :UE 131 ]
 }
+"126
+[e -- _i -> 1 `i ]
+[e $ > _i -> 0 `i 130  ]
+[e :U 131 ]
+"131
+}
+[; ;MRF24J40.c: 131: }
+[; ;MRF24J40.c: 132: chipRelease();
+"132
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 133: }
 "133
+[e :UE 129 ]
+}
+"135
 [v _dataWriteSA `(v ~T0 @X0 1 ef3`uc`uc`*uc ]
 {
-[; ;MRF24J40.c: 133: void dataWriteSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+[; ;MRF24J40.c: 135: void dataWriteSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
 [e :U _dataWriteSA ]
 [v _addr `uc ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;MRF24J40.c: 134: chipSelect();
-"134
+[; ;MRF24J40.c: 137: chipSelect();
+"137
 [e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 135: addrWriteSA(addr, 0);
-"135
+[; ;MRF24J40.c: 138: addrWriteSA(addr, 0);
+"138
 [e ( _addrWriteSA (2 , _addr -> -> 0 `i `uc ]
-[; ;MRF24J40.c: 136: for(int i= num; i>0; i--){
-"136
+[; ;MRF24J40.c: 139: for(int i= num; i>0; i--){
+"139
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> _num `i ]
-[e $ > _i -> 0 `i 136  ]
-[e $U 137  ]
-[e :U 136 ]
+[e $ > _i -> 0 `i 134  ]
+[e $U 135  ]
+[e :U 134 ]
 {
-[; ;MRF24J40.c: 137: SSPBUF= *buffer++;
-"137
-[e = _SSPBUF *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-[; ;MRF24J40.c: 138: waitForSPI();
-"138
-[e ( _waitForSPI ..  ]
-"139
-}
-"136
-[e -- _i -> 1 `i ]
-[e $ > _i -> 0 `i 136  ]
-[e :U 137 ]
-"139
-}
-[; ;MRF24J40.c: 139: }
-[; ;MRF24J40.c: 140: chipRelease();
+[; ;MRF24J40.c: 140: SSPBUF= *buffer++;
 "140
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 141: }
+[e = _SSPBUF *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
+[; ;MRF24J40.c: 141: waitForSPI();
 "141
-[e :UE 135 ]
+[e ( _waitForSPI ..  ]
+"142
 }
+"139
+[e -- _i -> 1 `i ]
+[e $ > _i -> 0 `i 134  ]
+[e :U 135 ]
+"142
+}
+[; ;MRF24J40.c: 142: }
+[; ;MRF24J40.c: 143: chipRelease();
 "143
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 144: }
+"144
+[e :UE 133 ]
+}
+"146
 [v _byteReadLA `(uc ~T0 @X0 1 ef1`ui ]
 {
-[; ;MRF24J40.c: 143: uint8_t byteReadLA(uint16_t addr) {
+[; ;MRF24J40.c: 146: uint8_t byteReadLA(uint16_t addr) {
 [e :U _byteReadLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [f ]
-"144
-[v _report `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 144: uint8_t report;
-[; ;MRF24J40.c: 145: chipSelect();
-"145
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 146: addrWriteLA(addr, 1);
-"146
-[e ( _addrWriteLA (2 , _addr -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 147: report= SSPBUF;
 "147
-[e = _report _SSPBUF ]
-[; ;MRF24J40.c: 148: chipRelease();
+[v _report `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 147: uint8_t report;
+[; ;MRF24J40.c: 148: chipSelect();
 "148
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 149: return report;
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 149: addrWriteLA(addr, 1);
 "149
-[e ) _report ]
-[e $UE 139  ]
-[; ;MRF24J40.c: 150: }
+[e ( _addrWriteLA (2 , _addr -> -> 1 `i `uc ]
+[; ;MRF24J40.c: 150: report= SSPBUF;
 "150
-[e :UE 139 ]
-}
+[e = _report _SSPBUF ]
+[; ;MRF24J40.c: 151: chipRelease();
+"151
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 152: return report;
 "152
+[e ) _report ]
+[e $UE 137  ]
+[; ;MRF24J40.c: 153: }
+"153
+[e :UE 137 ]
+}
+"155
 [v _byteWriteLA `(v ~T0 @X0 1 ef2`ui`uc ]
 {
-[; ;MRF24J40.c: 152: void byteWriteLA(uint16_t addr, uint8_t data){
+[; ;MRF24J40.c: 155: void byteWriteLA(uint16_t addr, uint8_t data){
 [e :U _byteWriteLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [v _data `uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;MRF24J40.c: 153: chipSelect();
-"153
-[e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 154: addrWriteLA(addr, 0);
-"154
-[e ( _addrWriteLA (2 , _addr -> -> 0 `i `uc ]
-[; ;MRF24J40.c: 155: SSPBUF= data;
-"155
-[e = _SSPBUF _data ]
-[; ;MRF24J40.c: 156: waitForSPI();
+[; ;MRF24J40.c: 156: chipSelect();
 "156
-[e ( _waitForSPI ..  ]
-[; ;MRF24J40.c: 157: chipRelease();
+[e ( _chipSelect ..  ]
+[; ;MRF24J40.c: 157: addrWriteLA(addr, 0);
 "157
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 158: }
+[e ( _addrWriteLA (2 , _addr -> -> 0 `i `uc ]
+[; ;MRF24J40.c: 158: SSPBUF= data;
 "158
-[e :UE 140 ]
-}
+[e = _SSPBUF _data ]
+[; ;MRF24J40.c: 159: waitForSPI();
+"159
+[e ( _waitForSPI ..  ]
+[; ;MRF24J40.c: 160: chipRelease();
 "160
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 161: }
+"161
+[e :UE 138 ]
+}
+"163
 [v _bitWriteLA `(v ~T0 @X0 1 ef3`ui`uc`uc ]
 {
-[; ;MRF24J40.c: 160: void bitWriteLA(uint16_t addr, uint8_t bitname, bool state) {
+[; ;MRF24J40.c: 163: void bitWriteLA(uint16_t addr, uint8_t bitname, bool state) {
 [e :U _bitWriteLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [v _bitname `uc ~T0 @X0 1 r2 ]
 [v _state `uc ~T0 @X0 1 r3 ]
 [f ]
-"161
-[v _temp `uc ~T0 @X0 1 a ]
-[; ;MRF24J40.c: 161: uint8_t temp= byteReadLA(addr);
-[e = _temp ( _byteReadLA (1 _addr ]
-[; ;MRF24J40.c: 162: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
-"162
-[e ? != -> _state `i -> -> -> 0 `i `uc `i : -> =| _temp -> << -> 1 `i _bitname `uc `i -> =& _temp -> ~ << -> 1 `i _bitname `uc `i ]
-[; ;MRF24J40.c: 163: byteWriteLA(addr, temp);
-"163
-[e ( _byteWriteLA (2 , _addr _temp ]
-[; ;MRF24J40.c: 164: }
 "164
-[e :UE 141 ]
-}
+[v _temp `uc ~T0 @X0 1 a ]
+[; ;MRF24J40.c: 164: uint8_t temp= byteReadLA(addr);
+[e = _temp ( _byteReadLA (1 _addr ]
+[; ;MRF24J40.c: 165: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
+"165
+[e ? != -> _state `i -> -> -> 0 `i `uc `i : -> =| _temp -> << -> 1 `i _bitname `uc `i -> =& _temp -> ~ << -> 1 `i _bitname `uc `i ]
+[; ;MRF24J40.c: 166: byteWriteLA(addr, temp);
 "166
+[e ( _byteWriteLA (2 , _addr _temp ]
+[; ;MRF24J40.c: 167: }
+"167
+[e :UE 139 ]
+}
+"169
 [v _dataReadLA `(v ~T0 @X0 1 ef3`ui`uc`*uc ]
 {
-[; ;MRF24J40.c: 166: void dataReadLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+[; ;MRF24J40.c: 169: void dataReadLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
 [e :U _dataReadLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;MRF24J40.c: 167: chipSelect();
-"167
+[; ;MRF24J40.c: 171: chipSelect();
+"171
 [e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 169: for(int i= num; i>0; i--){
-"169
+[; ;MRF24J40.c: 173: for(int i= num; i>0; i--){
+"173
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> _num `i ]
-[e $ > _i -> 0 `i 143  ]
-[e $U 144  ]
-[e :U 143 ]
+[e $ > _i -> 0 `i 141  ]
+[e $U 142  ]
+[e :U 141 ]
 {
-[; ;MRF24J40.c: 170: addrWriteLA(addr++, 1);
-"170
+[; ;MRF24J40.c: 174: addrWriteLA(addr++, 1);
+"174
 [e ( _addrWriteLA (2 , ++ _addr -> -> 1 `i `ui -> -> 1 `i `uc ]
-[; ;MRF24J40.c: 172: *buffer++ = SSPBUF;
-"172
-[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x _SSPBUF ]
-[; ;MRF24J40.c: 173: waitForSPI();
-"173
-[e ( _waitForSPI ..  ]
-"174
-}
-"169
-[e -- _i -> 1 `i ]
-[e $ > _i -> 0 `i 143  ]
-[e :U 144 ]
-"174
-}
-[; ;MRF24J40.c: 174: }
-[; ;MRF24J40.c: 175: chipRelease();
-"175
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 176: }
+[; ;MRF24J40.c: 176: *buffer++ = SSPBUF;
 "176
-[e :UE 142 ]
-}
+[e = *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x _SSPBUF ]
+[; ;MRF24J40.c: 177: waitForSPI();
+"177
+[e ( _waitForSPI ..  ]
 "178
+}
+"173
+[e -- _i -> 1 `i ]
+[e $ > _i -> 0 `i 141  ]
+[e :U 142 ]
+"178
+}
+[; ;MRF24J40.c: 178: }
+[; ;MRF24J40.c: 179: chipRelease();
+"179
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 180: }
+"180
+[e :UE 140 ]
+}
+"182
 [v _dataWriteLA `(v ~T0 @X0 1 ef3`ui`uc`*uc ]
 {
-[; ;MRF24J40.c: 178: void dataWriteLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+[; ;MRF24J40.c: 182: void dataWriteLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
 [e :U _dataWriteLA ]
 [v _addr `ui ~T0 @X0 1 r1 ]
 [v _num `uc ~T0 @X0 1 r2 ]
 [v _buffer `*uc ~T0 @X0 1 r3 ]
 [f ]
-[; ;MRF24J40.c: 179: chipSelect();
-"179
+[; ;MRF24J40.c: 184: chipSelect();
+"184
 [e ( _chipSelect ..  ]
-[; ;MRF24J40.c: 180: addrWriteLA(addr, 0);
-"180
+[; ;MRF24J40.c: 185: addrWriteLA(addr, 0);
+"185
 [e ( _addrWriteLA (2 , _addr -> -> 0 `i `uc ]
-[; ;MRF24J40.c: 181: for(int i= num; i>0; i--){
-"181
+[; ;MRF24J40.c: 186: for(int i= num; i>0; i--){
+"186
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> _num `i ]
-[e $ > _i -> 0 `i 147  ]
-[e $U 148  ]
-[e :U 147 ]
+[e $ > _i -> 0 `i 145  ]
+[e $U 146  ]
+[e :U 145 ]
 {
-[; ;MRF24J40.c: 182: SSPBUF= *buffer++;
-"182
+[; ;MRF24J40.c: 187: SSPBUF= *buffer++;
+"187
 [e = _SSPBUF *U ++ _buffer * -> -> 1 `i `x -> -> # *U _buffer `i `x ]
-[; ;MRF24J40.c: 183: waitForSPI();
-"183
+[; ;MRF24J40.c: 188: waitForSPI();
+"188
 [e ( _waitForSPI ..  ]
-"184
+"189
 }
-"181
-[e -- _i -> 1 `i ]
-[e $ > _i -> 0 `i 147  ]
-[e :U 148 ]
-"184
-}
-[; ;MRF24J40.c: 184: }
-[; ;MRF24J40.c: 185: chipRelease();
-"185
-[e ( _chipRelease ..  ]
-[; ;MRF24J40.c: 186: }
 "186
-[e :UE 146 ]
+[e -- _i -> 1 `i ]
+[e $ > _i -> 0 `i 145  ]
+[e :U 146 ]
+"189
 }
-[; ;MRF24J40.c: 191: void deviceReset();
-"192
+[; ;MRF24J40.c: 189: }
+[; ;MRF24J40.c: 190: chipRelease();
+"190
+[e ( _chipRelease ..  ]
+[; ;MRF24J40.c: 191: }
+"191
+[e :UE 144 ]
+}
+"196
+[v _deviceReset `(v ~T0 @X0 1 ef ]
+{
+[; ;MRF24J40.c: 196: void deviceReset() {
+[e :U _deviceReset ]
+[f ]
+[; ;MRF24J40.c: 197: PORTB&= ~(1<<PORTBbits.RB6);
+"197
+[e =& _PORTB -> ~ << -> 1 `i . . _PORTBbits 0 6 `uc ]
+[; ;MRF24J40.c: 198: _delay((unsigned long)((5)*(8000000/4000000.0)));
+"198
+[e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+[; ;MRF24J40.c: 199: PORTB|= (1<<PORTBbits.RB6);
+"199
+[e =| _PORTB -> << -> 1 `i . . _PORTBbits 0 6 `uc ]
+[; ;MRF24J40.c: 200: _delay((unsigned long)((2)*(8000000/4000.0)));
+"200
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;MRF24J40.c: 201: }
+"201
+[e :UE 148 ]
+}
+"203
 [v _deviceInit `(v ~T0 @X0 1 ef ]
 {
-[; ;MRF24J40.c: 192: void deviceInit() {
+[; ;MRF24J40.c: 203: void deviceInit() {
 [e :U _deviceInit ]
 [f ]
-[; ;MRF24J40.c: 193: SPI_Init();
-"193
+[; ;MRF24J40.c: 210: TRISB|= (1<<PORTBbits.RB6)|(1<<PORTBbits.RB3);
+"210
+[e =| _TRISB -> | << -> 1 `i . . _PORTBbits 0 6 << -> 1 `i . . _PORTBbits 0 3 `uc ]
+[; ;MRF24J40.c: 211: 1?(PORTB|= (1<<PORTBbits.RB6)):(PORTB&=~(1<<PORTBbits.RB6));
+"211
+[e ? != -> 1 `i -> 0 `i : -> =| _PORTB -> << -> 1 `i . . _PORTBbits 0 6 `uc `i -> =& _PORTB -> ~ << -> 1 `i . . _PORTBbits 0 6 `uc `i ]
+[; ;MRF24J40.c: 212: 1?(PORTB|= (1<<PORTBbits.RB3)):(PORTB&=~(1<<PORTBbits.RB3));
+"212
+[e ? != -> 1 `i -> 0 `i : -> =| _PORTB -> << -> 1 `i . . _PORTBbits 0 3 `uc `i -> =& _PORTB -> ~ << -> 1 `i . . _PORTBbits 0 3 `uc `i ]
+[; ;MRF24J40.c: 213: SPI_Init();
+"213
 [e ( _SPI_Init ..  ]
-[; ;MRF24J40.c: 195: }
-"195
+[; ;MRF24J40.c: 216: }
+"216
+[e :UE 149 ]
+}
+[; ;MRF24J40.c: 218: void deviceSleep();
+[; ;MRF24J40.c: 219: void deviceSetInterrupt(uint8_t val, bool state);
+[; ;MRF24J40.c: 220: void deviceChannelSelect(uint8_t chan);
+[; ;MRF24J40.c: 221: void clearChannelAssesstment(uint8_t val);
+[; ;MRF24J40.c: 222: void setRSSIMode(uint8_t val);
+"224
+[v _readRSSI `(uc ~T0 @X0 1 ef ]
+{
+[; ;MRF24J40.c: 224: uint8_t readRSSI() {
+[e :U _readRSSI ]
+[f ]
+[; ;MRF24J40.c: 225: return byteReadLA(0x210);
+"225
+[e ) ( _byteReadLA (1 -> -> 528 `i `ui ]
+[e $UE 150  ]
+[; ;MRF24J40.c: 226: }
+"226
 [e :UE 150 ]
 }
-[; ;MRF24J40.c: 196: void deviceSetInterrupt(uint8_t val, bool state);
-[; ;MRF24J40.c: 197: void channelSelect(uint8_t chan);
-[; ;MRF24J40.c: 198: void clearChannelAssesstment(uint8_t val);
-[; ;MRF24J40.c: 199: void setRSSIMode(uint8_t val);
-[; ;MRF24J40.c: 200: uint8_t readRSSI();
-[; ;MRF24J40.c: 201: void deviceSetAddress(uint32_t addr_H, uint32_t addr_L);
-[; ;MRF24J40.c: 202: void deviceSetShortAddress(uint8_t addr);
-[; ;MRF24J40.c: 203: void setBattThreshold(uint8_t);
-[; ;MRF24J40.c: 204: void battLifeExt();
-[; ;MRF24J40.c: 205: void noBattLifeExt();
-"217
+[; ;MRF24J40.c: 228: void deviceSetAddress(uint32_t addr_H, uint32_t addr_L);
+[; ;MRF24J40.c: 229: void deviceSetShortAddress(uint8_t addr);
+[; ;MRF24J40.c: 231: void setBattThreshold(uint8_t);
+[; ;MRF24J40.c: 232: void battLifeExt();
+[; ;MRF24J40.c: 233: void noBattLifeExt();
+"245
 [v _setSecurityChipher `(v ~T0 @X0 1 ef1`uc ]
 {
-[; ;MRF24J40.c: 217: void setSecurityChipher(uint8_t chipher){
+[; ;MRF24J40.c: 245: void setSecurityChipher(uint8_t chipher){
 [e :U _setSecurityChipher ]
 [v _chipher `uc ~T0 @X0 1 r1 ]
 [f ]
-[; ;MRF24J40.c: 218: if(!(chipher < 8)) {_fassert(218, "MRF24J40.c", "chipher < 8");};
-"218
-[e $ ! ! < -> _chipher `i -> 8 `i 152  ]
-{
-[e ( __fassert (3 , , -> 218 `i :s 5C :s 6C ]
-}
-[e :U 152 ]
-[; ;MRF24J40.c: 220: }
-"220
+[; ;MRF24J40.c: 248: }
+"248
 [e :UE 151 ]
 }
-[; ;MRF24J40.c: 225: void macBeaconOrder(uint8_t val);
-[; ;MRF24J40.c: 226: void macSuperframeOrder(uint8_t val);
-[; ;MRF24J40.c: 227: void macMinBE(uint8_t val);
-[; ;MRF24J40.c: 228: void macMaxCSMABackoff(uint8_t val);
-[; ;MRF24J40.c: 229: void macAckWaitDuration(uint8_t val);
-[a 1C 77 82 70 50 52 74 52 48 46 99 0 ]
-[a 3C 77 82 70 50 52 74 52 48 46 99 0 ]
-[a 5C 77 82 70 50 52 74 52 48 46 99 0 ]
-[a 4C 97 100 100 114 32 60 32 48 120 51 56 70 0 ]
-[a 2C 97 100 100 114 32 60 32 48 120 51 70 0 ]
-[a 6C 99 104 105 112 104 101 114 32 60 32 56 0 ]
+[; ;MRF24J40.c: 253: void macBeaconOrder(uint8_t val);
+[; ;MRF24J40.c: 254: void macSuperframeOrder(uint8_t val);
+[; ;MRF24J40.c: 255: void macMinBE(uint8_t val);
+[; ;MRF24J40.c: 256: void macMaxCSMABackoff(uint8_t val);
+[; ;MRF24J40.c: 257: void macAckWaitDuration(uint8_t val);

@@ -1500,15 +1500,12 @@ extern __nonreentrant void _delay(unsigned long);
 # 12 "D:/Microchip/xc8/v1.31/include\stdbool.h"
 typedef unsigned char bool;
 
-# 16 "D:/Microchip/xc8/v1.31/include\assert.h"
-extern void _fassert(int, const char *, const char *);
-
-# 803 "MRF24J40.h"
+# 819 "MRF24J40.h"
 uint8_t aTurnaroundTime= 12;
 uint8_t aMinLIFSPeriod= 40;
 uint8_t aMinSIFSPeriod= 12;
 
-# 814
+# 830
 void SPI_Init(void);
 inline void chipSelect(void);
 inline void chipRelease(void);
@@ -1544,8 +1541,9 @@ void macAckWaitDuration(uint8_t);
 
 void deviceReset();
 void deviceInit();
+void deviceSleep();
 void deviceSetInterrupt(uint8_t, bool);
-void channelSelect(uint8_t);
+void deviceChannelSelect(uint8_t);
 void clearChannelAssesstment(uint8_t);
 void setRSSIMode(uint8_t);
 uint8_t readRSSI();
@@ -1554,22 +1552,44 @@ void deviceSetShortAddress(uint8_t);
 void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
+void batMonEnable();
+void batMonDisable();
 void setSecurityChipher(uint8_t);
+void deviceEncription();
+void deviceNoEncription();
 
-# 31 "main.c"
+void setSleepClock(uint8_t);
+void setWakeTime(uint8_t);
+void startSleepCalibration();
+
+uint8_t readRFState();
+void setSmallScaleTXPower(uint8_t);
+void setLargeScaleTXPower(uint8_t);
+
+
+void exception();
+
+# 28 "main.c"
+void blink(uint8_t pin){
+PORTB^= (1 << pin);
+_delay((unsigned long)((500)*(8000000/4000.0)));
+}
+
+void exception() {
+TRISB|= (1 << 7);
+while(1) {
+blink(7);
+}
+}
+
+# 46
 void main() {
-SPI_Init();
-uint16_t addr= 0x333;
-unsigned char data= 0b01010111;
-uint16_t command= (0?(((addr<<1)&0b100000000000)|0b000000000001):(((addr<<1)|0b100000000000 )));
-SSPBUF= (command>>8);
-waitForSPI();
-SSPBUF= (command&0xFF);
-waitForSPI();
-SSPBUF= data;
-waitForSPI();
+deviceInit();
+
+
+readRSSI();
 
 while (1) {
-_delay((unsigned long)((1)*(8000000/4000.0)));
+
 }
 }

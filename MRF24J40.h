@@ -12,10 +12,14 @@
 extern "C" {
 #endif
 
+#ifndef _XTAL_FREQ
+#define _XTAL_FREQ 8000000
+#endif
+    
 #include <xc.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <assert.h>
+//#include <assert.h>
 
 #define DEVICE_ADDRESS
 // Transmit and Receive Storage registers
@@ -748,22 +752,22 @@ extern "C" {
 /******************************************************
  *  Channels    RFCON0 <7>:<4>
  ******************************************************/
-#define Ch11    0x03
-#define Ch12    0x13
-#define Ch13    0x23
-#define Ch14    0x33
-#define Ch15    0x43
-#define Ch16    0x53
-#define Ch17    0x63
-#define Ch18    0x73
-#define Ch19    0x83
-#define Ch20    0x93
-#define Ch21    0xA3
-#define Ch22    0xB3
-#define Ch23    0xC3
-#define Ch24    0xD3
-#define Ch25    0xE3
-#define Ch26    0xF3
+#define Ch11        0x03
+#define Ch12        0x13
+#define Ch13        0x23
+#define Ch14        0x33
+#define Ch15        0x43
+#define Ch16        0x53
+#define Ch17        0x63
+#define Ch18        0x73
+#define Ch19        0x83
+#define Ch20        0x93
+#define Ch21        0xA3
+#define Ch22        0xB3
+#define Ch23        0xC3
+#define Ch24        0xD3
+#define Ch25        0xE3
+#define Ch26        0xF3
  /******************************************************
  *  CCA Modes
  ******************************************************/
@@ -773,19 +777,43 @@ extern "C" {
 /******************************************************
  *  SPI Port Definitions
  ******************************************************/
-#define SPI_PORT   PORTB
-#define SPI_DDR    TRISB
+#define SPI_PORT        PORTB
+#define SPI_PORT_BITS   PORTBbits
+#define SPI_DDR         TRISB
 
-#define SDI_PIN     1
-#define SDO_PIN     2
-#define SCK_PIN     4
-#define CS_PIN      5
+#define SDI_PIN     SPI_PORT_BITS.RB1
+#define SDO_PIN     SPI_PORT_BITS.RB2
+#define SCK_PIN     SPI_PORT_BITS.RB4
+#define CS_PIN      SPI_PORT_BITS.RB5
+
+// Module Control Pins
+#ifndef WAKEUP_PIN
+#define WAKEUP_PIN      SPI_PORT_BITS.RB3
+#endif
+#ifndef RESET_PIN
+#define RESET_PIN       SPI_PORT_BITS.RB6
+#endif
+#ifndef MODULE_INT_PIN
+#define MODULE_INT_PIN  SPI_PORT_BITS.RB0
+#endif
+
+// Pins Polarity
+#ifndef W_POL
+#define W_POL 1 //WAKEUP pin polarity
+#endif
+#ifndef R_POL
+#define R_POL 1 //RESET pin polarity
+#endif
+#ifndef I_POL
+#define I_POL 0 //INTEDGE polarity: 0 - Falling, 1 - Rising
+#endif
 /******************************************************
  *  Special Macro
  ******************************************************/
 #define LO_16(x) (x&0xFF)
 #define HI_16(x) (x>>8)
 
+#define ALL 0xFF
 // Address and command conversion
 #define SHORT_ADDRESS   0b01111111  //  MASK!
 #define SHORT_READ      0b00000001
@@ -800,9 +828,11 @@ extern "C" {
 /******************************************************
  *  Global Variables
  ******************************************************/
-    uint8_t aTurnaroundTime= 12;
-    uint8_t aMinLIFSPeriod= 40;
-    uint8_t aMinSIFSPeriod= 12;
+    uint8_t aTurnaroundTime=    12;
+    uint8_t aMinLIFSPeriod=     40;
+    uint8_t aMinSIFSPeriod=     12;
+    uint8_t BEACON_EN= 1;
+    uint8_t RF_OPTIMISE= 0x03; // 0 to 7
 /******************************************************
  *  Function Defenitions
  ******************************************************/
@@ -842,28 +872,47 @@ extern "C" {
     void macMinBE(uint8_t);
     void macMaxCSMABackoff(uint8_t);
     void macAckWaitDuration(uint8_t);
-
+    void setCCAThreshold(uint8_t);
+    void promiscEnable();
+    void promiscDisable();
     // device control functions
     void deviceReset();
+    void resetPower();
+    void resetBBand();
+    void resetMAC();
+    void deviceSoftReset();
+    void resetRFStateMashine();
+
+    void deviceStart();
     void deviceInit();
+
     void deviceSleep();
-    void deviceSetInterrupt(uint8_t, bool);
-    void channelSelect(uint8_t);
-    void clearChannelAssesstment(uint8_t);
-    void setRSSIMode(uint8_t);
-    uint8_t readRSSI();
-    void deviceSetAddress(uint32_t, uint32_t);
-    void deviceSetShortAddress(uint8_t);
-    void setBattThreshold(uint8_t);
-    void battLifeExt();
-    void noBattLifeExt();
-    void setSecurityChipher(uint8_t);
-    void deviceEncription();
-    void deviceNoEncription();
-    
     void setSleepClock(uint8_t);
     void setWakeTime(uint8_t);
     void startSleepCalibration();
+
+    void deviceIntEnable();
+    void deviceSetInterrupt(uint8_t);
+    uint8_t deviceCheckInterrupts();
+
+    void deviceChannelSelect(uint8_t);
+    void clearChannelAssesstment(uint8_t);
+
+    void setRSSIMode(uint8_t);
+    uint8_t readRSSI();
+
+    void deviceSetAddress(uint32_t, uint32_t);
+    void deviceSetShortAddress(uint8_t);
+
+    void setBattThreshold(uint8_t);
+    void battLifeExt();
+    void noBattLifeExt();
+    void batMonEnable();
+    void batMonDisable();
+
+    void setSecurityChipher(uint8_t);
+    void deviceEncription();
+    void deviceNoEncription();
 
     uint8_t readRFState();
     void setSmallScaleTXPower(uint8_t);

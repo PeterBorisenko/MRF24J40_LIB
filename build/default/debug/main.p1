@@ -1,16 +1,9 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"814 MRF24J40.h
-[v _SPI_Init `(v ~T0 @X0 0 ef ]
-"629 D:/Microchip/xc8/v1.31/include\pic16f88.h
-[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
-[v F1207 `(v ~T0 @X0 1 tf ]
-"817 MRF24J40.h
-[v _waitForSPI `TF1207 ~T0 @X0 0 e ]
-[v F1188 `(v ~T0 @X0 1 tf1`ul ]
-"154 D:/Microchip/xc8/v1.31/include\pic.h
-[v __delay `JF1188 ~T0 @X0 0 e ]
-[p i __delay ]
+"864 MRF24J40.h
+[v _deviceInit `(v ~T0 @X0 0 ef ]
+"870
+[v _readRSSI `(uc ~T0 @X0 0 ef ]
 [; ;include\stdio.h: 8: typedef int ptrdiff_t;
 [; ;include\stdio.h: 9: typedef unsigned size_t;
 [; ;include\stdio.h: 10: typedef unsigned short wchar_t;
@@ -1033,116 +1026,95 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;include\pic.h: 154: extern __nonreentrant void _delay(unsigned long);
 [; ;include\stdbool.h: 12: typedef unsigned char bool;
 [; ;include\assert.h: 16: extern void _fassert(int, const char *, const char *);
-"803 MRF24J40.h
+"819 MRF24J40.h
 [v _aTurnaroundTime `uc ~T0 @X0 1 e ]
 [i _aTurnaroundTime
 -> -> 12 `i `uc
 ]
-[; ;MRF24J40.h: 803: uint8_t aTurnaroundTime= 12;
-"804
+[; ;MRF24J40.h: 819: uint8_t aTurnaroundTime= 12;
+"820
 [v _aMinLIFSPeriod `uc ~T0 @X0 1 e ]
 [i _aMinLIFSPeriod
 -> -> 40 `i `uc
 ]
-[; ;MRF24J40.h: 804: uint8_t aMinLIFSPeriod= 40;
-"805
+[; ;MRF24J40.h: 820: uint8_t aMinLIFSPeriod= 40;
+"821
 [v _aMinSIFSPeriod `uc ~T0 @X0 1 e ]
 [i _aMinSIFSPeriod
 -> -> 12 `i `uc
 ]
-[; ;MRF24J40.h: 805: uint8_t aMinSIFSPeriod= 12;
-[; ;MRF24J40.h: 814: void SPI_Init(void);
-[; ;MRF24J40.h: 815: inline void chipSelect(void);
-[; ;MRF24J40.h: 816: inline void chipRelease(void);
-[; ;MRF24J40.h: 817: inline void waitForSPI(void);
-[; ;MRF24J40.h: 818: void SPI_WriteByte(uint8_t);
-[; ;MRF24J40.h: 819: uint8_t SPI_ReadByte(uint8_t);
-[; ;MRF24J40.h: 820: void SPI_WriteArray(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 821: void SPI_ReadArray(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 825: void addrWriteSA(uint8_t, uint8_t);
-[; ;MRF24J40.h: 826: uint8_t byteReadSA(uint8_t);
-[; ;MRF24J40.h: 827: void byteWriteSA(uint8_t, uint8_t);
-[; ;MRF24J40.h: 828: void bitWriteSA(uint8_t, uint8_t, bool);
-[; ;MRF24J40.h: 829: void dataReadSA(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 830: void dataWriteSA(uint8_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 832: void addrWriteLA(uint16_t, uint8_t);
-[; ;MRF24J40.h: 833: uint8_t byteReadLA(uint16_t);
-[; ;MRF24J40.h: 834: void byteWriteLA(uint16_t, uint8_t);
-[; ;MRF24J40.h: 835: void bitWriteLA(uint16_t, uint8_t, bool);
-[; ;MRF24J40.h: 836: void dataReadLA(uint16_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 837: void dataWriteLA(uint16_t, uint8_t, uint8_t*);
-[; ;MRF24J40.h: 840: void macBeaconOrder(uint8_t);
-[; ;MRF24J40.h: 841: void macSuperframeOrder(uint8_t);
-[; ;MRF24J40.h: 842: void macMinBE(uint8_t);
-[; ;MRF24J40.h: 843: void macMaxCSMABackoff(uint8_t);
-[; ;MRF24J40.h: 844: void macAckWaitDuration(uint8_t);
-[; ;MRF24J40.h: 847: void deviceReset();
-[; ;MRF24J40.h: 848: void deviceInit();
-[; ;MRF24J40.h: 849: void deviceSetInterrupt(uint8_t, bool);
-[; ;MRF24J40.h: 850: void channelSelect(uint8_t);
-[; ;MRF24J40.h: 851: void clearChannelAssesstment(uint8_t);
-[; ;MRF24J40.h: 852: void setRSSIMode(uint8_t);
-[; ;MRF24J40.h: 853: uint8_t readRSSI();
-[; ;MRF24J40.h: 854: void deviceSetAddress(uint32_t, uint32_t);
-[; ;MRF24J40.h: 855: void deviceSetShortAddress(uint8_t);
-[; ;MRF24J40.h: 856: void setBattThreshold(uint8_t);
-[; ;MRF24J40.h: 857: void battLifeExt();
-[; ;MRF24J40.h: 858: void noBattLifeExt();
-[; ;MRF24J40.h: 859: void setSecurityChipher(uint8_t);
-"31 main.c
+[; ;MRF24J40.h: 821: uint8_t aMinSIFSPeriod= 12;
+[; ;MRF24J40.h: 830: void SPI_Init(void);
+[; ;MRF24J40.h: 831: inline void chipSelect(void);
+[; ;MRF24J40.h: 832: inline void chipRelease(void);
+[; ;MRF24J40.h: 833: inline void waitForSPI(void);
+[; ;MRF24J40.h: 834: void SPI_WriteByte(uint8_t);
+[; ;MRF24J40.h: 835: uint8_t SPI_ReadByte(uint8_t);
+[; ;MRF24J40.h: 836: void SPI_WriteArray(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 837: void SPI_ReadArray(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 841: void addrWriteSA(uint8_t, uint8_t);
+[; ;MRF24J40.h: 842: uint8_t byteReadSA(uint8_t);
+[; ;MRF24J40.h: 843: void byteWriteSA(uint8_t, uint8_t);
+[; ;MRF24J40.h: 844: void bitWriteSA(uint8_t, uint8_t, bool);
+[; ;MRF24J40.h: 845: void dataReadSA(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 846: void dataWriteSA(uint8_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 848: void addrWriteLA(uint16_t, uint8_t);
+[; ;MRF24J40.h: 849: uint8_t byteReadLA(uint16_t);
+[; ;MRF24J40.h: 850: void byteWriteLA(uint16_t, uint8_t);
+[; ;MRF24J40.h: 851: void bitWriteLA(uint16_t, uint8_t, bool);
+[; ;MRF24J40.h: 852: void dataReadLA(uint16_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 853: void dataWriteLA(uint16_t, uint8_t, uint8_t*);
+[; ;MRF24J40.h: 856: void macBeaconOrder(uint8_t);
+[; ;MRF24J40.h: 857: void macSuperframeOrder(uint8_t);
+[; ;MRF24J40.h: 858: void macMinBE(uint8_t);
+[; ;MRF24J40.h: 859: void macMaxCSMABackoff(uint8_t);
+[; ;MRF24J40.h: 860: void macAckWaitDuration(uint8_t);
+[; ;MRF24J40.h: 863: void deviceReset();
+[; ;MRF24J40.h: 864: void deviceInit();
+[; ;MRF24J40.h: 865: void deviceSleep();
+[; ;MRF24J40.h: 866: void deviceSetInterrupt(uint8_t, bool);
+[; ;MRF24J40.h: 867: void deviceChannelSelect(uint8_t);
+[; ;MRF24J40.h: 868: void clearChannelAssesstment(uint8_t);
+[; ;MRF24J40.h: 869: void setRSSIMode(uint8_t);
+[; ;MRF24J40.h: 870: uint8_t readRSSI();
+[; ;MRF24J40.h: 871: void deviceSetAddress(uint32_t, uint32_t);
+[; ;MRF24J40.h: 872: void deviceSetShortAddress(uint8_t);
+[; ;MRF24J40.h: 873: void setBattThreshold(uint8_t);
+[; ;MRF24J40.h: 874: void battLifeExt();
+[; ;MRF24J40.h: 875: void noBattLifeExt();
+[; ;MRF24J40.h: 876: void setSecurityChipher(uint8_t);
+[; ;MRF24J40.h: 877: void deviceEncription();
+[; ;MRF24J40.h: 878: void deviceNoEncription();
+[; ;MRF24J40.h: 880: void setSleepClock(uint8_t);
+[; ;MRF24J40.h: 881: void setWakeTime(uint8_t);
+[; ;MRF24J40.h: 882: void startSleepCalibration();
+[; ;MRF24J40.h: 884: uint8_t readRFState();
+[; ;MRF24J40.h: 885: void setSmallScaleTXPower(uint8_t);
+[; ;MRF24J40.h: 886: void setLargeScaleTXPower(uint8_t);
+"25 main.c
 [v _main `(v ~T0 @X0 1 ef ]
 {
-[; ;main.c: 31: void main() {
+[; ;main.c: 25: void main() {
 [e :U _main ]
 [f ]
-[; ;main.c: 32: SPI_Init();
-"32
-[e ( _SPI_Init ..  ]
-"33
-[v _addr `ui ~T0 @X0 1 a ]
-[; ;main.c: 33: uint16_t addr= 0x333;
-[e = _addr -> -> 819 `i `ui ]
-"34
-[v _data `uc ~T0 @X0 1 a ]
-[; ;main.c: 34: unsigned char data= 0b01010111;
-[e = _data -> -> 87 `i `uc ]
-"35
-[v _command `ui ~T0 @X0 1 a ]
-[; ;main.c: 35: uint16_t command= (0?(((addr<<1)&0b100000000000)|0b000000000001):(((addr<<1)|0b100000000000 )));
-[e = _command ? != -> 0 `i -> 0 `i : | & << _addr -> 1 `i -> -> 2048 `i `ui -> -> 1 `i `ui | << _addr -> 1 `i -> -> 2048 `i `ui ]
-[; ;main.c: 36: SSPBUF= (command>>8);
-"36
-[e = _SSPBUF -> >> _command -> 8 `i `uc ]
-[; ;main.c: 37: waitForSPI();
-"37
-[e ( _waitForSPI ..  ]
-[; ;main.c: 38: SSPBUF= (command&0xFF);
-"38
-[e = _SSPBUF -> & _command -> -> 255 `i `ui `uc ]
-[; ;main.c: 39: waitForSPI();
-"39
-[e ( _waitForSPI ..  ]
-[; ;main.c: 40: SSPBUF= data;
-"40
-[e = _SSPBUF _data ]
-[; ;main.c: 41: waitForSPI();
-"41
-[e ( _waitForSPI ..  ]
-[; ;main.c: 43: while (1) {
-"43
+[; ;main.c: 26: deviceInit();
+"26
+[e ( _deviceInit ..  ]
+[; ;main.c: 29: readRSSI();
+"29
+[e ( _readRSSI ..  ]
+[; ;main.c: 31: while (1) {
+"31
 [e :U 96 ]
 {
-[; ;main.c: 44: _delay((unsigned long)((1)*(8000000/4000.0)));
-"44
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"45
+"33
 }
 [e :U 95 ]
-"43
+"31
 [e $U 96  ]
 [e :U 97 ]
-[; ;main.c: 45: }
-[; ;main.c: 46: }
-"46
+[; ;main.c: 33: }
+[; ;main.c: 34: }
+"34
 [e :UE 94 ]
 }
