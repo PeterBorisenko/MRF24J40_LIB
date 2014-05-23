@@ -239,7 +239,6 @@ void deviceStart(uint8_t chan) {
     SPI_Init();
     deviceInit(chan);
     __delay_ms(2);
-    //TODO: Device init Implementation
 }
 
 void deviceSleep();
