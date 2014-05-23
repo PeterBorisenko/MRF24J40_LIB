@@ -1364,12 +1364,14 @@ typedef int16_t intptr_t;
 
 typedef uint16_t uintptr_t;
 
-# 819 "MRF24J40.h"
+# 831 "MRF24J40.h"
 uint8_t aTurnaroundTime= 12;
 uint8_t aMinLIFSPeriod= 40;
 uint8_t aMinSIFSPeriod= 12;
+uint8_t BEACON_EN= 1;
+uint8_t RF_OPTIMISE= 0x03;
 
-# 830
+# 844
 void SPI_Init(void);
 inline void chipSelect(void);
 inline void chipRelease(void);
@@ -1401,30 +1403,48 @@ void macSuperframeOrder(uint8_t);
 void macMinBE(uint8_t);
 void macMaxCSMABackoff(uint8_t);
 void macAckWaitDuration(uint8_t);
-
+void setCCAThreshold(uint8_t);
+void promiscEnable();
+void promiscDisable();
 
 void deviceReset();
-void deviceInit();
+void resetPower();
+void resetBBand();
+void resetMAC();
+void deviceSoftReset();
+void resetRFStateMashine();
+
+void deviceStart(uint8_t);
+void deviceInit(uint8_t);
+
 void deviceSleep();
-void deviceSetInterrupt(uint8_t, bool);
+void setSleepClock(uint8_t);
+void setWakeTime(uint8_t);
+void startSleepCalibration();
+
+void deviceIntEnable();
+void deviceIntPolarity();
+void deviceSetInterrupt(uint8_t);
+uint8_t deviceCheckInterrupts();
+
 void deviceChannelSelect(uint8_t);
 void clearChannelAssesstment(uint8_t);
+
 void setRSSIMode(uint8_t);
 uint8_t readRSSI();
+
 void deviceSetAddress(uint32_t, uint32_t);
 void deviceSetShortAddress(uint8_t);
+
 void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
 void batMonEnable();
 void batMonDisable();
+
 void setSecurityChipher(uint8_t);
 void deviceEncription();
 void deviceNoEncription();
-
-void setSleepClock(uint8_t);
-void setWakeTime(uint8_t);
-void startSleepCalibration();
 
 uint8_t readRFState();
 void setSmallScaleTXPower(uint8_t);
@@ -1510,7 +1530,6 @@ uint8_t command= (op?(((addr<<1) )|0b00000001):(((addr<<1)&0b01111111)&0b1111111
 SSPBUF= command;
 waitForSPI();
 }
-
 void addrWriteLA(uint16_t addr, uint8_t op) {
 
 
@@ -1520,7 +1539,6 @@ waitForSPI();
 SSPBUF= (command&0xFF);
 waitForSPI();
 }
-
 uint8_t byteReadSA(uint8_t addr){
 uint8_t report;
 chipSelect();
@@ -1529,7 +1547,6 @@ report = SSPBUF;
 chipRelease();
 return report;
 }
-
 void byteWriteSA(uint8_t addr, uint8_t data){
 chipSelect();
 addrWriteSA(addr, 0);
@@ -1537,13 +1554,11 @@ SSPBUF= data;
 waitForSPI();
 chipRelease();
 }
-
 void bitWriteSA(uint8_t addr, uint8_t bitname, bool state) {
 uint8_t temp= byteReadSA(addr);
 state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
 byteWriteSA(addr, temp);
 }
-
 void dataReadSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
 
 chipSelect();
@@ -1556,7 +1571,6 @@ waitForSPI();
 }
 chipRelease();
 }
-
 void dataWriteSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
 
 chipSelect();
@@ -1567,7 +1581,6 @@ waitForSPI();
 }
 chipRelease();
 }
-
 uint8_t byteReadLA(uint16_t addr) {
 uint8_t report;
 chipSelect();
@@ -1576,7 +1589,6 @@ report= SSPBUF;
 chipRelease();
 return report;
 }
-
 void byteWriteLA(uint16_t addr, uint8_t data){
 chipSelect();
 addrWriteLA(addr, 0);
@@ -1584,26 +1596,22 @@ SSPBUF= data;
 waitForSPI();
 chipRelease();
 }
-
 void bitWriteLA(uint16_t addr, uint8_t bitname, bool state) {
 uint8_t temp= byteReadLA(addr);
 state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
 byteWriteLA(addr, temp);
 }
-
 void dataReadLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
 
 chipSelect();
 
 for(int i= num; i>0; i--){
 addrWriteLA(addr++, 1);
-
 *buffer++ = SSPBUF;
 waitForSPI();
 }
 chipRelease();
 }
-
 void dataWriteLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
 
 chipSelect();
@@ -1615,29 +1623,90 @@ waitForSPI();
 chipRelease();
 }
 
-# 196
+# 183
 void deviceReset() {
 PORTB&= ~(1<<PORTBbits.RB6);
 _delay((unsigned long)((5)*(8000000/4000000.0)));
 PORTB|= (1<<PORTBbits.RB6);
 _delay((unsigned long)((2)*(8000000/4000.0)));
+
+}
+void resetPower() {
+bitWriteSA(0x2A, 2, 1);
+}
+void resetBBand() {
+bitWriteSA(0x2A, 1, 1);
+}
+void resetMAC() {
+bitWriteSA(0x2A, 0, 1);
+}
+void deviceSoftReset() {
+byteWriteSA(0x2A, 0x07);
+}
+void resetRFStateMashine() {
+bitWriteSA(0x36, 2, 1);
+bitWriteSA(0x36, 2, 0);
+_delay((unsigned long)((192)*(8000000/4000000.0)));
 }
 
-void deviceInit() {
+void setCCAThreshold(uint8_t val) {
+byteWriteSA(0x3F, val);
+}
+void deviceInit(uint8_t chan) {
+byteWriteSA(0x2A, 0x07);
+byteWriteSA(0x18, 0xB0);
+byteWriteSA(0x2E, 0x95);
+byteWriteLA(0x200, 0x03);
+byteWriteLA(0x201, 0x01);
+byteWriteLA(0x202, 0x80);
+byteWriteLA(0x206, 0x90);
+byteWriteLA(0x207, 0x80);
+byteWriteLA(0x208, 0x10);
+byteWriteLA(0x220, 0x21);
+if(!BEACON_EN) {
+byteWriteSA(0x3A, 0x80);
+setCCAThreshold(0x60);
+byteWriteSA(0x3E, 0x40);
+}
+else {
 
-# 210
+}
+deviceIntEnable();
+
+deviceChannelSelect(chan);
+}
+void deviceStart(uint8_t chan) {
 TRISB|= (1<<PORTBbits.RB6)|(1<<PORTBbits.RB3);
 1?(PORTB|= (1<<PORTBbits.RB6)):(PORTB&=~(1<<PORTBbits.RB6));
 1?(PORTB|= (1<<PORTBbits.RB3)):(PORTB&=~(1<<PORTBbits.RB3));
 SPI_Init();
-
-
+deviceInit(chan);
+_delay((unsigned long)((2)*(8000000/4000.0)));
 }
 
 void deviceSleep();
-void deviceSetInterrupt(uint8_t val, bool state);
-void deviceChannelSelect(uint8_t chan);
+
+void deviceIntEnable() {
+deviceIntPolarity();
+deviceSetInterrupt(0xFF);
+}
+void deviceSetInterrupt(uint8_t interrupts) {
+byteWriteSA(0x32, interrupts);
+}
+uint8_t deviceCheckInterrupts() {
+return byteReadSA(0x31);
+}
+void deviceIntPolarity() {
+bitWriteLA(0x211, 1, 0);
+}
+
+void deviceChannelSelect(uint8_t chan) {
+byteWriteLA(0x200, (chan|RF_OPTIMISE));
+resetRFStateMashine();
+}
+
 void clearChannelAssesstment(uint8_t val);
+
 void setRSSIMode(uint8_t val);
 
 uint8_t readRSSI() {
@@ -1651,15 +1720,17 @@ void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
 
-# 245
+# 289
 void setSecurityChipher(uint8_t chipher){
 
 
 }
 
-# 253
+# 296
 void macBeaconOrder(uint8_t val);
 void macSuperframeOrder(uint8_t val);
 void macMinBE(uint8_t val);
 void macMaxCSMABackoff(uint8_t val);
 void macAckWaitDuration(uint8_t val);
+void promiscEnable();
+void promiscDisable();

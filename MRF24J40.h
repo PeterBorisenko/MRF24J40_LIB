@@ -752,22 +752,22 @@ extern "C" {
 /******************************************************
  *  Channels    RFCON0 <7>:<4>
  ******************************************************/
-#define Ch11        0x03
-#define Ch12        0x13
-#define Ch13        0x23
-#define Ch14        0x33
-#define Ch15        0x43
-#define Ch16        0x53
-#define Ch17        0x63
-#define Ch18        0x73
-#define Ch19        0x83
-#define Ch20        0x93
-#define Ch21        0xA3
-#define Ch22        0xB3
-#define Ch23        0xC3
-#define Ch24        0xD3
-#define Ch25        0xE3
-#define Ch26        0xF3
+#define Ch11        0x00
+#define Ch12        0x10
+#define Ch13        0x20
+#define Ch14        0x30
+#define Ch15        0x40
+#define Ch16        0x50
+#define Ch17        0x60
+#define Ch18        0x70
+#define Ch19        0x80
+#define Ch20        0x90
+#define Ch21        0xA0
+#define Ch22        0xB0
+#define Ch23        0xC0
+#define Ch24        0xD0
+#define Ch25        0xE0
+#define Ch26        0xF0
  /******************************************************
  *  CCA Modes
  ******************************************************/
@@ -883,8 +883,8 @@ extern "C" {
     void deviceSoftReset();
     void resetRFStateMashine();
 
-    void deviceStart();
-    void deviceInit();
+    void deviceStart(uint8_t);
+    void deviceInit(uint8_t);
 
     void deviceSleep();
     void setSleepClock(uint8_t);
@@ -892,6 +892,7 @@ extern "C" {
     void startSleepCalibration();
 
     void deviceIntEnable();
+    void deviceIntPolarity();
     void deviceSetInterrupt(uint8_t);
     uint8_t deviceCheckInterrupts();
 

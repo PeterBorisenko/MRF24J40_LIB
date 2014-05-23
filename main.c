@@ -43,7 +43,7 @@ void exception() {
 
 
 void main() {
-    deviceInit();
+    deviceInit(Ch11);
     //uint16_t addr= 0x333;
     //unsigned char data= 0b01010111;
     readRSSI();

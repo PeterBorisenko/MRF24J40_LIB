@@ -1500,12 +1500,14 @@ extern __nonreentrant void _delay(unsigned long);
 # 12 "D:/Microchip/xc8/v1.31/include\stdbool.h"
 typedef unsigned char bool;
 
-# 819 "MRF24J40.h"
+# 831 "MRF24J40.h"
 uint8_t aTurnaroundTime= 12;
 uint8_t aMinLIFSPeriod= 40;
 uint8_t aMinSIFSPeriod= 12;
+uint8_t BEACON_EN= 1;
+uint8_t RF_OPTIMISE= 0x03;
 
-# 830
+# 844
 void SPI_Init(void);
 inline void chipSelect(void);
 inline void chipRelease(void);
@@ -1537,39 +1539,54 @@ void macSuperframeOrder(uint8_t);
 void macMinBE(uint8_t);
 void macMaxCSMABackoff(uint8_t);
 void macAckWaitDuration(uint8_t);
-
+void setCCAThreshold(uint8_t);
+void promiscEnable();
+void promiscDisable();
 
 void deviceReset();
-void deviceInit();
+void resetPower();
+void resetBBand();
+void resetMAC();
+void deviceSoftReset();
+void resetRFStateMashine();
+
+void deviceStart(uint8_t);
+void deviceInit(uint8_t);
+
 void deviceSleep();
-void deviceSetInterrupt(uint8_t, bool);
+void setSleepClock(uint8_t);
+void setWakeTime(uint8_t);
+void startSleepCalibration();
+
+void deviceIntEnable();
+void deviceIntPolarity();
+void deviceSetInterrupt(uint8_t);
+uint8_t deviceCheckInterrupts();
+
 void deviceChannelSelect(uint8_t);
 void clearChannelAssesstment(uint8_t);
+
 void setRSSIMode(uint8_t);
 uint8_t readRSSI();
+
 void deviceSetAddress(uint32_t, uint32_t);
 void deviceSetShortAddress(uint8_t);
+
 void setBattThreshold(uint8_t);
 void battLifeExt();
 void noBattLifeExt();
 void batMonEnable();
 void batMonDisable();
+
 void setSecurityChipher(uint8_t);
 void deviceEncription();
 void deviceNoEncription();
-
-void setSleepClock(uint8_t);
-void setWakeTime(uint8_t);
-void startSleepCalibration();
 
 uint8_t readRFState();
 void setSmallScaleTXPower(uint8_t);
 void setLargeScaleTXPower(uint8_t);
 
-
-void exception();
-
-# 28 "main.c"
+# 27 "main.c"
 void blink(uint8_t pin){
 PORTB^= (1 << pin);
 _delay((unsigned long)((500)*(8000000/4000.0)));
@@ -1582,9 +1599,9 @@ blink(7);
 }
 }
 
-# 46
+# 45
 void main() {
-deviceInit();
+deviceInit(0x00);
 
 
 readRSSI();

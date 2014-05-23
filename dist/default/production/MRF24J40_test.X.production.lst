@@ -1,1104 +1,2017 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.31 build 56723 
-                                                                                               Fri May 23 21:54:15 2014
+                                                                                               Sat May 24 00:59:34 2014
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 56723
      1                           	processor	16F88
      2                           	opt	pw 120
      3                           	opt	lm
      4                           	psect	idataBANK0,global,class=CODE,delta=2
-     5                           	psect	idataCOMMON,global,class=CODE,delta=2
-     6                           	psect	cinit,global,class=CODE,merge=1,delta=2
-     7                           	psect	dataCOMMON,global,class=COMMON,space=1,delta=1
-     8                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
-     9                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
-    10                           	psect	maintext,global,class=CODE,split=1,delta=2
-    11                           	psect	text1,local,class=CODE,merge=1,delta=2
-    12                           	psect	text2,local,class=CODE,merge=1,delta=2
-    13                           	psect	text3,local,class=CODE,merge=1,inline,delta=2
-    14                           	psect	text4,local,class=CODE,merge=1,inline,delta=2
-    15                           	psect	text5,local,class=CODE,merge=1,delta=2
-    16                           	psect	text6,local,class=CODE,merge=1,inline,delta=2
-    17                           	psect	text7,local,class=CODE,merge=1,delta=2
-    18                           	psect	text8,local,class=CODE,merge=1,delta=2
-    19                           	dabs	1,0x7E,2
-    20  0000                     	;# 
-    21  0001                     	;# 
-    22  0002                     	;# 
-    23  0003                     	;# 
-    24  0004                     	;# 
-    25  0005                     	;# 
-    26  0006                     	;# 
-    27  000A                     	;# 
-    28  000B                     	;# 
-    29  000C                     	;# 
-    30  000D                     	;# 
-    31  000E                     	;# 
-    32  000E                     	;# 
-    33  000F                     	;# 
-    34  0010                     	;# 
-    35  0011                     	;# 
-    36  0012                     	;# 
-    37  0013                     	;# 
-    38  0014                     	;# 
-    39  0015                     	;# 
-    40  0015                     	;# 
-    41  0016                     	;# 
-    42  0017                     	;# 
-    43  0018                     	;# 
-    44  0019                     	;# 
-    45  001A                     	;# 
-    46  001E                     	;# 
-    47  001F                     	;# 
-    48  0081                     	;# 
-    49  0085                     	;# 
-    50  0086                     	;# 
-    51  008C                     	;# 
-    52  008D                     	;# 
-    53  008E                     	;# 
-    54  008F                     	;# 
-    55  0090                     	;# 
-    56  0092                     	;# 
-    57  0093                     	;# 
-    58  0094                     	;# 
-    59  0098                     	;# 
-    60  0099                     	;# 
-    61  009B                     	;# 
-    62  009C                     	;# 
-    63  009D                     	;# 
-    64  009E                     	;# 
-    65  009F                     	;# 
-    66  0105                     	;# 
-    67  010C                     	;# 
-    68  010D                     	;# 
-    69  010E                     	;# 
-    70  010F                     	;# 
-    71  018C                     	;# 
-    72  018D                     	;# 
-    73  0000                     	;# 
-    74  0001                     	;# 
-    75  0002                     	;# 
-    76  0003                     	;# 
-    77  0004                     	;# 
-    78  0005                     	;# 
-    79  0006                     	;# 
-    80  000A                     	;# 
-    81  000B                     	;# 
-    82  000C                     	;# 
-    83  000D                     	;# 
-    84  000E                     	;# 
-    85  000E                     	;# 
-    86  000F                     	;# 
-    87  0010                     	;# 
-    88  0011                     	;# 
-    89  0012                     	;# 
-    90  0013                     	;# 
-    91  0014                     	;# 
-    92  0015                     	;# 
-    93  0015                     	;# 
-    94  0016                     	;# 
-    95  0017                     	;# 
-    96  0018                     	;# 
-    97  0019                     	;# 
-    98  001A                     	;# 
-    99  001E                     	;# 
-   100  001F                     	;# 
-   101  0081                     	;# 
-   102  0085                     	;# 
-   103  0086                     	;# 
-   104  008C                     	;# 
-   105  008D                     	;# 
-   106  008E                     	;# 
-   107  008F                     	;# 
-   108  0090                     	;# 
-   109  0092                     	;# 
-   110  0093                     	;# 
-   111  0094                     	;# 
-   112  0098                     	;# 
-   113  0099                     	;# 
-   114  009B                     	;# 
-   115  009C                     	;# 
-   116  009D                     	;# 
-   117  009E                     	;# 
-   118  009F                     	;# 
-   119  0105                     	;# 
-   120  010C                     	;# 
-   121  010D                     	;# 
-   122  010E                     	;# 
-   123  010F                     	;# 
-   124  018C                     	;# 
-   125  018D                     	;# 
-   126                           
-   127                           	psect	idataBANK0
-   128  06A2                     __pidataBANK0:	
-   129                           
-   130                           ;initializer for _aMinLIFSPeriod
-   131  06A2  3428               	retlw	40
-   132                           
-   133                           ;initializer for _aMinSIFSPeriod
-   134  06A3  340C               	retlw	12
-   135                           
-   136                           	psect	idataCOMMON
-   137  06A1                     __pidataCOMMON:	
-   138                           
-   139                           ;initializer for _aTurnaroundTime
-   140  06A1  340C               	retlw	12
-   141  0006                     _PORTB	set	6
-   142  0006                     _PORTBbits	set	6
-   143  0013                     _SSPBUF	set	19
-   144  0014                     _SSPCONbits	set	20
-   145  0094                     _SSPSTATbits	set	148
-   146  0086                     _TRISB	set	134
-   147                           
-   148                           	psect	cinit
-   149  07F0                     start_initialization:	
-   150                           ; #config settings
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,global,class=CODE,split=1,delta=2
+    10                           	psect	text1,local,class=CODE,merge=1,delta=2
+    11                           	psect	text2,local,class=CODE,merge=1,delta=2
+    12                           	psect	text3,local,class=CODE,merge=1,delta=2
+    13                           	psect	text4,local,class=CODE,merge=1,delta=2
+    14                           	psect	text5,local,class=CODE,merge=1,delta=2
+    15                           	psect	text6,local,class=CODE,merge=1,delta=2
+    16                           	psect	text7,local,class=CODE,merge=1,delta=2
+    17                           	psect	text8,local,class=CODE,merge=1,delta=2
+    18                           	psect	text9,local,class=CODE,merge=1,delta=2
+    19                           	psect	text10,local,class=CODE,merge=1,delta=2
+    20                           	psect	text11,local,class=CODE,merge=1,delta=2
+    21                           	psect	text12,local,class=CODE,merge=1,delta=2
+    22                           	psect	text13,local,class=CODE,merge=1,delta=2
+    23                           	psect	text14,local,class=CODE,merge=1,delta=2
+    24                           	psect	text15,local,class=CODE,merge=1,delta=2
+    25                           	psect	text16,local,class=CODE,merge=1,inline,delta=2
+    26                           	psect	text17,local,class=CODE,merge=1,inline,delta=2
+    27                           	psect	text18,local,class=CODE,merge=1,delta=2
+    28                           	psect	text19,local,class=CODE,merge=1,inline,delta=2
+    29                           	dabs	1,0x7E,2
+    30  0000                     	;# 
+    31  0001                     	;# 
+    32  0002                     	;# 
+    33  0003                     	;# 
+    34  0004                     	;# 
+    35  0005                     	;# 
+    36  0006                     	;# 
+    37  000A                     	;# 
+    38  000B                     	;# 
+    39  000C                     	;# 
+    40  000D                     	;# 
+    41  000E                     	;# 
+    42  000E                     	;# 
+    43  000F                     	;# 
+    44  0010                     	;# 
+    45  0011                     	;# 
+    46  0012                     	;# 
+    47  0013                     	;# 
+    48  0014                     	;# 
+    49  0015                     	;# 
+    50  0015                     	;# 
+    51  0016                     	;# 
+    52  0017                     	;# 
+    53  0018                     	;# 
+    54  0019                     	;# 
+    55  001A                     	;# 
+    56  001E                     	;# 
+    57  001F                     	;# 
+    58  0081                     	;# 
+    59  0085                     	;# 
+    60  0086                     	;# 
+    61  008C                     	;# 
+    62  008D                     	;# 
+    63  008E                     	;# 
+    64  008F                     	;# 
+    65  0090                     	;# 
+    66  0092                     	;# 
+    67  0093                     	;# 
+    68  0094                     	;# 
+    69  0098                     	;# 
+    70  0099                     	;# 
+    71  009B                     	;# 
+    72  009C                     	;# 
+    73  009D                     	;# 
+    74  009E                     	;# 
+    75  009F                     	;# 
+    76  0105                     	;# 
+    77  010C                     	;# 
+    78  010D                     	;# 
+    79  010E                     	;# 
+    80  010F                     	;# 
+    81  018C                     	;# 
+    82  018D                     	;# 
+    83  0000                     	;# 
+    84  0001                     	;# 
+    85  0002                     	;# 
+    86  0003                     	;# 
+    87  0004                     	;# 
+    88  0005                     	;# 
+    89  0006                     	;# 
+    90  000A                     	;# 
+    91  000B                     	;# 
+    92  000C                     	;# 
+    93  000D                     	;# 
+    94  000E                     	;# 
+    95  000E                     	;# 
+    96  000F                     	;# 
+    97  0010                     	;# 
+    98  0011                     	;# 
+    99  0012                     	;# 
+   100  0013                     	;# 
+   101  0014                     	;# 
+   102  0015                     	;# 
+   103  0015                     	;# 
+   104  0016                     	;# 
+   105  0017                     	;# 
+   106  0018                     	;# 
+   107  0019                     	;# 
+   108  001A                     	;# 
+   109  001E                     	;# 
+   110  001F                     	;# 
+   111  0081                     	;# 
+   112  0085                     	;# 
+   113  0086                     	;# 
+   114  008C                     	;# 
+   115  008D                     	;# 
+   116  008E                     	;# 
+   117  008F                     	;# 
+   118  0090                     	;# 
+   119  0092                     	;# 
+   120  0093                     	;# 
+   121  0094                     	;# 
+   122  0098                     	;# 
+   123  0099                     	;# 
+   124  009B                     	;# 
+   125  009C                     	;# 
+   126  009D                     	;# 
+   127  009E                     	;# 
+   128  009F                     	;# 
+   129  0105                     	;# 
+   130  010C                     	;# 
+   131  010D                     	;# 
+   132  010E                     	;# 
+   133  010F                     	;# 
+   134  018C                     	;# 
+   135  018D                     	;# 
+   136                           
+   137                           	psect	idataBANK0
+   138  05A6                     __pidataBANK0:	
+   139                           
+   140                           ;initializer for _BEACON_EN
+   141  05A6  3401               	retlw	1
+   142                           
+   143                           ;initializer for _RF_OPTIMISE
+   144  05A7  3403               	retlw	3
+   145                           
+   146                           ;initializer for _aMinLIFSPeriod
+   147  05A8  3428               	retlw	40
+   148                           
+   149                           ;initializer for _aMinSIFSPeriod
+   150  05A9  340C               	retlw	12
    151                           
-   152  07F0                     __initialization:	
-   153                           
-   154                           ; Initialize objects allocated to BANK0
-   155  07F0  1283               	bcf	3,5	;RP0=0, select bank0
-   156  07F1  1303               	bcf	3,6	;RP1=0, select bank0
-   157  07F2  118A  26A2  118A   	fcall	__pidataBANK0	;fetch initializer
-   158  07F5  00A0               	movwf	__pdataBANK0& (0+127)
-   159  07F6  118A  26A3  118A   	fcall	__pidataBANK0+1	;fetch initializer
-   160  07F9  00A1               	movwf	(__pdataBANK0+1)& (0+127)
-   161                           
-   162                           ; Initialize objects allocated to COMMON
-   163  07FA  118A  26A1         	fcall	__pidataCOMMON	;fetch initializer
-   164  07FC  00FD               	movwf	__pdataCOMMON& (0+127)
-   165  07FD                     end_of_initialization:	
-   166                           ;End of C runtime variable initialization code
-   167                           
-   168  07FD                     __end_of__initialization:	
-   169  07FD  0183               	clrf	3
-   170  07FE  118A  2EB0         	ljmp	_main	;jump to C main() function
-   171                           
-   172                           	psect	dataCOMMON
-   173  007D                     __pdataCOMMON:	
-   174  007D                     _aTurnaroundTime:	
-   175  007D                     	ds	1
-   176                           
-   177                           	psect	dataBANK0
-   178  0020                     __pdataBANK0:	
-   179  0020                     _aMinLIFSPeriod:	
-   180  0020                     	ds	1
-   181  0021                     _aMinSIFSPeriod:	
-   182  0021                     	ds	1
-   183                           
-   184                           	psect	cstackCOMMON
-   185  0070                     __pcstackCOMMON:	
-   186  0070                     ?_deviceInit:	
-   187  0070                     ?_main:	
-   188                           ; 0 bytes @ 0x0
-   189                           
-   190  0070                     ?_SPI_Init:	
-   191                           ; 0 bytes @ 0x0
-   192                           
-   193  0070                     ??_SPI_Init:	
-   194                           ; 0 bytes @ 0x0
-   195                           
-   196  0070                     ?_chipSelect:	
-   197                           ; 0 bytes @ 0x0
-   198                           
-   199  0070                     ??_chipSelect:	
-   200                           ; 0 bytes @ 0x0
-   201                           
-   202  0070                     ?_chipRelease:	
-   203                           ; 0 bytes @ 0x0
-   204                           
-   205  0070                     ??_chipRelease:	
-   206                           ; 0 bytes @ 0x0
-   207                           
-   208  0070                     ?_waitForSPI:	
-   209                           ; 0 bytes @ 0x0
-   210                           
-   211  0070                     ??_waitForSPI:	
-   212                           ; 0 bytes @ 0x0
-   213                           
-   214  0070                     ?_addrWriteLA:	
-   215                           ; 0 bytes @ 0x0
-   216                           
-   217  0070                     ?_readRSSI:	
-   218                           ; 0 bytes @ 0x0
-   219                           
-   220  0070                     addrWriteLA@addr:	
-   221                           ; 1 bytes @ 0x0
-   222                           
+   152                           ;initializer for _aTurnaroundTime
+   153  05AA  340C               	retlw	12
+   154  0006                     _PORTB	set	6
+   155  0006                     _PORTBbits	set	6
+   156  0013                     _SSPBUF	set	19
+   157  0014                     _SSPCONbits	set	20
+   158  0094                     _SSPSTATbits	set	148
+   159  0086                     _TRISB	set	134
+   160                           
+   161                           	psect	cinit
+   162  07E8                     start_initialization:	
+   163                           ; #config settings
+   164                           
+   165  07E8                     __initialization:	
+   166                           
+   167                           ; Initialize objects allocated to BANK0
+   168  07E8  1283               	bcf	3,5	;RP0=0, select bank0
+   169  07E9  1303               	bcf	3,6	;RP1=0, select bank0
+   170  07EA  118A  25A6  118A   	fcall	__pidataBANK0	;fetch initializer
+   171  07ED  00A8               	movwf	__pdataBANK0& (0+127)
+   172  07EE  118A  25A7  118A   	fcall	__pidataBANK0+1	;fetch initializer
+   173  07F1  00A9               	movwf	(__pdataBANK0+1)& (0+127)
+   174  07F2  118A  25A8  118A   	fcall	__pidataBANK0+2	;fetch initializer
+   175  07F5  00AA               	movwf	(__pdataBANK0+2)& (0+127)
+   176  07F6  118A  25A9  118A   	fcall	__pidataBANK0+3	;fetch initializer
+   177  07F9  00AB               	movwf	(__pdataBANK0+3)& (0+127)
+   178  07FA  118A  25AA         	fcall	__pidataBANK0+4	;fetch initializer
+   179  07FC  00AC               	movwf	(__pdataBANK0+4)& (0+127)
+   180  07FD                     end_of_initialization:	
+   181                           ;End of C runtime variable initialization code
+   182                           
+   183  07FD                     __end_of__initialization:	
+   184  07FD  0183               	clrf	3
+   185  07FE  118A  2DB9         	ljmp	_main	;jump to C main() function
+   186                           
+   187                           	psect	dataBANK0
+   188  0028                     __pdataBANK0:	
+   189  0028                     _BEACON_EN:	
+   190  0028                     	ds	1
+   191  0029                     _RF_OPTIMISE:	
+   192  0029                     	ds	1
+   193  002A                     _aMinLIFSPeriod:	
+   194  002A                     	ds	1
+   195  002B                     _aMinSIFSPeriod:	
+   196  002B                     	ds	1
+   197  002C                     _aTurnaroundTime:	
+   198  002C                     	ds	1
+   199                           
+   200                           	psect	cstackCOMMON
+   201  0070                     __pcstackCOMMON:	
+   202  0070                     ?_deviceInit:	
+   203  0070                     ?_deviceIntEnable:	
+   204                           ; 0 bytes @ 0x0
+   205                           
+   206  0070                     ?_deviceChannelSelect:	
+   207                           ; 0 bytes @ 0x0
+   208                           
+   209  0070                     ?_deviceIntPolarity:	
+   210                           ; 0 bytes @ 0x0
+   211                           
+   212  0070                     ?_deviceSetInterrupt:	
+   213                           ; 0 bytes @ 0x0
+   214                           
+   215  0070                     ?_main:	
+   216                           ; 0 bytes @ 0x0
+   217                           
+   218  0070                     ?_chipSelect:	
+   219                           ; 0 bytes @ 0x0
+   220                           
+   221  0070                     ??_chipSelect:	
+   222                           ; 0 bytes @ 0x0
    223                           
-   224                           ; 2 bytes @ 0x0
-   225  0070                     	ds	2
-   226  0072                     addrWriteLA@op:	
-   227                           
-   228                           ; 1 bytes @ 0x2
-   229  0072                     	ds	1
-   230  0073                     ??_addrWriteLA:	
-   231                           
-   232                           ; 0 bytes @ 0x3
-   233  0073                     	ds	4
-   234  0077                     addrWriteLA@command:	
+   224  0070                     ?_chipRelease:	
+   225                           ; 0 bytes @ 0x0
+   226                           
+   227  0070                     ??_chipRelease:	
+   228                           ; 0 bytes @ 0x0
+   229                           
+   230  0070                     ?_waitForSPI:	
+   231                           ; 0 bytes @ 0x0
+   232                           
+   233  0070                     ??_waitForSPI:	
+   234                           ; 0 bytes @ 0x0
    235                           
-   236                           ; 2 bytes @ 0x7
-   237  0077                     	ds	1
-   238  0078                     ??_deviceInit:	
-   239                           
-   240                           ; 0 bytes @ 0x8
-   241  0078                     	ds	1
-   242  0079                     ?_byteReadLA:	
-   243  0079                     byteReadLA@addr:	
-   244                           ; 1 bytes @ 0x9
-   245                           
-   246                           
-   247                           ; 2 bytes @ 0x9
-   248  0079                     	ds	2
-   249  007B                     ??_byteReadLA:	
+   236  0070                     ?_addrWriteSA:	
+   237                           ; 0 bytes @ 0x0
+   238                           
+   239  0070                     ?_addrWriteLA:	
+   240                           ; 0 bytes @ 0x0
+   241                           
+   242  0070                     ?_resetRFStateMashine:	
+   243                           ; 0 bytes @ 0x0
+   244                           
+   245  0070                     ?_setCCAThreshold:	
+   246                           ; 0 bytes @ 0x0
+   247                           
+   248  0070                     ?_readRSSI:	
+   249                           ; 0 bytes @ 0x0
    250                           
-   251                           ; 0 bytes @ 0xB
-   252  007B                     	ds	1
-   253  007C                     byteReadLA@report:	
-   254                           
-   255                           ; 1 bytes @ 0xC
-   256  007C                     	ds	1
-   257  007D                     ??_readRSSI:	
-   258  007D                     ??_main:	
-   259                           ; 0 bytes @ 0xD
+   251  0070                     ?_byteReadSA:	
+   252                           ; 1 bytes @ 0x0
+   253                           
+   254  0070                     addrWriteSA@op:	
+   255                           ; 1 bytes @ 0x0
+   256                           
+   257  0070                     addrWriteLA@addr:	
+   258                           ; 1 bytes @ 0x0
+   259                           
    260                           
-   261                           
-   262                           	psect	maintext
-   263  06B0                     __pmaintext:	
-   264                           ; 0 bytes @ 0xD
-   265 ;;
-   266 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
-   267 ;;
-   268 ;; *************** function _main *****************
-   269 ;; Defined at:
-   270 ;;		line 46 in file "main.c"
-   271 ;; Parameters:    Size  Location     Type
-   272 ;;		None
-   273 ;; Auto vars:     Size  Location     Type
-   274 ;;		None
-   275 ;; Return value:  Size  Location     Type
-   276 ;;		None               void
-   277 ;; Registers used:
-   278 ;;		wreg, status,2, status,0, pclath, cstack
-   279 ;; Tracked objects:
-   280 ;;		On entry : 17F/0
-   281 ;;		On exit  : 0/0
-   282 ;;		Unchanged: 0/0
-   283 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   284 ;;      Params:         0       0       0       0       0
-   285 ;;      Locals:         0       0       0       0       0
-   286 ;;      Temps:          0       0       0       0       0
-   287 ;;      Totals:         0       0       0       0       0
-   288 ;;Total ram usage:        0 bytes
-   289 ;; Hardware stack levels required when called:    4
-   290 ;; This function calls:
-   291 ;;		_deviceInit
-   292 ;;		_readRSSI
-   293 ;; This function is called by:
-   294 ;;		Startup code after reset
-   295 ;; This function uses a non-reentrant model
-   296 ;;
+   261                           ; 2 bytes @ 0x0
+   262  0070                     	ds	1
+   263  0071                     ??_addrWriteSA:	
+   264                           
+   265                           ; 0 bytes @ 0x1
+   266  0071                     	ds	1
+   267  0072                     addrWriteLA@op:	
+   268                           
+   269                           ; 1 bytes @ 0x2
+   270  0072                     	ds	1
+   271  0073                     ??_addrWriteLA:	
+   272                           
+   273                           ; 0 bytes @ 0x3
+   274  0073                     	ds	1
+   275  0074                     _addrWriteSA$258:	
+   276                           
+   277                           ; 2 bytes @ 0x4
+   278  0074                     	ds	2
+   279  0076                     addrWriteSA@command:	
+   280                           
+   281                           ; 1 bytes @ 0x6
+   282  0076                     	ds	1
+   283  0077                     addrWriteSA@addr:	
+   284  0077                     addrWriteLA@command:	
+   285                           ; 1 bytes @ 0x7
+   286                           
+   287                           
+   288                           ; 2 bytes @ 0x7
+   289  0077                     	ds	1
+   290  0078                     ??_byteReadSA:	
+   291  0078                     ?_byteWriteSA:	
+   292                           ; 0 bytes @ 0x8
+   293                           
+   294  0078                     byteWriteSA@data:	
+   295                           ; 0 bytes @ 0x8
+   296                           
    297                           
-   298                           
-   299                           ;psect for function _main
-   300  06B0                     _main:	
-   301                           
-   302                           ;main.c: 47: deviceInit();
+   298                           ; 1 bytes @ 0x8
+   299  0078                     	ds	1
+   300  0079                     ??_byteWriteSA:	
+   301  0079                     ?_byteWriteLA:	
+   302                           ; 0 bytes @ 0x9
    303                           
-   304                           ;incstack = 0
-   305                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
-   306  06B0  118A  278C  118A   	fcall	_deviceInit
-   307                           
-   308                           ;main.c: 50: readRSSI();
-   309  06B3  118A  26A9  118A   	fcall	_readRSSI
-   310  06B6                     l28:	
-   311                           ;main.c: 52: while (1) {
+   304  0079                     ?_byteReadLA:	
+   305                           ; 0 bytes @ 0x9
+   306                           
+   307  0079                     byteReadSA@addr:	
+   308                           ; 1 bytes @ 0x9
+   309                           
+   310  0079                     byteWriteSA@addr:	
+   311                           ; 1 bytes @ 0x9
    312                           
-   313  06B6  2EB6               	goto	l28
-   314  06B7                     __end_of_main:	
+   313  0079                     byteReadLA@addr:	
+   314                           ; 1 bytes @ 0x9
    315                           
-   316                           	psect	text1
-   317  06A9                     __ptext1:	
-   318 ;; *************** function _readRSSI *****************
-   319 ;; Defined at:
-   320 ;;		line 224 in file "MRF24J40.c"
-   321 ;; Parameters:    Size  Location     Type
-   322 ;;		None
-   323 ;; Auto vars:     Size  Location     Type
-   324 ;;		None
-   325 ;; Return value:  Size  Location     Type
-   326 ;;                  1    wreg      unsigned char 
-   327 ;; Registers used:
-   328 ;;		wreg, status,2, status,0, pclath, cstack
-   329 ;; Tracked objects:
-   330 ;;		On entry : 0/0
-   331 ;;		On exit  : 0/0
-   332 ;;		Unchanged: 0/0
-   333 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   334 ;;      Params:         0       0       0       0       0
-   335 ;;      Locals:         0       0       0       0       0
-   336 ;;      Temps:          0       0       0       0       0
-   337 ;;      Totals:         0       0       0       0       0
-   338 ;;Total ram usage:        0 bytes
-   339 ;; Hardware stack levels used:    1
-   340 ;; Hardware stack levels required when called:    3
-   341 ;; This function calls:
-   342 ;;		_byteReadLA
-   343 ;; This function is called by:
-   344 ;;		_main
-   345 ;; This function uses a non-reentrant model
-   346 ;;
+   316  0079                     byteWriteLA@addr:	
+   317                           ; 2 bytes @ 0x9
+   318                           
+   319                           
+   320                           ; 2 bytes @ 0x9
+   321  0079                     	ds	1
+   322  007A                     ??_deviceSetInterrupt:	
+   323  007A                     ??_setCCAThreshold:	
+   324                           ; 0 bytes @ 0xA
+   325                           
+   326  007A                     byteReadSA@report:	
+   327                           ; 0 bytes @ 0xA
+   328                           
+   329                           
+   330                           ; 1 bytes @ 0xA
+   331  007A                     	ds	1
+   332  007B                     ?_bitWriteSA:	
+   333  007B                     ??_byteReadLA:	
+   334                           ; 0 bytes @ 0xB
+   335                           
+   336  007B                     bitWriteSA@bitname:	
+   337                           ; 0 bytes @ 0xB
+   338                           
+   339  007B                     byteWriteLA@data:	
+   340                           ; 1 bytes @ 0xB
+   341                           
+   342  007B                     setCCAThreshold@val:	
+   343                           ; 1 bytes @ 0xB
+   344                           
+   345  007B                     deviceSetInterrupt@interrupts:	
+   346                           ; 1 bytes @ 0xB
    347                           
    348                           
-   349                           ;psect for function _readRSSI
-   350  06A9                     _readRSSI:	
-   351                           
-   352                           ;MRF24J40.c: 225: return byteReadLA(0x210);
-   353                           ;	Return value of _readRSSI is never used
+   349                           ; 1 bytes @ 0xB
+   350  007B                     	ds	1
+   351  007C                     ??_byteWriteLA:	
+   352  007C                     bitWriteSA@state:	
+   353                           ; 0 bytes @ 0xC
    354                           
-   355                           ;incstack = 0
-   356                           ; Regs used in _readRSSI: [wreg+status,2+status,0+pclath+cstack]
-   357  06A9  3010               	movlw	16
-   358  06AA  00F9               	movwf	byteReadLA@addr
-   359  06AB  3002               	movlw	2
-   360  06AC  00FA               	movwf	byteReadLA@addr+1
-   361  06AD  118A  26E0         	fcall	_byteReadLA
-   362  06AF  0008               	return
-   363  06B0                     __end_of_readRSSI:	
+   355  007C                     byteReadLA@report:	
+   356                           ; 1 bytes @ 0xC
+   357                           
+   358                           
+   359                           ; 1 bytes @ 0xC
+   360  007C                     	ds	1
+   361  007D                     ??_readRSSI:	
+   362  007D                     ??_resetRFStateMashine:	
+   363                           ; 0 bytes @ 0xD
    364                           
-   365                           	psect	text2
-   366  06E0                     __ptext2:	
-   367 ;; *************** function _byteReadLA *****************
-   368 ;; Defined at:
-   369 ;;		line 146 in file "MRF24J40.c"
-   370 ;; Parameters:    Size  Location     Type
-   371 ;;  addr            2    9[COMMON] unsigned int 
-   372 ;; Auto vars:     Size  Location     Type
-   373 ;;  report          1   12[COMMON] unsigned char 
-   374 ;; Return value:  Size  Location     Type
-   375 ;;                  1    wreg      unsigned char 
-   376 ;; Registers used:
-   377 ;;		wreg, status,2, status,0, pclath, cstack
-   378 ;; Tracked objects:
-   379 ;;		On entry : 0/0
-   380 ;;		On exit  : 0/0
-   381 ;;		Unchanged: 0/0
-   382 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   383 ;;      Params:         2       0       0       0       0
-   384 ;;      Locals:         1       0       0       0       0
-   385 ;;      Temps:          1       0       0       0       0
-   386 ;;      Totals:         4       0       0       0       0
-   387 ;;Total ram usage:        4 bytes
-   388 ;; Hardware stack levels used:    1
-   389 ;; Hardware stack levels required when called:    2
-   390 ;; This function calls:
-   391 ;;		_addrWriteLA
-   392 ;;		_chipRelease
-   393 ;;		_chipSelect
-   394 ;; This function is called by:
-   395 ;;		_readRSSI
-   396 ;;		_bitWriteLA
-   397 ;; This function uses a non-reentrant model
-   398 ;;
-   399                           
-   400                           
-   401                           ;psect for function _byteReadLA
-   402  06E0                     _byteReadLA:	
+   365  007D                     bitWriteLA@temp:	
+   366                           ; 0 bytes @ 0xD
+   367                           
+   368                           
+   369                           ; 1 bytes @ 0xD
+   370  007D                     	ds	1
+   371  007E                     ??_deviceIntEnable:	
+   372  007E                     ??_deviceIntPolarity:	
+   373                           ; 0 bytes @ 0xE
+   374                           
+   375  007E                     ??_main:	
+   376                           ; 0 bytes @ 0xE
+   377                           
+   378                           
+   379                           	psect	cstackBANK0
+   380  0020                     __pcstackBANK0:	
+   381                           ; 0 bytes @ 0xE
+   382                           
+   383  0020                     ??_bitWriteSA:	
+   384  0020                     ?_bitWriteLA:	
+   385                           ; 0 bytes @ 0x0
+   386                           
+   387  0020                     bitWriteLA@addr:	
+   388                           ; 0 bytes @ 0x0
+   389                           
+   390                           
+   391                           ; 2 bytes @ 0x0
+   392  0020                     	ds	2
+   393  0022                     bitWriteSA@temp:	
+   394  0022                     bitWriteLA@bitname:	
+   395                           ; 1 bytes @ 0x2
+   396                           
+   397                           
+   398                           ; 1 bytes @ 0x2
+   399  0022                     	ds	1
+   400  0023                     bitWriteSA@addr:	
+   401  0023                     bitWriteLA@state:	
+   402                           ; 1 bytes @ 0x3
    403                           
-   404                           ;MRF24J40.c: 147: uint8_t report;
-   405                           ;MRF24J40.c: 148: chipSelect();
-   406                           
-   407                           ;incstack = 0
-   408                           ; Regs used in _byteReadLA: [wreg+status,2+status,0+pclath+cstack]
-   409  06E0  118A  26CB  118A   	fcall	_chipSelect
+   404                           
+   405                           ; 1 bytes @ 0x3
+   406  0023                     	ds	1
+   407  0024                     ??_deviceChannelSelect:	
+   408  0024                     ??_bitWriteLA:	
+   409                           ; 0 bytes @ 0x4
    410                           
-   411                           ;MRF24J40.c: 149: addrWriteLA(addr, 1);
-   412  06E3  087A               	movf	byteReadLA@addr+1,w
-   413  06E4  01F1               	clrf	addrWriteLA@addr+1
-   414  06E5  07F1               	addwf	addrWriteLA@addr+1,f
-   415  06E6  0879               	movf	byteReadLA@addr,w
-   416  06E7  01F0               	clrf	addrWriteLA@addr
-   417  06E8  07F0               	addwf	addrWriteLA@addr,f
-   418  06E9  01F2               	clrf	addrWriteLA@op
-   419  06EA  0AF2               	incf	addrWriteLA@op,f
-   420  06EB  118A  26F8  118A   	fcall	_addrWriteLA
-   421                           
-   422                           ;MRF24J40.c: 150: report= SSPBUF;
-   423  06EE  1283               	bcf	3,5	;RP0=0, select bank0
-   424  06EF  1303               	bcf	3,6	;RP1=0, select bank0
-   425  06F0  0813               	movf	19,w	;volatile
-   426  06F1  00FB               	movwf	??_byteReadLA
-   427  06F2  087B               	movf	??_byteReadLA,w
-   428  06F3  00FC               	movwf	byteReadLA@report
-   429                           
-   430                           ;MRF24J40.c: 151: chipRelease();
-   431  06F4  118A  26B7         	fcall	_chipRelease
-   432                           
-   433                           ;MRF24J40.c: 152: return report;
-   434  06F6  087C               	movf	byteReadLA@report,w
-   435  06F7  0008               	return
-   436  06F8                     __end_of_byteReadLA:	
-   437                           
-   438                           	psect	text3
-   439  06CB                     __ptext3:	
-   440 ;; *************** function _chipSelect *****************
-   441 ;; Defined at:
-   442 ;;		line 22 in file "MRF24J40.c"
-   443 ;; Parameters:    Size  Location     Type
-   444 ;;		None
-   445 ;; Auto vars:     Size  Location     Type
-   446 ;;		None
-   447 ;; Return value:  Size  Location     Type
-   448 ;;		None               void
-   449 ;; Registers used:
-   450 ;;		wreg, status,2, status,0
-   451 ;; Tracked objects:
-   452 ;;		On entry : 0/0
-   453 ;;		On exit  : 0/0
-   454 ;;		Unchanged: 0/0
-   455 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   456 ;;      Params:         0       0       0       0       0
-   457 ;;      Locals:         0       0       0       0       0
-   458 ;;      Temps:          3       0       0       0       0
-   459 ;;      Totals:         3       0       0       0       0
-   460 ;;Total ram usage:        3 bytes
-   461 ;; Hardware stack levels used:    1
-   462 ;; This function calls:
-   463 ;;		Nothing
-   464 ;; This function is called by:
-   465 ;;		_byteReadLA
-   466 ;;		_SPI_WriteByte
-   467 ;;		_SPI_ReadByte
-   468 ;;		_SPI_WriteArray
-   469 ;;		_SPI_ReadArray
-   470 ;;		_byteReadSA
-   471 ;;		_byteWriteSA
-   472 ;;		_dataReadSA
-   473 ;;		_dataWriteSA
-   474 ;;		_byteWriteLA
-   475 ;;		_dataReadLA
-   476 ;;		_dataWriteLA
-   477 ;; This function uses a non-reentrant model
-   478 ;;
-   479                           
+   411                           
+   412                           ; 0 bytes @ 0x4
+   413  0024                     	ds	1
+   414  0025                     deviceChannelSelect@chan:	
+   415                           
+   416                           ; 1 bytes @ 0x5
+   417  0025                     	ds	1
+   418  0026                     ??_deviceInit:	
+   419                           
+   420                           ; 0 bytes @ 0x6
+   421  0026                     	ds	1
+   422  0027                     deviceInit@chan:	
+   423                           
+   424                           ; 1 bytes @ 0x7
+   425  0027                     	ds	1
+   426                           
+   427                           	psect	maintext
+   428  05B9                     __pmaintext:	
+   429 ;;
+   430 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   431 ;;
+   432 ;; *************** function _main *****************
+   433 ;; Defined at:
+   434 ;;		line 45 in file "main.c"
+   435 ;; Parameters:    Size  Location     Type
+   436 ;;		None
+   437 ;; Auto vars:     Size  Location     Type
+   438 ;;		None
+   439 ;; Return value:  Size  Location     Type
+   440 ;;		None               void
+   441 ;; Registers used:
+   442 ;;		wreg, status,2, status,0, pclath, cstack
+   443 ;; Tracked objects:
+   444 ;;		On entry : 17F/0
+   445 ;;		On exit  : 0/0
+   446 ;;		Unchanged: 0/0
+   447 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   448 ;;      Params:         0       0       0       0       0
+   449 ;;      Locals:         0       0       0       0       0
+   450 ;;      Temps:          0       0       0       0       0
+   451 ;;      Totals:         0       0       0       0       0
+   452 ;;Total ram usage:        0 bytes
+   453 ;; Hardware stack levels required when called:    7
+   454 ;; This function calls:
+   455 ;;		_deviceInit
+   456 ;;		_readRSSI
+   457 ;; This function is called by:
+   458 ;;		Startup code after reset
+   459 ;; This function uses a non-reentrant model
+   460 ;;
+   461                           
+   462                           
+   463                           ;psect for function _main
+   464  05B9                     _main:	
+   465                           
+   466                           ;main.c: 46: deviceInit(0x00);
+   467                           
+   468                           ;incstack = 0
+   469                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   470  05B9  3000               	movlw	0
+   471  05BA  118A  274E  118A   	fcall	_deviceInit
+   472                           
+   473                           ;main.c: 49: readRSSI();
+   474  05BD  118A  25B2  118A   	fcall	_readRSSI
+   475  05C0                     l32:	
+   476                           ;main.c: 51: while (1) {
+   477                           
+   478  05C0  2DC0               	goto	l32
+   479  05C1                     __end_of_main:	
    480                           
-   481                           ;psect for function _chipSelect
-   482  06CB                     _chipSelect:	
-   483                           
-   484                           ;MRF24J40.c: 23: PORTB &= ~(1<<PORTBbits.RB5);
-   485                           
-   486                           ;incstack = 0
-   487                           ; Regs used in _chipSelect: [wreg+status,2+status,0]
-   488  06CB  3001               	movlw	1
-   489  06CC  00F0               	movwf	??_chipSelect
-   490  06CD  1283               	bcf	3,5	;RP0=0, select bank0
-   491  06CE  1303               	bcf	3,6	;RP1=0, select bank0
-   492  06CF  0E06               	swapf	6,w	;volatile
-   493  06D0  00F1               	movwf	??_chipSelect+1
-   494  06D1  0C71               	rrf	??_chipSelect+1,w
-   495  06D2  3901               	andlw	1
-   496  06D3  3E01               	addlw	1
-   497  06D4  2ED7               	goto	u24
-   498  06D5                     u25:	
-   499  06D5  1003               	clrc
-   500  06D6  0DF0               	rlf	??_chipSelect,f
-   501  06D7                     u24:	
-   502  06D7  3EFF               	addlw	-1
-   503  06D8  1D03               	skipz
-   504  06D9  2ED5               	goto	u25
-   505  06DA  0870               	movf	??_chipSelect,w
-   506  06DB  3AFF               	xorlw	255
-   507  06DC  00F2               	movwf	??_chipSelect+2
-   508  06DD  0872               	movf	??_chipSelect+2,w
-   509  06DE  0586               	andwf	6,f	;volatile
-   510  06DF  0008               	return
-   511  06E0                     __end_of_chipSelect:	
+   481                           	psect	text1
+   482  05B2                     __ptext1:	
+   483 ;; *************** function _readRSSI *****************
+   484 ;; Defined at:
+   485 ;;		line 268 in file "MRF24J40.c"
+   486 ;; Parameters:    Size  Location     Type
+   487 ;;		None
+   488 ;; Auto vars:     Size  Location     Type
+   489 ;;		None
+   490 ;; Return value:  Size  Location     Type
+   491 ;;                  1    wreg      unsigned char 
+   492 ;; Registers used:
+   493 ;;		wreg, status,2, status,0, pclath, cstack
+   494 ;; Tracked objects:
+   495 ;;		On entry : 0/0
+   496 ;;		On exit  : 0/0
+   497 ;;		Unchanged: 0/0
+   498 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   499 ;;      Params:         0       0       0       0       0
+   500 ;;      Locals:         0       0       0       0       0
+   501 ;;      Temps:          0       0       0       0       0
+   502 ;;      Totals:         0       0       0       0       0
+   503 ;;Total ram usage:        0 bytes
+   504 ;; Hardware stack levels used:    1
+   505 ;; Hardware stack levels required when called:    3
+   506 ;; This function calls:
+   507 ;;		_byteReadLA
+   508 ;; This function is called by:
+   509 ;;		_main
+   510 ;; This function uses a non-reentrant model
+   511 ;;
    512                           
-   513                           	psect	text4
-   514  06B7                     __ptext4:	
-   515 ;; *************** function _chipRelease *****************
-   516 ;; Defined at:
-   517 ;;		line 26 in file "MRF24J40.c"
-   518 ;; Parameters:    Size  Location     Type
-   519 ;;		None
-   520 ;; Auto vars:     Size  Location     Type
-   521 ;;		None
-   522 ;; Return value:  Size  Location     Type
-   523 ;;		None               void
-   524 ;; Registers used:
-   525 ;;		wreg, status,2, status,0
-   526 ;; Tracked objects:
-   527 ;;		On entry : 0/0
-   528 ;;		On exit  : 0/0
-   529 ;;		Unchanged: 0/0
-   530 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   531 ;;      Params:         0       0       0       0       0
-   532 ;;      Locals:         0       0       0       0       0
-   533 ;;      Temps:          3       0       0       0       0
-   534 ;;      Totals:         3       0       0       0       0
-   535 ;;Total ram usage:        3 bytes
-   536 ;; Hardware stack levels used:    1
-   537 ;; This function calls:
-   538 ;;		Nothing
-   539 ;; This function is called by:
-   540 ;;		_byteReadLA
-   541 ;;		_SPI_WriteByte
-   542 ;;		_SPI_ReadByte
-   543 ;;		_SPI_WriteArray
-   544 ;;		_SPI_ReadArray
-   545 ;;		_byteReadSA
-   546 ;;		_byteWriteSA
-   547 ;;		_dataReadSA
-   548 ;;		_dataWriteSA
-   549 ;;		_byteWriteLA
-   550 ;;		_dataReadLA
-   551 ;;		_dataWriteLA
-   552 ;; This function uses a non-reentrant model
-   553 ;;
-   554                           
-   555                           
-   556                           ;psect for function _chipRelease
-   557  06B7                     _chipRelease:	
-   558                           
-   559                           ;MRF24J40.c: 27: PORTB |= (1<<PORTBbits.RB5);
-   560                           
-   561                           ;incstack = 0
-   562                           ; Regs used in _chipRelease: [wreg+status,2+status,0]
-   563  06B7  3001               	movlw	1
-   564  06B8  00F0               	movwf	??_chipRelease
-   565  06B9  1283               	bcf	3,5	;RP0=0, select bank0
-   566  06BA  1303               	bcf	3,6	;RP1=0, select bank0
-   567  06BB  0E06               	swapf	6,w	;volatile
-   568  06BC  00F1               	movwf	??_chipRelease+1
-   569  06BD  0C71               	rrf	??_chipRelease+1,w
-   570  06BE  3901               	andlw	1
-   571  06BF  3E01               	addlw	1
-   572  06C0  2EC3               	goto	u34
-   573  06C1                     u35:	
-   574  06C1  1003               	clrc
-   575  06C2  0DF0               	rlf	??_chipRelease,f
-   576  06C3                     u34:	
-   577  06C3  3EFF               	addlw	-1
-   578  06C4  1D03               	skipz
-   579  06C5  2EC1               	goto	u35
-   580  06C6  0870               	movf	??_chipRelease,w
-   581  06C7  00F2               	movwf	??_chipRelease+2
-   582  06C8  0872               	movf	??_chipRelease+2,w
-   583  06C9  0486               	iorwf	6,f	;volatile
-   584  06CA  0008               	return
-   585  06CB                     __end_of_chipRelease:	
-   586                           
-   587                           	psect	text5
-   588  06F8                     __ptext5:	
-   589 ;; *************** function _addrWriteLA *****************
-   590 ;; Defined at:
-   591 ;;		line 89 in file "MRF24J40.c"
-   592 ;; Parameters:    Size  Location     Type
-   593 ;;  addr            2    0[COMMON] unsigned int 
-   594 ;;  op              1    2[COMMON] unsigned char 
-   595 ;; Auto vars:     Size  Location     Type
-   596 ;;  command         2    7[COMMON] unsigned int 
-   597 ;; Return value:  Size  Location     Type
-   598 ;;		None               void
-   599 ;; Registers used:
-   600 ;;		wreg, status,2, status,0, pclath, cstack
-   601 ;; Tracked objects:
-   602 ;;		On entry : 0/0
-   603 ;;		On exit  : 0/0
-   604 ;;		Unchanged: 0/0
-   605 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   606 ;;      Params:         3       0       0       0       0
-   607 ;;      Locals:         2       0       0       0       0
-   608 ;;      Temps:          4       0       0       0       0
-   609 ;;      Totals:         9       0       0       0       0
-   610 ;;Total ram usage:        9 bytes
-   611 ;; Hardware stack levels used:    1
-   612 ;; Hardware stack levels required when called:    1
-   613 ;; This function calls:
-   614 ;;		_waitForSPI
-   615 ;; This function is called by:
-   616 ;;		_byteReadLA
-   617 ;;		_byteWriteLA
-   618 ;;		_dataReadLA
-   619 ;;		_dataWriteLA
-   620 ;; This function uses a non-reentrant model
-   621 ;;
-   622                           
-   623                           
-   624                           ;psect for function _addrWriteLA
-   625  06F8                     _addrWriteLA:	
-   626                           
-   627                           ;MRF24J40.c: 92: uint16_t command= (op?(((addr<<1)&0b100000000000)|0b000000000001):(((ad
-      +                          dr<<1)|0b100000000000 )));
-   628                           
-   629                           ;incstack = 0
-   630                           ; Regs used in _addrWriteLA: [wreg+status,2+status,0+pclath+cstack]
-   631  06F8  08F2               	movf	addrWriteLA@op,f
-   632  06F9  1D03               	skipz
-   633  06FA  2F08               	goto	l649
-   634  06FB  0871               	movf	addrWriteLA@addr+1,w
-   635  06FC  00F4               	movwf	??_addrWriteLA+1
-   636  06FD  0870               	movf	addrWriteLA@addr,w
-   637  06FE  00F3               	movwf	??_addrWriteLA
-   638  06FF  1003               	clrc
-   639  0700  0DF3               	rlf	??_addrWriteLA,f
-   640  0701  0DF4               	rlf	??_addrWriteLA+1,f
-   641  0702  3000               	movlw	0
-   642  0703  0473               	iorwf	??_addrWriteLA,w
-   643  0704  00F7               	movwf	addrWriteLA@command
-   644  0705  3008               	movlw	8
-   645  0706  0474               	iorwf	??_addrWriteLA+1,w
-   646  0707  2F1A               	goto	L1
-   647  0708                     l649:	
-   648  0708  0871               	movf	addrWriteLA@addr+1,w
-   649  0709  00F4               	movwf	??_addrWriteLA+1
-   650  070A  0870               	movf	addrWriteLA@addr,w
-   651  070B  00F3               	movwf	??_addrWriteLA
-   652  070C  1003               	clrc
-   653  070D  0DF3               	rlf	??_addrWriteLA,f
-   654  070E  0DF4               	rlf	??_addrWriteLA+1,f
-   655  070F  3000               	movlw	0
-   656  0710  0573               	andwf	??_addrWriteLA,w
-   657  0711  00F5               	movwf	??_addrWriteLA+2
-   658  0712  3008               	movlw	8
-   659  0713  0574               	andwf	??_addrWriteLA+1,w
-   660  0714  00F6               	movwf	??_addrWriteLA+3
-   661  0715  3001               	movlw	1
-   662  0716  0475               	iorwf	??_addrWriteLA+2,w
-   663  0717  00F7               	movwf	addrWriteLA@command
-   664  0718  3000               	movlw	0
-   665  0719  0476               	iorwf	??_addrWriteLA+3,w
-   666  071A                     L1:	
-   667  071A  00F8               	movwf	addrWriteLA@command+1
-   668                           
-   669                           ;MRF24J40.c: 93: SSPBUF= (command>>8);
-   670  071B  0878               	movf	addrWriteLA@command+1,w
-   671  071C  1283               	bcf	3,5	;RP0=0, select bank0
-   672  071D  1303               	bcf	3,6	;RP1=0, select bank0
-   673  071E  0093               	movwf	19	;volatile
-   674                           
-   675                           ;MRF24J40.c: 94: waitForSPI();
-   676  071F  118A  26A4  118A   	fcall	_waitForSPI
-   677                           
-   678                           ;MRF24J40.c: 95: SSPBUF= (command&0xFF);
-   679  0722  0877               	movf	addrWriteLA@command,w
-   680  0723  1283               	bcf	3,5	;RP0=0, select bank0
-   681  0724  1303               	bcf	3,6	;RP1=0, select bank0
-   682  0725  0093               	movwf	19	;volatile
-   683                           
-   684                           ;MRF24J40.c: 96: waitForSPI();
-   685  0726  118A  26A4         	fcall	_waitForSPI
-   686  0728  0008               	return
-   687  0729                     __end_of_addrWriteLA:	
-   688                           
-   689                           	psect	text6
-   690  06A4                     __ptext6:	
-   691 ;; *************** function _waitForSPI *****************
-   692 ;; Defined at:
-   693 ;;		line 75 in file "MRF24J40.c"
-   694 ;; Parameters:    Size  Location     Type
-   695 ;;		None
-   696 ;; Auto vars:     Size  Location     Type
-   697 ;;		None
-   698 ;; Return value:  Size  Location     Type
-   699 ;;		None               void
-   700 ;; Registers used:
-   701 ;;		None
-   702 ;; Tracked objects:
-   703 ;;		On entry : 0/0
-   704 ;;		On exit  : 0/0
-   705 ;;		Unchanged: 0/0
-   706 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   707 ;;      Params:         0       0       0       0       0
-   708 ;;      Locals:         0       0       0       0       0
-   709 ;;      Temps:          0       0       0       0       0
-   710 ;;      Totals:         0       0       0       0       0
-   711 ;;Total ram usage:        0 bytes
-   712 ;; Hardware stack levels used:    1
-   713 ;; This function calls:
-   714 ;;		Nothing
-   715 ;; This function is called by:
-   716 ;;		_addrWriteLA
-   717 ;;		_addrWriteSA
-   718 ;;		_byteWriteSA
-   719 ;;		_dataReadSA
-   720 ;;		_dataWriteSA
-   721 ;;		_byteWriteLA
-   722 ;;		_dataReadLA
-   723 ;;		_dataWriteLA
-   724 ;; This function uses a non-reentrant model
-   725 ;;
+   513                           
+   514                           ;psect for function _readRSSI
+   515  05B2                     _readRSSI:	
+   516                           
+   517                           ;MRF24J40.c: 269: return byteReadLA(0x210);
+   518                           ;	Return value of _readRSSI is never used
+   519                           
+   520                           ;incstack = 0
+   521                           ; Regs used in _readRSSI: [wreg+status,2+status,0+pclath+cstack]
+   522  05B2  3010               	movlw	16
+   523  05B3  00F9               	movwf	byteReadLA@addr
+   524  05B4  3002               	movlw	2
+   525  05B5  00FA               	movwf	byteReadLA@addr+1
+   526  05B6  118A  2658         	fcall	_byteReadLA
+   527  05B8  0008               	return
+   528  05B9                     __end_of_readRSSI:	
+   529                           
+   530                           	psect	text2
+   531  074E                     __ptext2:	
+   532 ;; *************** function _deviceInit *****************
+   533 ;; Defined at:
+   534 ;;		line 211 in file "MRF24J40.c"
+   535 ;; Parameters:    Size  Location     Type
+   536 ;;  chan            1    wreg     unsigned char 
+   537 ;; Auto vars:     Size  Location     Type
+   538 ;;  chan            1    7[BANK0 ] unsigned char 
+   539 ;; Return value:  Size  Location     Type
+   540 ;;		None               void
+   541 ;; Registers used:
+   542 ;;		wreg, status,2, status,0, pclath, cstack
+   543 ;; Tracked objects:
+   544 ;;		On entry : 0/0
+   545 ;;		On exit  : 0/0
+   546 ;;		Unchanged: 0/0
+   547 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   548 ;;      Params:         0       0       0       0       0
+   549 ;;      Locals:         0       1       0       0       0
+   550 ;;      Temps:          0       1       0       0       0
+   551 ;;      Totals:         0       2       0       0       0
+   552 ;;Total ram usage:        2 bytes
+   553 ;; Hardware stack levels used:    1
+   554 ;; Hardware stack levels required when called:    6
+   555 ;; This function calls:
+   556 ;;		_byteWriteLA
+   557 ;;		_byteWriteSA
+   558 ;;		_deviceChannelSelect
+   559 ;;		_deviceIntEnable
+   560 ;;		_setCCAThreshold
+   561 ;; This function is called by:
+   562 ;;		_main
+   563 ;;		_deviceStart
+   564 ;; This function uses a non-reentrant model
+   565 ;;
+   566                           
+   567                           
+   568                           ;psect for function _deviceInit
+   569  074E                     _deviceInit:	
+   570                           
+   571                           ;incstack = 0
+   572                           ; Regs used in _deviceInit: [wreg+status,2+status,0+pclath+cstack]
+   573                           ;deviceInit@chan stored from wreg
+   574  074E  1283               	bcf	3,5	;RP0=0, select bank0
+   575  074F  1303               	bcf	3,6	;RP1=0, select bank0
+   576  0750  00A7               	movwf	deviceInit@chan
+   577                           
+   578                           ;MRF24J40.c: 212: byteWriteSA(0x2A, 0x07);
+   579  0751  3007               	movlw	7
+   580  0752  00A6               	movwf	??_deviceInit
+   581  0753  0826               	movf	??_deviceInit,w
+   582  0754  00F8               	movwf	byteWriteSA@data
+   583  0755  302A               	movlw	42
+   584  0756  118A  25F1  118A   	fcall	_byteWriteSA
+   585                           
+   586                           ;MRF24J40.c: 213: byteWriteSA(0x18, 0xB0);
+   587  0759  30B0               	movlw	176
+   588  075A  1283               	bcf	3,5	;RP0=0, select bank0
+   589  075B  1303               	bcf	3,6	;RP1=0, select bank0
+   590  075C  00A6               	movwf	??_deviceInit
+   591  075D  0826               	movf	??_deviceInit,w
+   592  075E  00F8               	movwf	byteWriteSA@data
+   593  075F  3018               	movlw	24
+   594  0760  118A  25F1  118A   	fcall	_byteWriteSA
+   595                           
+   596                           ;MRF24J40.c: 214: byteWriteSA(0x2E, 0x95);
+   597  0763  3095               	movlw	149
+   598  0764  1283               	bcf	3,5	;RP0=0, select bank0
+   599  0765  1303               	bcf	3,6	;RP1=0, select bank0
+   600  0766  00A6               	movwf	??_deviceInit
+   601  0767  0826               	movf	??_deviceInit,w
+   602  0768  00F8               	movwf	byteWriteSA@data
+   603  0769  302E               	movlw	46
+   604  076A  118A  25F1  118A   	fcall	_byteWriteSA
+   605                           
+   606                           ;MRF24J40.c: 215: byteWriteLA(0x200, 0x03);
+   607  076D  3000               	movlw	0
+   608  076E  00F9               	movwf	byteWriteLA@addr
+   609  076F  3002               	movlw	2
+   610  0770  00FA               	movwf	byteWriteLA@addr+1
+   611  0771  3003               	movlw	3
+   612  0772  1283               	bcf	3,5	;RP0=0, select bank0
+   613  0773  1303               	bcf	3,6	;RP1=0, select bank0
+   614  0774  00A6               	movwf	??_deviceInit
+   615  0775  0826               	movf	??_deviceInit,w
+   616  0776  00FB               	movwf	byteWriteLA@data
+   617  0777  118A  2641  118A   	fcall	_byteWriteLA
+   618                           
+   619                           ;MRF24J40.c: 216: byteWriteLA(0x201, 0x01);
+   620  077A  3001               	movlw	1
+   621  077B  00F9               	movwf	byteWriteLA@addr
+   622  077C  3002               	movlw	2
+   623  077D  00FA               	movwf	byteWriteLA@addr+1
+   624  077E  01FB               	clrf	byteWriteLA@data
+   625  077F  0AFB               	incf	byteWriteLA@data,f
+   626  0780  118A  2641  118A   	fcall	_byteWriteLA
+   627                           
+   628                           ;MRF24J40.c: 217: byteWriteLA(0x202, 0x80);
+   629  0783  3002               	movlw	2
+   630  0784  00F9               	movwf	byteWriteLA@addr
+   631  0785  3002               	movlw	2
+   632  0786  00FA               	movwf	byteWriteLA@addr+1
+   633  0787  3080               	movlw	128
+   634  0788  1283               	bcf	3,5	;RP0=0, select bank0
+   635  0789  1303               	bcf	3,6	;RP1=0, select bank0
+   636  078A  00A6               	movwf	??_deviceInit
+   637  078B  0826               	movf	??_deviceInit,w
+   638  078C  00FB               	movwf	byteWriteLA@data
+   639  078D  118A  2641  118A   	fcall	_byteWriteLA
+   640                           
+   641                           ;MRF24J40.c: 218: byteWriteLA(0x206, 0x90);
+   642  0790  3006               	movlw	6
+   643  0791  00F9               	movwf	byteWriteLA@addr
+   644  0792  3002               	movlw	2
+   645  0793  00FA               	movwf	byteWriteLA@addr+1
+   646  0794  3090               	movlw	144
+   647  0795  1283               	bcf	3,5	;RP0=0, select bank0
+   648  0796  1303               	bcf	3,6	;RP1=0, select bank0
+   649  0797  00A6               	movwf	??_deviceInit
+   650  0798  0826               	movf	??_deviceInit,w
+   651  0799  00FB               	movwf	byteWriteLA@data
+   652  079A  118A  2641  118A   	fcall	_byteWriteLA
+   653                           
+   654                           ;MRF24J40.c: 219: byteWriteLA(0x207, 0x80);
+   655  079D  3007               	movlw	7
+   656  079E  00F9               	movwf	byteWriteLA@addr
+   657  079F  3002               	movlw	2
+   658  07A0  00FA               	movwf	byteWriteLA@addr+1
+   659  07A1  3080               	movlw	128
+   660  07A2  1283               	bcf	3,5	;RP0=0, select bank0
+   661  07A3  1303               	bcf	3,6	;RP1=0, select bank0
+   662  07A4  00A6               	movwf	??_deviceInit
+   663  07A5  0826               	movf	??_deviceInit,w
+   664  07A6  00FB               	movwf	byteWriteLA@data
+   665  07A7  118A  2641  118A   	fcall	_byteWriteLA
+   666                           
+   667                           ;MRF24J40.c: 220: byteWriteLA(0x208, 0x10);
+   668  07AA  3008               	movlw	8
+   669  07AB  00F9               	movwf	byteWriteLA@addr
+   670  07AC  3002               	movlw	2
+   671  07AD  00FA               	movwf	byteWriteLA@addr+1
+   672  07AE  3010               	movlw	16
+   673  07AF  1283               	bcf	3,5	;RP0=0, select bank0
+   674  07B0  1303               	bcf	3,6	;RP1=0, select bank0
+   675  07B1  00A6               	movwf	??_deviceInit
+   676  07B2  0826               	movf	??_deviceInit,w
+   677  07B3  00FB               	movwf	byteWriteLA@data
+   678  07B4  118A  2641  118A   	fcall	_byteWriteLA
+   679                           
+   680                           ;MRF24J40.c: 221: byteWriteLA(0x220, 0x21);
+   681  07B7  3020               	movlw	32
+   682  07B8  00F9               	movwf	byteWriteLA@addr
+   683  07B9  3002               	movlw	2
+   684  07BA  00FA               	movwf	byteWriteLA@addr+1
+   685  07BB  3021               	movlw	33
+   686  07BC  1283               	bcf	3,5	;RP0=0, select bank0
+   687  07BD  1303               	bcf	3,6	;RP1=0, select bank0
+   688  07BE  00A6               	movwf	??_deviceInit
+   689  07BF  0826               	movf	??_deviceInit,w
+   690  07C0  00FB               	movwf	byteWriteLA@data
+   691  07C1  118A  2641  118A   	fcall	_byteWriteLA
+   692                           
+   693                           ;MRF24J40.c: 222: if(!BEACON_EN) {
+   694  07C4  1283               	bcf	3,5	;RP0=0, select bank0
+   695  07C5  1303               	bcf	3,6	;RP1=0, select bank0
+   696  07C6  08A8               	movf	_BEACON_EN,f
+   697  07C7  1D03               	skipz
+   698  07C8  2FDF               	goto	l1073
+   699                           
+   700                           ;MRF24J40.c: 223: byteWriteSA(0x3A, 0x80);
+   701  07C9  3080               	movlw	128
+   702  07CA  00A6               	movwf	??_deviceInit
+   703  07CB  0826               	movf	??_deviceInit,w
+   704  07CC  00F8               	movwf	byteWriteSA@data
+   705  07CD  303A               	movlw	58
+   706  07CE  118A  25F1  118A   	fcall	_byteWriteSA
+   707                           
+   708                           ;MRF24J40.c: 224: setCCAThreshold(0x60);
+   709  07D1  3060               	movlw	96
+   710  07D2  118A  25CA  118A   	fcall	_setCCAThreshold
+   711                           
+   712                           ;MRF24J40.c: 225: byteWriteSA(0x3E, 0x40);
+   713  07D5  3040               	movlw	64
+   714  07D6  1283               	bcf	3,5	;RP0=0, select bank0
+   715  07D7  1303               	bcf	3,6	;RP1=0, select bank0
+   716  07D8  00A6               	movwf	??_deviceInit
+   717  07D9  0826               	movf	??_deviceInit,w
+   718  07DA  00F8               	movwf	byteWriteSA@data
+   719  07DB  303E               	movlw	62
+   720  07DC  118A  25F1  118A   	fcall	_byteWriteSA
+   721  07DF                     l1073:	
+   722                           ;MRF24J40.c: 227: else {
+   723                           
+   724                           ;MRF24J40.c: 226: }
+   725                           
    726                           
-   727                           
-   728                           ;psect for function _waitForSPI
-   729  06A4                     _waitForSPI:	
-   730  06A4                     l99:	
-   731                           ;MRF24J40.c: 76: while(SSPSTATbits.BF);
-   732                           
-   733                           ;incstack = 0
-   734                           ; Regs used in _waitForSPI: []
-   735                           
-   736  06A4  1683               	bsf	3,5	;RP0=1, select bank1
-   737  06A5  1303               	bcf	3,6	;RP1=0, select bank1
-   738  06A6  1C14               	btfss	20,0	;volatile
-   739  06A7  0008               	return
-   740  06A8  2EA4               	goto	l99
-   741  06A9                     __end_of_waitForSPI:	
-   742                           
-   743                           	psect	text7
-   744  078C                     __ptext7:	
-   745 ;; *************** function _deviceInit *****************
-   746 ;; Defined at:
-   747 ;;		line 203 in file "MRF24J40.c"
-   748 ;; Parameters:    Size  Location     Type
-   749 ;;		None
-   750 ;; Auto vars:     Size  Location     Type
-   751 ;;		None
-   752 ;; Return value:  Size  Location     Type
-   753 ;;		None               void
-   754 ;; Registers used:
-   755 ;;		wreg, status,2, status,0, pclath, cstack
-   756 ;; Tracked objects:
-   757 ;;		On entry : 0/0
-   758 ;;		On exit  : 0/0
-   759 ;;		Unchanged: 0/0
-   760 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   761 ;;      Params:         0       0       0       0       0
-   762 ;;      Locals:         0       0       0       0       0
-   763 ;;      Temps:          5       0       0       0       0
-   764 ;;      Totals:         5       0       0       0       0
-   765 ;;Total ram usage:        5 bytes
-   766 ;; Hardware stack levels used:    1
-   767 ;; Hardware stack levels required when called:    1
-   768 ;; This function calls:
-   769 ;;		_SPI_Init
-   770 ;; This function is called by:
-   771 ;;		_main
-   772 ;; This function uses a non-reentrant model
-   773 ;;
+   727                           ;MRF24J40.c: 229: }
+   728                           ;MRF24J40.c: 230: deviceIntEnable();
+   729  07DF  118A  25AB  118A   	fcall	_deviceIntEnable
+   730                           
+   731                           ;MRF24J40.c: 232: deviceChannelSelect(chan);
+   732  07E2  1283               	bcf	3,5	;RP0=0, select bank0
+   733  07E3  1303               	bcf	3,6	;RP1=0, select bank0
+   734  07E4  0827               	movf	deviceInit@chan,w
+   735  07E5  118A  25DF         	fcall	_deviceChannelSelect
+   736  07E7  0008               	return
+   737  07E8                     __end_of_deviceInit:	
+   738                           
+   739                           	psect	text3
+   740  05CA                     __ptext3:	
+   741 ;; *************** function _setCCAThreshold *****************
+   742 ;; Defined at:
+   743 ;;		line 208 in file "MRF24J40.c"
+   744 ;; Parameters:    Size  Location     Type
+   745 ;;  val             1    wreg     unsigned char 
+   746 ;; Auto vars:     Size  Location     Type
+   747 ;;  val             1   11[COMMON] unsigned char 
+   748 ;; Return value:  Size  Location     Type
+   749 ;;		None               void
+   750 ;; Registers used:
+   751 ;;		wreg, status,2, status,0, pclath, cstack
+   752 ;; Tracked objects:
+   753 ;;		On entry : 0/0
+   754 ;;		On exit  : 0/0
+   755 ;;		Unchanged: 0/0
+   756 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   757 ;;      Params:         0       0       0       0       0
+   758 ;;      Locals:         1       0       0       0       0
+   759 ;;      Temps:          1       0       0       0       0
+   760 ;;      Totals:         2       0       0       0       0
+   761 ;;Total ram usage:        2 bytes
+   762 ;; Hardware stack levels used:    1
+   763 ;; Hardware stack levels required when called:    3
+   764 ;; This function calls:
+   765 ;;		_byteWriteSA
+   766 ;; This function is called by:
+   767 ;;		_deviceInit
+   768 ;; This function uses a non-reentrant model
+   769 ;;
+   770                           
+   771                           
+   772                           ;psect for function _setCCAThreshold
+   773  05CA                     _setCCAThreshold:	
    774                           
-   775                           
-   776                           ;psect for function _deviceInit
-   777  078C                     _deviceInit:	
-   778                           
-   779                           ;MRF24J40.c: 211: 1?(PORTB|= (1<<PORTBbits.RB6)):(PORTB&=~(1<<PORTBbits.RB6));
-   780                           
-   781                           ;incstack = 0
-   782                           ; Regs used in _deviceInit: [wreg+status,2+status,0+pclath+cstack]
-   783  078C  3001               	movlw	1
-   784  078D  00F8               	movwf	??_deviceInit
-   785  078E  1283               	bcf	3,5	;RP0=0, select bank0
-   786  078F  1303               	bcf	3,6	;RP1=0, select bank0
-   787  0790  0C06               	rrf	6,w	;volatile
-   788  0791  00F9               	movwf	??_deviceInit+1
-   789  0792  0CF9               	rrf	??_deviceInit+1,f
-   790  0793  0C79               	rrf	??_deviceInit+1,w
-   791  0794  3901               	andlw	1
-   792  0795  3E01               	addlw	1
-   793  0796  2F99               	goto	u114
-   794  0797                     u115:	
-   795  0797  1003               	clrc
-   796  0798  0DF8               	rlf	??_deviceInit,f
-   797  0799                     u114:	
-   798  0799  3EFF               	addlw	-1
-   799  079A  1D03               	skipz
-   800  079B  2F97               	goto	u115
-   801  079C  3001               	movlw	1
-   802  079D  00FA               	movwf	??_deviceInit+2
-   803  079E  0E06               	swapf	6,w	;volatile
-   804  079F  00FB               	movwf	??_deviceInit+3
-   805  07A0  0CFB               	rrf	??_deviceInit+3,f
-   806  07A1  0C7B               	rrf	??_deviceInit+3,w
-   807  07A2  3901               	andlw	1
-   808  07A3  3E01               	addlw	1
-   809  07A4  2FA7               	goto	u124
-   810  07A5                     u125:	
-   811  07A5  1003               	clrc
-   812  07A6  0DFA               	rlf	??_deviceInit+2,f
-   813  07A7                     u124:	
-   814  07A7  3EFF               	addlw	-1
-   815  07A8  1D03               	skipz
-   816  07A9  2FA5               	goto	u125
-   817  07AA  087A               	movf	??_deviceInit+2,w
-   818  07AB  0478               	iorwf	??_deviceInit,w
-   819  07AC  00FC               	movwf	??_deviceInit+4
-   820  07AD  087C               	movf	??_deviceInit+4,w
-   821  07AE  1683               	bsf	3,5	;RP0=1, select bank1
-   822  07AF  1303               	bcf	3,6	;RP1=0, select bank1
-   823  07B0  0486               	iorwf	6,f	;volatile
-   824  07B1  3001               	movlw	1
-   825  07B2  00F8               	movwf	??_deviceInit
-   826  07B3  1283               	bcf	3,5	;RP0=0, select bank0
-   827  07B4  1303               	bcf	3,6	;RP1=0, select bank0
-   828  07B5  0E06               	swapf	6,w	;volatile
-   829  07B6  00F9               	movwf	??_deviceInit+1
-   830  07B7  0CF9               	rrf	??_deviceInit+1,f
-   831  07B8  0C79               	rrf	??_deviceInit+1,w
-   832  07B9  3901               	andlw	1
-   833  07BA  3E01               	addlw	1
-   834  07BB  2FBE               	goto	u134
-   835  07BC                     u135:	
-   836  07BC  1003               	clrc
-   837  07BD  0DF8               	rlf	??_deviceInit,f
-   838  07BE                     u134:	
-   839  07BE  3EFF               	addlw	-1
-   840  07BF  1D03               	skipz
-   841  07C0  2FBC               	goto	u135
-   842  07C1  0878               	movf	??_deviceInit,w
-   843  07C2  00FA               	movwf	??_deviceInit+2
-   844  07C3  087A               	movf	??_deviceInit+2,w
-   845  07C4  0486               	iorwf	6,f	;volatile
-   846  07C5  2FD0               	goto	l171
-   847  07C6                     u145:	
-   848  07C6  1003               	clrc
-   849  07C7  0DF8               	rlf	??_deviceInit,f
-   850  07C8  3EFF               	addlw	-1
-   851  07C9  1D03               	skipz
-   852  07CA  2FC6               	goto	u145
-   853  07CB  0878               	movf	??_deviceInit,w
-   854  07CC  3AFF               	xorlw	255
-   855  07CD  00FA               	movwf	??_deviceInit+2
-   856  07CE  087A               	movf	??_deviceInit+2,w
-   857  07CF  0586               	andwf	6,f	;volatile
-   858  07D0                     l171:	
-   859                           ;MRF24J40.c: 212: 1?(PORTB|= (1<<PORTBbits.RB3)):(PORTB&=~(1<<PORTBbits.RB3));
-   860                           
-   861  07D0  3001               	movlw	1
-   862  07D1  00F8               	movwf	??_deviceInit
-   863  07D2  0C06               	rrf	6,w	;volatile
-   864  07D3  00F9               	movwf	??_deviceInit+1
-   865  07D4  0CF9               	rrf	??_deviceInit+1,f
-   866  07D5  0C79               	rrf	??_deviceInit+1,w
-   867  07D6  3901               	andlw	1
-   868  07D7  3E01               	addlw	1
-   869  07D8  2FDB               	goto	u154
-   870  07D9                     u155:	
-   871  07D9  1003               	clrc
-   872  07DA  0DF8               	rlf	??_deviceInit,f
-   873  07DB                     u154:	
-   874  07DB  3EFF               	addlw	-1
-   875  07DC  1D03               	skipz
-   876  07DD  2FD9               	goto	u155
-   877  07DE  0878               	movf	??_deviceInit,w
-   878  07DF  00FA               	movwf	??_deviceInit+2
-   879  07E0  087A               	movf	??_deviceInit+2,w
-   880  07E1  0486               	iorwf	6,f	;volatile
-   881  07E2  2FED               	goto	l687
-   882  07E3                     u165:	
-   883  07E3  1003               	clrc
-   884  07E4  0DF8               	rlf	??_deviceInit,f
-   885  07E5  3EFF               	addlw	-1
-   886  07E6  1D03               	skipz
-   887  07E7  2FE3               	goto	u165
-   888  07E8  0878               	movf	??_deviceInit,w
-   889  07E9  3AFF               	xorlw	255
-   890  07EA  00FA               	movwf	??_deviceInit+2
-   891  07EB  087A               	movf	??_deviceInit+2,w
-   892  07EC  0586               	andwf	6,f	;volatile
-   893  07ED                     l687:	
-   894                           
-   895                           ;MRF24J40.c: 213: SPI_Init();
-   896  07ED  118A  2729         	fcall	_SPI_Init
-   897  07EF  0008               	return
-   898  07F0                     __end_of_deviceInit:	
-   899                           
-   900                           	psect	text8
-   901  0729                     __ptext8:	
-   902 ;; *************** function _SPI_Init *****************
-   903 ;; Defined at:
-   904 ;;		line 8 in file "MRF24J40.c"
-   905 ;; Parameters:    Size  Location     Type
-   906 ;;		None
-   907 ;; Auto vars:     Size  Location     Type
-   908 ;;		None
-   909 ;; Return value:  Size  Location     Type
-   910 ;;		None               void
-   911 ;; Registers used:
-   912 ;;		wreg, status,2, status,0
-   913 ;; Tracked objects:
-   914 ;;		On entry : 0/0
-   915 ;;		On exit  : 0/0
-   916 ;;		Unchanged: 0/0
-   917 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-   918 ;;      Params:         0       0       0       0       0
-   919 ;;      Locals:         0       0       0       0       0
-   920 ;;      Temps:          8       0       0       0       0
-   921 ;;      Totals:         8       0       0       0       0
-   922 ;;Total ram usage:        8 bytes
-   923 ;; Hardware stack levels used:    1
-   924 ;; This function calls:
-   925 ;;		Nothing
-   926 ;; This function is called by:
-   927 ;;		_deviceInit
-   928 ;; This function uses a non-reentrant model
-   929 ;;
-   930                           
-   931                           
-   932                           ;psect for function _SPI_Init
-   933  0729                     _SPI_Init:	
-   934                           
-   935                           ;MRF24J40.c: 11: TRISB&= ~(1 << PORTBbits.RB5)&~(1<<PORTBbits.RB2)&~(1<<PORTBbits.RB4);
-   936                           
-   937                           ;incstack = 0
-   938                           ; Regs used in _SPI_Init: [wreg+status,2+status,0]
-   939  0729  3001               	movlw	1
-   940  072A  00F0               	movwf	??_SPI_Init
-   941  072B  1283               	bcf	3,5	;RP0=0, select bank0
-   942  072C  1303               	bcf	3,6	;RP1=0, select bank0
-   943  072D  0E06               	swapf	6,w	;volatile
-   944  072E  3901               	andlw	1
-   945  072F  3E01               	addlw	1
-   946  0730  2F33               	goto	u54
-   947  0731                     u55:	
-   948  0731  1003               	clrc
-   949  0732  0DF0               	rlf	??_SPI_Init,f
-   950  0733                     u54:	
-   951  0733  3EFF               	addlw	-1
-   952  0734  1D03               	skipz
-   953  0735  2F31               	goto	u55
-   954  0736  0870               	movf	??_SPI_Init,w
-   955  0737  3AFF               	xorlw	255
-   956  0738  00F1               	movwf	??_SPI_Init+1
-   957  0739  3001               	movlw	1
-   958  073A  00F2               	movwf	??_SPI_Init+2
-   959  073B  0C06               	rrf	6,w	;volatile
-   960  073C  00F3               	movwf	??_SPI_Init+3
-   961  073D  0C73               	rrf	??_SPI_Init+3,w
-   962  073E  3901               	andlw	1
-   963  073F  3E01               	addlw	1
-   964  0740  2F43               	goto	u64
-   965  0741                     u65:	
-   966  0741  1003               	clrc
-   967  0742  0DF2               	rlf	??_SPI_Init+2,f
-   968  0743                     u64:	
-   969  0743  3EFF               	addlw	-1
-   970  0744  1D03               	skipz
-   971  0745  2F41               	goto	u65
-   972  0746  0872               	movf	??_SPI_Init+2,w
-   973  0747  3AFF               	xorlw	255
-   974  0748  00F4               	movwf	??_SPI_Init+4
-   975  0749  3001               	movlw	1
-   976  074A  00F5               	movwf	??_SPI_Init+5
-   977  074B  0E06               	swapf	6,w	;volatile
-   978  074C  00F6               	movwf	??_SPI_Init+6
-   979  074D  0C76               	rrf	??_SPI_Init+6,w
-   980  074E  3901               	andlw	1
-   981  074F  3E01               	addlw	1
-   982  0750  2F53               	goto	u74
-   983  0751                     u75:	
-   984  0751  1003               	clrc
-   985  0752  0DF5               	rlf	??_SPI_Init+5,f
-   986  0753                     u74:	
-   987  0753  3EFF               	addlw	-1
-   988  0754  1D03               	skipz
-   989  0755  2F51               	goto	u75
-   990  0756  0875               	movf	??_SPI_Init+5,w
-   991  0757  3AFF               	xorlw	255
-   992  0758  0574               	andwf	??_SPI_Init+4,w
-   993  0759  0571               	andwf	??_SPI_Init+1,w
-   994  075A  00F7               	movwf	??_SPI_Init+7
-   995  075B  0877               	movf	??_SPI_Init+7,w
-   996  075C  1683               	bsf	3,5	;RP0=1, select bank1
-   997  075D  1303               	bcf	3,6	;RP1=0, select bank1
-   998  075E  0586               	andwf	6,f	;volatile
-   999                           
-  1000                           ;MRF24J40.c: 12: TRISB|= (1 << PORTBbits.RB1);
-  1001  075F  3001               	movlw	1
-  1002  0760  00F0               	movwf	??_SPI_Init
-  1003  0761  1283               	bcf	3,5	;RP0=0, select bank0
-  1004  0762  1303               	bcf	3,6	;RP1=0, select bank0
-  1005  0763  0C06               	rrf	6,w	;volatile
-  1006  0764  3901               	andlw	1
-  1007  0765  3E01               	addlw	1
-  1008  0766  2F69               	goto	u84
-  1009  0767                     u85:	
-  1010  0767  1003               	clrc
-  1011  0768  0DF0               	rlf	??_SPI_Init,f
-  1012  0769                     u84:	
-  1013  0769  3EFF               	addlw	-1
-  1014  076A  1D03               	skipz
-  1015  076B  2F67               	goto	u85
-  1016  076C  0870               	movf	??_SPI_Init,w
-  1017  076D  00F1               	movwf	??_SPI_Init+1
-  1018  076E  0871               	movf	??_SPI_Init+1,w
-  1019  076F  1683               	bsf	3,5	;RP0=1, select bank1
-  1020  0770  1303               	bcf	3,6	;RP1=0, select bank1
-  1021  0771  0486               	iorwf	6,f	;volatile
-  1022                           
-  1023                           ;MRF24J40.c: 13: PORTB|= (1 << PORTBbits.RB5);
-  1024  0772  3001               	movlw	1
-  1025  0773  00F0               	movwf	??_SPI_Init
-  1026  0774  1283               	bcf	3,5	;RP0=0, select bank0
-  1027  0775  1303               	bcf	3,6	;RP1=0, select bank0
-  1028  0776  0E06               	swapf	6,w	;volatile
-  1029  0777  00F1               	movwf	??_SPI_Init+1
-  1030  0778  0C71               	rrf	??_SPI_Init+1,w
-  1031  0779  3901               	andlw	1
-  1032  077A  3E01               	addlw	1
-  1033  077B  2F7E               	goto	u94
-  1034  077C                     u95:	
-  1035  077C  1003               	clrc
-  1036  077D  0DF0               	rlf	??_SPI_Init,f
-  1037  077E                     u94:	
-  1038  077E  3EFF               	addlw	-1
-  1039  077F  1D03               	skipz
-  1040  0780  2F7C               	goto	u95
-  1041  0781  0870               	movf	??_SPI_Init,w
-  1042  0782  00F2               	movwf	??_SPI_Init+2
-  1043  0783  0872               	movf	??_SPI_Init+2,w
-  1044  0784  0486               	iorwf	6,f	;volatile
-  1045                           
-  1046                           ;MRF24J40.c: 16: SSPCONbits.SSPEN= 1;
-  1047  0785  1694               	bsf	20,5	;volatile
-  1048                           
-  1049                           ;MRF24J40.c: 17: SSPCONbits.SSPM0= 1;
-  1050  0786  1414               	bsf	20,0	;volatile
-  1051                           
-  1052                           ;MRF24J40.c: 18: SSPSTATbits.SMP= 1;
-  1053  0787  1683               	bsf	3,5	;RP0=1, select bank1
-  1054  0788  1303               	bcf	3,6	;RP1=0, select bank1
-  1055  0789  1794               	bsf	20,7	;volatile
-  1056                           
-  1057                           ;MRF24J40.c: 19: SSPSTATbits.CKE= 0;
-  1058  078A  1314               	bcf	20,6	;volatile
-  1059  078B  0008               	return
-  1060  078C                     __end_of_SPI_Init:	
-  1061  007E                     btemp	set	126	;btemp
-  1062  007E                     wtemp	set	126
-  1063  007E                     wtemp0	set	126
-  1064  0080                     wtemp1	set	128
-  1065  0082                     wtemp2	set	130
-  1066  0084                     wtemp3	set	132
-  1067  0086                     wtemp4	set	134
-  1068  0088                     wtemp5	set	136
-  1069  007F                     wtemp6	set	127
-  1070  007E                     ttemp	set	126
-  1071  007E                     ttemp0	set	126
-  1072  0081                     ttemp1	set	129
-  1073  0084                     ttemp2	set	132
-  1074  0087                     ttemp3	set	135
-  1075  007F                     ttemp4	set	127
-  1076  007E                     ltemp	set	126
-  1077  007E                     ltemp0	set	126
-  1078  0082                     ltemp1	set	130
-  1079  0086                     ltemp2	set	134
-  1080  0080                     ltemp3	set	128
+   775                           ;incstack = 0
+   776                           ; Regs used in _setCCAThreshold: [wreg+status,2+status,0+pclath+cstack]
+   777                           ;setCCAThreshold@val stored from wreg
+   778  05CA  00FB               	movwf	setCCAThreshold@val
+   779                           
+   780                           ;MRF24J40.c: 209: byteWriteSA(0x3F, val);
+   781  05CB  087B               	movf	setCCAThreshold@val,w
+   782  05CC  00FA               	movwf	??_setCCAThreshold
+   783  05CD  087A               	movf	??_setCCAThreshold,w
+   784  05CE  00F8               	movwf	byteWriteSA@data
+   785  05CF  303F               	movlw	63
+   786  05D0  118A  25F1         	fcall	_byteWriteSA
+   787  05D2  0008               	return
+   788  05D3                     __end_of_setCCAThreshold:	
+   789                           
+   790                           	psect	text4
+   791  05AB                     __ptext4:	
+   792 ;; *************** function _deviceIntEnable *****************
+   793 ;; Defined at:
+   794 ;;		line 245 in file "MRF24J40.c"
+   795 ;; Parameters:    Size  Location     Type
+   796 ;;		None
+   797 ;; Auto vars:     Size  Location     Type
+   798 ;;		None
+   799 ;; Return value:  Size  Location     Type
+   800 ;;		None               void
+   801 ;; Registers used:
+   802 ;;		wreg, status,2, status,0, pclath, cstack
+   803 ;; Tracked objects:
+   804 ;;		On entry : 0/0
+   805 ;;		On exit  : 0/0
+   806 ;;		Unchanged: 0/0
+   807 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   808 ;;      Params:         0       0       0       0       0
+   809 ;;      Locals:         0       0       0       0       0
+   810 ;;      Temps:          0       0       0       0       0
+   811 ;;      Totals:         0       0       0       0       0
+   812 ;;Total ram usage:        0 bytes
+   813 ;; Hardware stack levels used:    1
+   814 ;; Hardware stack levels required when called:    5
+   815 ;; This function calls:
+   816 ;;		_deviceIntPolarity
+   817 ;;		_deviceSetInterrupt
+   818 ;; This function is called by:
+   819 ;;		_deviceInit
+   820 ;; This function uses a non-reentrant model
+   821 ;;
+   822                           
+   823                           
+   824                           ;psect for function _deviceIntEnable
+   825  05AB                     _deviceIntEnable:	
+   826                           
+   827                           ;MRF24J40.c: 246: deviceIntPolarity();
+   828                           
+   829                           ;incstack = 0
+   830                           ; Regs used in _deviceIntEnable: [wreg+status,2+status,0+pclath+cstack]
+   831  05AB  118A  25D3  118A   	fcall	_deviceIntPolarity
+   832                           
+   833                           ;MRF24J40.c: 247: deviceSetInterrupt(0xFF);
+   834  05AE  30FF               	movlw	255
+   835  05AF  118A  25C1         	fcall	_deviceSetInterrupt
+   836  05B1  0008               	return
+   837  05B2                     __end_of_deviceIntEnable:	
+   838                           
+   839                           	psect	text5
+   840  05C1                     __ptext5:	
+   841 ;; *************** function _deviceSetInterrupt *****************
+   842 ;; Defined at:
+   843 ;;		line 249 in file "MRF24J40.c"
+   844 ;; Parameters:    Size  Location     Type
+   845 ;;  interrupts      1    wreg     unsigned char 
+   846 ;; Auto vars:     Size  Location     Type
+   847 ;;  interrupts      1   11[COMMON] unsigned char 
+   848 ;; Return value:  Size  Location     Type
+   849 ;;		None               void
+   850 ;; Registers used:
+   851 ;;		wreg, status,2, status,0, pclath, cstack
+   852 ;; Tracked objects:
+   853 ;;		On entry : 0/0
+   854 ;;		On exit  : 0/0
+   855 ;;		Unchanged: 0/0
+   856 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   857 ;;      Params:         0       0       0       0       0
+   858 ;;      Locals:         1       0       0       0       0
+   859 ;;      Temps:          1       0       0       0       0
+   860 ;;      Totals:         2       0       0       0       0
+   861 ;;Total ram usage:        2 bytes
+   862 ;; Hardware stack levels used:    1
+   863 ;; Hardware stack levels required when called:    3
+   864 ;; This function calls:
+   865 ;;		_byteWriteSA
+   866 ;; This function is called by:
+   867 ;;		_deviceIntEnable
+   868 ;; This function uses a non-reentrant model
+   869 ;;
+   870                           
+   871                           
+   872                           ;psect for function _deviceSetInterrupt
+   873  05C1                     _deviceSetInterrupt:	
+   874                           
+   875                           ;incstack = 0
+   876                           ; Regs used in _deviceSetInterrupt: [wreg+status,2+status,0+pclath+cstack]
+   877                           ;deviceSetInterrupt@interrupts stored from wreg
+   878  05C1  00FB               	movwf	deviceSetInterrupt@interrupts
+   879                           
+   880                           ;MRF24J40.c: 250: byteWriteSA(0x32, interrupts);
+   881  05C2  087B               	movf	deviceSetInterrupt@interrupts,w
+   882  05C3  00FA               	movwf	??_deviceSetInterrupt
+   883  05C4  087A               	movf	??_deviceSetInterrupt,w
+   884  05C5  00F8               	movwf	byteWriteSA@data
+   885  05C6  3032               	movlw	50
+   886  05C7  118A  25F1         	fcall	_byteWriteSA
+   887  05C9  0008               	return
+   888  05CA                     __end_of_deviceSetInterrupt:	
+   889                           
+   890                           	psect	text6
+   891  05D3                     __ptext6:	
+   892 ;; *************** function _deviceIntPolarity *****************
+   893 ;; Defined at:
+   894 ;;		line 255 in file "MRF24J40.c"
+   895 ;; Parameters:    Size  Location     Type
+   896 ;;		None
+   897 ;; Auto vars:     Size  Location     Type
+   898 ;;		None
+   899 ;; Return value:  Size  Location     Type
+   900 ;;		None               void
+   901 ;; Registers used:
+   902 ;;		wreg, status,2, status,0, pclath, cstack
+   903 ;; Tracked objects:
+   904 ;;		On entry : 0/0
+   905 ;;		On exit  : 0/0
+   906 ;;		Unchanged: 0/0
+   907 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   908 ;;      Params:         0       0       0       0       0
+   909 ;;      Locals:         0       0       0       0       0
+   910 ;;      Temps:          0       0       0       0       0
+   911 ;;      Totals:         0       0       0       0       0
+   912 ;;Total ram usage:        0 bytes
+   913 ;; Hardware stack levels used:    1
+   914 ;; Hardware stack levels required when called:    4
+   915 ;; This function calls:
+   916 ;;		_bitWriteLA
+   917 ;; This function is called by:
+   918 ;;		_deviceIntEnable
+   919 ;; This function uses a non-reentrant model
+   920 ;;
+   921                           
+   922                           
+   923                           ;psect for function _deviceIntPolarity
+   924  05D3                     _deviceIntPolarity:	
+   925                           
+   926                           ;MRF24J40.c: 256: bitWriteLA(0x211, 1, 0);
+   927                           
+   928                           ;incstack = 0
+   929                           ; Regs used in _deviceIntPolarity: [wreg+status,2+status,0+pclath+cstack]
+   930  05D3  3011               	movlw	17
+   931  05D4  1283               	bcf	3,5	;RP0=0, select bank0
+   932  05D5  1303               	bcf	3,6	;RP1=0, select bank0
+   933  05D6  00A0               	movwf	bitWriteLA@addr
+   934  05D7  3002               	movlw	2
+   935  05D8  00A1               	movwf	bitWriteLA@addr+1
+   936  05D9  01A2               	clrf	bitWriteLA@bitname
+   937  05DA  0AA2               	incf	bitWriteLA@bitname,f
+   938  05DB  01A3               	clrf	bitWriteLA@state
+   939  05DC  118A  2712         	fcall	_bitWriteLA
+   940  05DE  0008               	return
+   941  05DF                     __end_of_deviceIntPolarity:	
+   942                           
+   943                           	psect	text7
+   944  0712                     __ptext7:	
+   945 ;; *************** function _bitWriteLA *****************
+   946 ;; Defined at:
+   947 ;;		line 154 in file "MRF24J40.c"
+   948 ;; Parameters:    Size  Location     Type
+   949 ;;  addr            2    0[BANK0 ] unsigned int 
+   950 ;;  bitname         1    2[BANK0 ] unsigned char 
+   951 ;;  state           1    3[BANK0 ] unsigned char 
+   952 ;; Auto vars:     Size  Location     Type
+   953 ;;  temp            1   13[COMMON] unsigned char 
+   954 ;; Return value:  Size  Location     Type
+   955 ;;		None               void
+   956 ;; Registers used:
+   957 ;;		wreg, status,2, status,0, pclath, cstack
+   958 ;; Tracked objects:
+   959 ;;		On entry : 0/0
+   960 ;;		On exit  : 0/0
+   961 ;;		Unchanged: 0/0
+   962 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   963 ;;      Params:         0       4       0       0       0
+   964 ;;      Locals:         1       0       0       0       0
+   965 ;;      Temps:          0       2       0       0       0
+   966 ;;      Totals:         1       6       0       0       0
+   967 ;;Total ram usage:        7 bytes
+   968 ;; Hardware stack levels used:    1
+   969 ;; Hardware stack levels required when called:    3
+   970 ;; This function calls:
+   971 ;;		_byteReadLA
+   972 ;;		_byteWriteLA
+   973 ;; This function is called by:
+   974 ;;		_deviceIntPolarity
+   975 ;; This function uses a non-reentrant model
+   976 ;;
+   977                           
+   978                           
+   979                           ;psect for function _bitWriteLA
+   980  0712                     _bitWriteLA:	
+   981                           
+   982                           ;MRF24J40.c: 155: uint8_t temp= byteReadLA(addr);
+   983                           
+   984                           ;incstack = 0
+   985                           ; Regs used in _bitWriteLA: [wreg+status,2+status,0+pclath+cstack]
+   986  0712  1283               	bcf	3,5	;RP0=0, select bank0
+   987  0713  1303               	bcf	3,6	;RP1=0, select bank0
+   988  0714  0821               	movf	bitWriteLA@addr+1,w
+   989  0715  01FA               	clrf	byteReadLA@addr+1
+   990  0716  07FA               	addwf	byteReadLA@addr+1,f
+   991  0717  0820               	movf	bitWriteLA@addr,w
+   992  0718  01F9               	clrf	byteReadLA@addr
+   993  0719  07F9               	addwf	byteReadLA@addr,f
+   994  071A  118A  2658  118A   	fcall	_byteReadLA
+   995  071D  1283               	bcf	3,5	;RP0=0, select bank0
+   996  071E  1303               	bcf	3,6	;RP1=0, select bank0
+   997  071F  00A4               	movwf	??_bitWriteLA
+   998  0720  0824               	movf	??_bitWriteLA,w
+   999  0721  00FD               	movwf	bitWriteLA@temp
+  1000                           
+  1001                           ;MRF24J40.c: 156: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
+  1002  0722  0823               	movf	bitWriteLA@state,w
+  1003  0723  1903               	btfsc	3,2
+  1004  0724  2F33               	goto	l1049
+  1005  0725  3001               	movlw	1
+  1006  0726  00A4               	movwf	??_bitWriteLA
+  1007  0727  0A22               	incf	bitWriteLA@bitname,w
+  1008  0728  2F2B               	goto	u524
+  1009  0729                     u525:	
+  1010  0729  1003               	clrc
+  1011  072A  0DA4               	rlf	??_bitWriteLA,f
+  1012  072B                     u524:	
+  1013  072B  3EFF               	addlw	-1
+  1014  072C  1D03               	skipz
+  1015  072D  2F29               	goto	u525
+  1016  072E  0824               	movf	??_bitWriteLA,w
+  1017  072F  00A5               	movwf	??_bitWriteLA+1
+  1018  0730  0825               	movf	??_bitWriteLA+1,w
+  1019  0731  04FD               	iorwf	bitWriteLA@temp,f
+  1020  0732  2F41               	goto	l1051
+  1021  0733                     l1049:	
+  1022  0733  3001               	movlw	1
+  1023  0734  00A4               	movwf	??_bitWriteLA
+  1024  0735  0A22               	incf	bitWriteLA@bitname,w
+  1025  0736  2F39               	goto	u534
+  1026  0737                     u535:	
+  1027  0737  1003               	clrc
+  1028  0738  0DA4               	rlf	??_bitWriteLA,f
+  1029  0739                     u534:	
+  1030  0739  3EFF               	addlw	-1
+  1031  073A  1D03               	skipz
+  1032  073B  2F37               	goto	u535
+  1033  073C  0824               	movf	??_bitWriteLA,w
+  1034  073D  3AFF               	xorlw	255
+  1035  073E  00A5               	movwf	??_bitWriteLA+1
+  1036  073F  0825               	movf	??_bitWriteLA+1,w
+  1037  0740  05FD               	andwf	bitWriteLA@temp,f
+  1038  0741                     l1051:	
+  1039                           
+  1040                           ;MRF24J40.c: 157: byteWriteLA(addr, temp);
+  1041  0741  0821               	movf	bitWriteLA@addr+1,w
+  1042  0742  01FA               	clrf	byteWriteLA@addr+1
+  1043  0743  07FA               	addwf	byteWriteLA@addr+1,f
+  1044  0744  0820               	movf	bitWriteLA@addr,w
+  1045  0745  01F9               	clrf	byteWriteLA@addr
+  1046  0746  07F9               	addwf	byteWriteLA@addr,f
+  1047  0747  087D               	movf	bitWriteLA@temp,w
+  1048  0748  00A4               	movwf	??_bitWriteLA
+  1049  0749  0824               	movf	??_bitWriteLA,w
+  1050  074A  00FB               	movwf	byteWriteLA@data
+  1051  074B  118A  2641         	fcall	_byteWriteLA
+  1052  074D  0008               	return
+  1053  074E                     __end_of_bitWriteLA:	
+  1054                           
+  1055                           	psect	text8
+  1056  0658                     __ptext8:	
+  1057 ;; *************** function _byteReadLA *****************
+  1058 ;; Defined at:
+  1059 ;;		line 139 in file "MRF24J40.c"
+  1060 ;; Parameters:    Size  Location     Type
+  1061 ;;  addr            2    9[COMMON] unsigned int 
+  1062 ;; Auto vars:     Size  Location     Type
+  1063 ;;  report          1   12[COMMON] unsigned char 
+  1064 ;; Return value:  Size  Location     Type
+  1065 ;;                  1    wreg      unsigned char 
+  1066 ;; Registers used:
+  1067 ;;		wreg, status,2, status,0, pclath, cstack
+  1068 ;; Tracked objects:
+  1069 ;;		On entry : 0/0
+  1070 ;;		On exit  : 0/0
+  1071 ;;		Unchanged: 0/0
+  1072 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1073 ;;      Params:         2       0       0       0       0
+  1074 ;;      Locals:         1       0       0       0       0
+  1075 ;;      Temps:          1       0       0       0       0
+  1076 ;;      Totals:         4       0       0       0       0
+  1077 ;;Total ram usage:        4 bytes
+  1078 ;; Hardware stack levels used:    1
+  1079 ;; Hardware stack levels required when called:    2
+  1080 ;; This function calls:
+  1081 ;;		_addrWriteLA
+  1082 ;;		_chipRelease
+  1083 ;;		_chipSelect
+  1084 ;; This function is called by:
+  1085 ;;		_bitWriteLA
+  1086 ;;		_readRSSI
+  1087 ;; This function uses a non-reentrant model
+  1088 ;;
+  1089                           
+  1090                           
+  1091                           ;psect for function _byteReadLA
+  1092  0658                     _byteReadLA:	
+  1093                           
+  1094                           ;MRF24J40.c: 140: uint8_t report;
+  1095                           ;MRF24J40.c: 141: chipSelect();
+  1096                           
+  1097                           ;incstack = 0
+  1098                           ; Regs used in _byteReadLA: [wreg+status,2+status,0+pclath+cstack]
+  1099  0658  118A  262C  118A   	fcall	_chipSelect
+  1100                           
+  1101                           ;MRF24J40.c: 142: addrWriteLA(addr, 1);
+  1102  065B  087A               	movf	byteReadLA@addr+1,w
+  1103  065C  01F1               	clrf	addrWriteLA@addr+1
+  1104  065D  07F1               	addwf	addrWriteLA@addr+1,f
+  1105  065E  0879               	movf	byteReadLA@addr,w
+  1106  065F  01F0               	clrf	addrWriteLA@addr
+  1107  0660  07F0               	addwf	addrWriteLA@addr,f
+  1108  0661  01F2               	clrf	addrWriteLA@op
+  1109  0662  0AF2               	incf	addrWriteLA@op,f
+  1110  0663  118A  26AE  118A   	fcall	_addrWriteLA
+  1111                           
+  1112                           ;MRF24J40.c: 143: report= SSPBUF;
+  1113  0666  1283               	bcf	3,5	;RP0=0, select bank0
+  1114  0667  1303               	bcf	3,6	;RP1=0, select bank0
+  1115  0668  0813               	movf	19,w	;volatile
+  1116  0669  00FB               	movwf	??_byteReadLA
+  1117  066A  087B               	movf	??_byteReadLA,w
+  1118  066B  00FC               	movwf	byteReadLA@report
+  1119                           
+  1120                           ;MRF24J40.c: 144: chipRelease();
+  1121  066C  118A  2604         	fcall	_chipRelease
+  1122                           
+  1123                           ;MRF24J40.c: 145: return report;
+  1124  066E  087C               	movf	byteReadLA@report,w
+  1125  066F  0008               	return
+  1126  0670                     __end_of_byteReadLA:	
+  1127                           
+  1128                           	psect	text9
+  1129  05DF                     __ptext9:	
+  1130 ;; *************** function _deviceChannelSelect *****************
+  1131 ;; Defined at:
+  1132 ;;		line 259 in file "MRF24J40.c"
+  1133 ;; Parameters:    Size  Location     Type
+  1134 ;;  chan            1    wreg     unsigned char 
+  1135 ;; Auto vars:     Size  Location     Type
+  1136 ;;  chan            1    5[BANK0 ] unsigned char 
+  1137 ;; Return value:  Size  Location     Type
+  1138 ;;		None               void
+  1139 ;; Registers used:
+  1140 ;;		wreg, status,2, status,0, pclath, cstack
+  1141 ;; Tracked objects:
+  1142 ;;		On entry : 0/0
+  1143 ;;		On exit  : 0/0
+  1144 ;;		Unchanged: 0/0
+  1145 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1146 ;;      Params:         0       0       0       0       0
+  1147 ;;      Locals:         0       1       0       0       0
+  1148 ;;      Temps:          0       1       0       0       0
+  1149 ;;      Totals:         0       2       0       0       0
+  1150 ;;Total ram usage:        2 bytes
+  1151 ;; Hardware stack levels used:    1
+  1152 ;; Hardware stack levels required when called:    5
+  1153 ;; This function calls:
+  1154 ;;		_byteWriteLA
+  1155 ;;		_resetRFStateMashine
+  1156 ;; This function is called by:
+  1157 ;;		_deviceInit
+  1158 ;; This function uses a non-reentrant model
+  1159 ;;
+  1160                           
+  1161                           
+  1162                           ;psect for function _deviceChannelSelect
+  1163  05DF                     _deviceChannelSelect:	
+  1164                           
+  1165                           ;incstack = 0
+  1166                           ; Regs used in _deviceChannelSelect: [wreg+status,2+status,0+pclath+cstack]
+  1167                           ;deviceChannelSelect@chan stored from wreg
+  1168  05DF  1283               	bcf	3,5	;RP0=0, select bank0
+  1169  05E0  1303               	bcf	3,6	;RP1=0, select bank0
+  1170  05E1  00A5               	movwf	deviceChannelSelect@chan
+  1171                           
+  1172                           ;MRF24J40.c: 260: byteWriteLA(0x200, (chan|RF_OPTIMISE));
+  1173  05E2  3000               	movlw	0
+  1174  05E3  00F9               	movwf	byteWriteLA@addr
+  1175  05E4  3002               	movlw	2
+  1176  05E5  00FA               	movwf	byteWriteLA@addr+1
+  1177  05E6  0825               	movf	deviceChannelSelect@chan,w
+  1178  05E7  0429               	iorwf	_RF_OPTIMISE,w
+  1179  05E8  00A4               	movwf	??_deviceChannelSelect
+  1180  05E9  0824               	movf	??_deviceChannelSelect,w
+  1181  05EA  00FB               	movwf	byteWriteLA@data
+  1182  05EB  118A  2641  118A   	fcall	_byteWriteLA
+  1183                           
+  1184                           ;MRF24J40.c: 261: resetRFStateMashine();
+  1185  05EE  118A  2670         	fcall	_resetRFStateMashine
+  1186  05F0  0008               	return
+  1187  05F1                     __end_of_deviceChannelSelect:	
+  1188                           
+  1189                           	psect	text10
+  1190  0670                     __ptext10:	
+  1191 ;; *************** function _resetRFStateMashine *****************
+  1192 ;; Defined at:
+  1193 ;;		line 202 in file "MRF24J40.c"
+  1194 ;; Parameters:    Size  Location     Type
+  1195 ;;		None
+  1196 ;; Auto vars:     Size  Location     Type
+  1197 ;;		None
+  1198 ;; Return value:  Size  Location     Type
+  1199 ;;		None               void
+  1200 ;; Registers used:
+  1201 ;;		wreg, status,2, status,0, pclath, cstack
+  1202 ;; Tracked objects:
+  1203 ;;		On entry : 0/0
+  1204 ;;		On exit  : 0/0
+  1205 ;;		Unchanged: 0/0
+  1206 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1207 ;;      Params:         0       0       0       0       0
+  1208 ;;      Locals:         0       0       0       0       0
+  1209 ;;      Temps:          1       0       0       0       0
+  1210 ;;      Totals:         1       0       0       0       0
+  1211 ;;Total ram usage:        1 bytes
+  1212 ;; Hardware stack levels used:    1
+  1213 ;; Hardware stack levels required when called:    4
+  1214 ;; This function calls:
+  1215 ;;		_bitWriteSA
+  1216 ;; This function is called by:
+  1217 ;;		_deviceChannelSelect
+  1218 ;; This function uses a non-reentrant model
+  1219 ;;
+  1220                           
+  1221                           
+  1222                           ;psect for function _resetRFStateMashine
+  1223  0670                     _resetRFStateMashine:	
+  1224                           
+  1225                           ;MRF24J40.c: 203: bitWriteSA(0x36, 2, 1);
+  1226                           
+  1227                           ;incstack = 0
+  1228                           ; Regs used in _resetRFStateMashine: [wreg+status,2+status,0+pclath+cstack]
+  1229  0670  3002               	movlw	2
+  1230  0671  00FD               	movwf	??_resetRFStateMashine
+  1231  0672  087D               	movf	??_resetRFStateMashine,w
+  1232  0673  00FB               	movwf	bitWriteSA@bitname
+  1233  0674  01FC               	clrf	bitWriteSA@state
+  1234  0675  0AFC               	incf	bitWriteSA@state,f
+  1235  0676  3036               	movlw	54
+  1236  0677  118A  26DF  118A   	fcall	_bitWriteSA
+  1237                           
+  1238                           ;MRF24J40.c: 204: bitWriteSA(0x36, 2, 0);
+  1239  067A  3002               	movlw	2
+  1240  067B  00FD               	movwf	??_resetRFStateMashine
+  1241  067C  087D               	movf	??_resetRFStateMashine,w
+  1242  067D  00FB               	movwf	bitWriteSA@bitname
+  1243  067E  01FC               	clrf	bitWriteSA@state
+  1244  067F  3036               	movlw	54
+  1245  0680  118A  26DF  118A   	fcall	_bitWriteSA
+  1246                           
+  1247                           ;MRF24J40.c: 205: _delay((unsigned long)((192)*(8000000/4000000.0)));
+  1248  0683  307F               	movlw	127
+  1249  0684  00FD               	movwf	??_resetRFStateMashine
+  1250  0685                     u777:	
+  1251  0685  0BFD               	decfsz	??_resetRFStateMashine,f
+  1252  0686  2E85               	goto	u777
+  1253  0687  2E88               	nop2	;nop
+  1254  0688  0008               	return
+  1255  0689                     __end_of_resetRFStateMashine:	
+  1256                           
+  1257                           	psect	text11
+  1258  06DF                     __ptext11:	
+  1259 ;; *************** function _bitWriteSA *****************
+  1260 ;; Defined at:
+  1261 ;;		line 112 in file "MRF24J40.c"
+  1262 ;; Parameters:    Size  Location     Type
+  1263 ;;  addr            1    wreg     unsigned char 
+  1264 ;;  bitname         1   11[COMMON] unsigned char 
+  1265 ;;  state           1   12[COMMON] unsigned char 
+  1266 ;; Auto vars:     Size  Location     Type
+  1267 ;;  addr            1    3[BANK0 ] unsigned char 
+  1268 ;;  temp            1    2[BANK0 ] unsigned char 
+  1269 ;; Return value:  Size  Location     Type
+  1270 ;;		None               void
+  1271 ;; Registers used:
+  1272 ;;		wreg, status,2, status,0, pclath, cstack
+  1273 ;; Tracked objects:
+  1274 ;;		On entry : 0/0
+  1275 ;;		On exit  : 0/0
+  1276 ;;		Unchanged: 0/0
+  1277 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1278 ;;      Params:         2       0       0       0       0
+  1279 ;;      Locals:         0       2       0       0       0
+  1280 ;;      Temps:          0       2       0       0       0
+  1281 ;;      Totals:         2       4       0       0       0
+  1282 ;;Total ram usage:        6 bytes
+  1283 ;; Hardware stack levels used:    1
+  1284 ;; Hardware stack levels required when called:    3
+  1285 ;; This function calls:
+  1286 ;;		_byteReadSA
+  1287 ;;		_byteWriteSA
+  1288 ;; This function is called by:
+  1289 ;;		_resetRFStateMashine
+  1290 ;;		_resetPower
+  1291 ;;		_resetBBand
+  1292 ;;		_resetMAC
+  1293 ;; This function uses a non-reentrant model
+  1294 ;;
+  1295                           
+  1296                           
+  1297                           ;psect for function _bitWriteSA
+  1298  06DF                     _bitWriteSA:	
+  1299                           
+  1300                           ;incstack = 0
+  1301                           ; Regs used in _bitWriteSA: [wreg+status,2+status,0+pclath+cstack]
+  1302                           ;bitWriteSA@addr stored from wreg
+  1303  06DF  1283               	bcf	3,5	;RP0=0, select bank0
+  1304  06E0  1303               	bcf	3,6	;RP1=0, select bank0
+  1305  06E1  00A3               	movwf	bitWriteSA@addr
+  1306                           
+  1307                           ;MRF24J40.c: 113: uint8_t temp= byteReadSA(addr);
+  1308  06E2  0823               	movf	bitWriteSA@addr,w
+  1309  06E3  118A  2618  118A   	fcall	_byteReadSA
+  1310  06E6  1283               	bcf	3,5	;RP0=0, select bank0
+  1311  06E7  1303               	bcf	3,6	;RP1=0, select bank0
+  1312  06E8  00A0               	movwf	??_bitWriteSA
+  1313  06E9  0820               	movf	??_bitWriteSA,w
+  1314  06EA  00A2               	movwf	bitWriteSA@temp
+  1315                           
+  1316                           ;MRF24J40.c: 114: state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
+  1317  06EB  087C               	movf	bitWriteSA@state,w
+  1318  06EC  1903               	btfsc	3,2
+  1319  06ED  2EFC               	goto	l1039
+  1320  06EE  3001               	movlw	1
+  1321  06EF  00A0               	movwf	??_bitWriteSA
+  1322  06F0  0A7B               	incf	bitWriteSA@bitname,w
+  1323  06F1  2EF4               	goto	u494
+  1324  06F2                     u495:	
+  1325  06F2  1003               	clrc
+  1326  06F3  0DA0               	rlf	??_bitWriteSA,f
+  1327  06F4                     u494:	
+  1328  06F4  3EFF               	addlw	-1
+  1329  06F5  1D03               	skipz
+  1330  06F6  2EF2               	goto	u495
+  1331  06F7  0820               	movf	??_bitWriteSA,w
+  1332  06F8  00A1               	movwf	??_bitWriteSA+1
+  1333  06F9  0821               	movf	??_bitWriteSA+1,w
+  1334  06FA  04A2               	iorwf	bitWriteSA@temp,f
+  1335  06FB  2F0A               	goto	l1041
+  1336  06FC                     l1039:	
+  1337  06FC  3001               	movlw	1
+  1338  06FD  00A0               	movwf	??_bitWriteSA
+  1339  06FE  0A7B               	incf	bitWriteSA@bitname,w
+  1340  06FF  2F02               	goto	u504
+  1341  0700                     u505:	
+  1342  0700  1003               	clrc
+  1343  0701  0DA0               	rlf	??_bitWriteSA,f
+  1344  0702                     u504:	
+  1345  0702  3EFF               	addlw	-1
+  1346  0703  1D03               	skipz
+  1347  0704  2F00               	goto	u505
+  1348  0705  0820               	movf	??_bitWriteSA,w
+  1349  0706  3AFF               	xorlw	255
+  1350  0707  00A1               	movwf	??_bitWriteSA+1
+  1351  0708  0821               	movf	??_bitWriteSA+1,w
+  1352  0709  05A2               	andwf	bitWriteSA@temp,f
+  1353  070A                     l1041:	
+  1354                           
+  1355                           ;MRF24J40.c: 115: byteWriteSA(addr, temp);
+  1356  070A  0822               	movf	bitWriteSA@temp,w
+  1357  070B  00A0               	movwf	??_bitWriteSA
+  1358  070C  0820               	movf	??_bitWriteSA,w
+  1359  070D  00F8               	movwf	byteWriteSA@data
+  1360  070E  0823               	movf	bitWriteSA@addr,w
+  1361  070F  118A  25F1         	fcall	_byteWriteSA
+  1362  0711  0008               	return
+  1363  0712                     __end_of_bitWriteSA:	
+  1364                           
+  1365                           	psect	text12
+  1366  05F1                     __ptext12:	
+  1367 ;; *************** function _byteWriteSA *****************
+  1368 ;; Defined at:
+  1369 ;;		line 105 in file "MRF24J40.c"
+  1370 ;; Parameters:    Size  Location     Type
+  1371 ;;  addr            1    wreg     unsigned char 
+  1372 ;;  data            1    8[COMMON] unsigned char 
+  1373 ;; Auto vars:     Size  Location     Type
+  1374 ;;  addr            1    9[COMMON] unsigned char 
+  1375 ;; Return value:  Size  Location     Type
+  1376 ;;		None               void
+  1377 ;; Registers used:
+  1378 ;;		wreg, status,2, status,0, pclath, cstack
+  1379 ;; Tracked objects:
+  1380 ;;		On entry : 0/0
+  1381 ;;		On exit  : 0/0
+  1382 ;;		Unchanged: 0/0
+  1383 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1384 ;;      Params:         1       0       0       0       0
+  1385 ;;      Locals:         1       0       0       0       0
+  1386 ;;      Temps:          0       0       0       0       0
+  1387 ;;      Totals:         2       0       0       0       0
+  1388 ;;Total ram usage:        2 bytes
+  1389 ;; Hardware stack levels used:    1
+  1390 ;; Hardware stack levels required when called:    2
+  1391 ;; This function calls:
+  1392 ;;		_addrWriteSA
+  1393 ;;		_chipRelease
+  1394 ;;		_chipSelect
+  1395 ;;		_waitForSPI
+  1396 ;; This function is called by:
+  1397 ;;		_bitWriteSA
+  1398 ;;		_setCCAThreshold
+  1399 ;;		_deviceInit
+  1400 ;;		_deviceSetInterrupt
+  1401 ;;		_deviceSoftReset
+  1402 ;; This function uses a non-reentrant model
+  1403 ;;
+  1404                           
+  1405                           
+  1406                           ;psect for function _byteWriteSA
+  1407  05F1                     _byteWriteSA:	
+  1408                           
+  1409                           ;incstack = 0
+  1410                           ; Regs used in _byteWriteSA: [wreg+status,2+status,0+pclath+cstack]
+  1411                           ;byteWriteSA@addr stored from wreg
+  1412  05F1  00F9               	movwf	byteWriteSA@addr
+  1413                           
+  1414                           ;MRF24J40.c: 106: chipSelect();
+  1415  05F2  118A  262C  118A   	fcall	_chipSelect
+  1416                           
+  1417                           ;MRF24J40.c: 107: addrWriteSA(addr, 0);
+  1418  05F5  01F0               	clrf	addrWriteSA@op
+  1419  05F6  0879               	movf	byteWriteSA@addr,w
+  1420  05F7  118A  2689  118A   	fcall	_addrWriteSA
+  1421                           
+  1422                           ;MRF24J40.c: 108: SSPBUF= data;
+  1423  05FA  0878               	movf	byteWriteSA@data,w
+  1424  05FB  1283               	bcf	3,5	;RP0=0, select bank0
+  1425  05FC  1303               	bcf	3,6	;RP1=0, select bank0
+  1426  05FD  0093               	movwf	19	;volatile
+  1427                           
+  1428                           ;MRF24J40.c: 109: waitForSPI();
+  1429  05FE  118A  25A1  118A   	fcall	_waitForSPI
+  1430                           
+  1431                           ;MRF24J40.c: 110: chipRelease();
+  1432  0601  118A  2604         	fcall	_chipRelease
+  1433  0603  0008               	return
+  1434  0604                     __end_of_byteWriteSA:	
+  1435                           
+  1436                           	psect	text13
+  1437  0618                     __ptext13:	
+  1438 ;; *************** function _byteReadSA *****************
+  1439 ;; Defined at:
+  1440 ;;		line 97 in file "MRF24J40.c"
+  1441 ;; Parameters:    Size  Location     Type
+  1442 ;;  addr            1    wreg     unsigned char 
+  1443 ;; Auto vars:     Size  Location     Type
+  1444 ;;  addr            1    9[COMMON] unsigned char 
+  1445 ;;  report          1   10[COMMON] unsigned char 
+  1446 ;; Return value:  Size  Location     Type
+  1447 ;;                  1    wreg      unsigned char 
+  1448 ;; Registers used:
+  1449 ;;		wreg, status,2, status,0, pclath, cstack
+  1450 ;; Tracked objects:
+  1451 ;;		On entry : 0/0
+  1452 ;;		On exit  : 0/0
+  1453 ;;		Unchanged: 0/0
+  1454 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1455 ;;      Params:         0       0       0       0       0
+  1456 ;;      Locals:         2       0       0       0       0
+  1457 ;;      Temps:          1       0       0       0       0
+  1458 ;;      Totals:         3       0       0       0       0
+  1459 ;;Total ram usage:        3 bytes
+  1460 ;; Hardware stack levels used:    1
+  1461 ;; Hardware stack levels required when called:    2
+  1462 ;; This function calls:
+  1463 ;;		_addrWriteSA
+  1464 ;;		_chipRelease
+  1465 ;;		_chipSelect
+  1466 ;; This function is called by:
+  1467 ;;		_bitWriteSA
+  1468 ;;		_deviceCheckInterrupts
+  1469 ;; This function uses a non-reentrant model
+  1470 ;;
+  1471                           
+  1472                           
+  1473                           ;psect for function _byteReadSA
+  1474  0618                     _byteReadSA:	
+  1475                           
+  1476                           ;incstack = 0
+  1477                           ; Regs used in _byteReadSA: [wreg+status,2+status,0+pclath+cstack]
+  1478                           ;byteReadSA@addr stored from wreg
+  1479  0618  00F9               	movwf	byteReadSA@addr
+  1480                           
+  1481                           ;MRF24J40.c: 98: uint8_t report;
+  1482                           ;MRF24J40.c: 99: chipSelect();
+  1483  0619  118A  262C  118A   	fcall	_chipSelect
+  1484                           
+  1485                           ;MRF24J40.c: 100: addrWriteSA(addr, 1);
+  1486  061C  01F0               	clrf	addrWriteSA@op
+  1487  061D  0AF0               	incf	addrWriteSA@op,f
+  1488  061E  0879               	movf	byteReadSA@addr,w
+  1489  061F  118A  2689  118A   	fcall	_addrWriteSA
+  1490                           
+  1491                           ;MRF24J40.c: 101: report = SSPBUF;
+  1492  0622  1283               	bcf	3,5	;RP0=0, select bank0
+  1493  0623  1303               	bcf	3,6	;RP1=0, select bank0
+  1494  0624  0813               	movf	19,w	;volatile
+  1495  0625  00F8               	movwf	??_byteReadSA
+  1496  0626  0878               	movf	??_byteReadSA,w
+  1497  0627  00FA               	movwf	byteReadSA@report
+  1498                           
+  1499                           ;MRF24J40.c: 102: chipRelease();
+  1500  0628  118A  2604         	fcall	_chipRelease
+  1501                           
+  1502                           ;MRF24J40.c: 103: return report;
+  1503  062A  087A               	movf	byteReadSA@report,w
+  1504  062B  0008               	return
+  1505  062C                     __end_of_byteReadSA:	
+  1506                           
+  1507                           	psect	text14
+  1508  0689                     __ptext14:	
+  1509 ;; *************** function _addrWriteSA *****************
+  1510 ;; Defined at:
+  1511 ;;		line 81 in file "MRF24J40.c"
+  1512 ;; Parameters:    Size  Location     Type
+  1513 ;;  addr            1    wreg     unsigned char 
+  1514 ;;  op              1    0[COMMON] unsigned char 
+  1515 ;; Auto vars:     Size  Location     Type
+  1516 ;;  addr            1    7[COMMON] unsigned char 
+  1517 ;;  command         1    6[COMMON] unsigned char 
+  1518 ;; Return value:  Size  Location     Type
+  1519 ;;		None               void
+  1520 ;; Registers used:
+  1521 ;;		wreg, status,2, status,0, pclath, cstack
+  1522 ;; Tracked objects:
+  1523 ;;		On entry : 0/0
+  1524 ;;		On exit  : 0/0
+  1525 ;;		Unchanged: 0/0
+  1526 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1527 ;;      Params:         1       0       0       0       0
+  1528 ;;      Locals:         4       0       0       0       0
+  1529 ;;      Temps:          3       0       0       0       0
+  1530 ;;      Totals:         8       0       0       0       0
+  1531 ;;Total ram usage:        8 bytes
+  1532 ;; Hardware stack levels used:    1
+  1533 ;; Hardware stack levels required when called:    1
+  1534 ;; This function calls:
+  1535 ;;		_waitForSPI
+  1536 ;; This function is called by:
+  1537 ;;		_byteReadSA
+  1538 ;;		_byteWriteSA
+  1539 ;;		_dataReadSA
+  1540 ;;		_dataWriteSA
+  1541 ;; This function uses a non-reentrant model
+  1542 ;;
+  1543                           
+  1544                           
+  1545                           ;psect for function _addrWriteSA
+  1546  0689                     _addrWriteSA:	
+  1547                           
+  1548                           ;incstack = 0
+  1549                           ; Regs used in _addrWriteSA: [wreg+status,2+status,0+pclath+cstack]
+  1550                           ;addrWriteSA@addr stored from wreg
+  1551  0689  00F7               	movwf	addrWriteSA@addr
+  1552                           
+  1553                           ;MRF24J40.c: 84: uint8_t command= (op?(((addr<<1) )|0b00000001):(((addr<<1)&0b01111111)&
+      +                          0b11111110));
+  1554  068A  08F0               	movf	addrWriteSA@op,f
+  1555  068B  1D03               	skipz
+  1556  068C  2E97               	goto	l983
+  1557  068D  0877               	movf	addrWriteSA@addr,w
+  1558  068E  00F1               	movwf	??_addrWriteSA
+  1559  068F  0771               	addwf	??_addrWriteSA,w
+  1560  0690  397E               	andlw	126
+  1561  0691  00F2               	movwf	??_addrWriteSA+1
+  1562  0692  01F3               	clrf	??_addrWriteSA+2
+  1563  0693  0872               	movf	??_addrWriteSA+1,w
+  1564  0694  00F4               	movwf	_addrWriteSA$258
+  1565  0695  0873               	movf	??_addrWriteSA+2,w
+  1566  0696  2EA2               	goto	L1
+  1567  0697                     l983:	
+  1568  0697  0877               	movf	addrWriteSA@addr,w
+  1569  0698  00F1               	movwf	??_addrWriteSA
+  1570  0699  01F2               	clrf	??_addrWriteSA+1
+  1571  069A  1003               	clrc
+  1572  069B  0DF1               	rlf	??_addrWriteSA,f
+  1573  069C  0DF2               	rlf	??_addrWriteSA+1,f
+  1574  069D  3001               	movlw	1
+  1575  069E  0471               	iorwf	??_addrWriteSA,w
+  1576  069F  00F4               	movwf	_addrWriteSA$258
+  1577  06A0  3000               	movlw	0
+  1578  06A1  0472               	iorwf	??_addrWriteSA+1,w
+  1579  06A2                     L1:	
+  1580  06A2  00F5               	movwf	_addrWriteSA$258+1
+  1581  06A3  0874               	movf	_addrWriteSA$258,w
+  1582  06A4  00F1               	movwf	??_addrWriteSA
+  1583  06A5  0871               	movf	??_addrWriteSA,w
+  1584  06A6  00F6               	movwf	addrWriteSA@command
+  1585                           
+  1586                           ;MRF24J40.c: 85: SSPBUF= command;
+  1587  06A7  0876               	movf	addrWriteSA@command,w
+  1588  06A8  1283               	bcf	3,5	;RP0=0, select bank0
+  1589  06A9  1303               	bcf	3,6	;RP1=0, select bank0
+  1590  06AA  0093               	movwf	19	;volatile
+  1591                           
+  1592                           ;MRF24J40.c: 86: waitForSPI();
+  1593  06AB  118A  25A1         	fcall	_waitForSPI
+  1594  06AD  0008               	return
+  1595  06AE                     __end_of_addrWriteSA:	
+  1596                           
+  1597                           	psect	text15
+  1598  0641                     __ptext15:	
+  1599 ;; *************** function _byteWriteLA *****************
+  1600 ;; Defined at:
+  1601 ;;		line 147 in file "MRF24J40.c"
+  1602 ;; Parameters:    Size  Location     Type
+  1603 ;;  addr            2    9[COMMON] unsigned int 
+  1604 ;;  data            1   11[COMMON] unsigned char 
+  1605 ;; Auto vars:     Size  Location     Type
+  1606 ;;		None
+  1607 ;; Return value:  Size  Location     Type
+  1608 ;;		None               void
+  1609 ;; Registers used:
+  1610 ;;		wreg, status,2, status,0, pclath, cstack
+  1611 ;; Tracked objects:
+  1612 ;;		On entry : 0/0
+  1613 ;;		On exit  : 0/0
+  1614 ;;		Unchanged: 0/0
+  1615 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1616 ;;      Params:         3       0       0       0       0
+  1617 ;;      Locals:         0       0       0       0       0
+  1618 ;;      Temps:          0       0       0       0       0
+  1619 ;;      Totals:         3       0       0       0       0
+  1620 ;;Total ram usage:        3 bytes
+  1621 ;; Hardware stack levels used:    1
+  1622 ;; Hardware stack levels required when called:    2
+  1623 ;; This function calls:
+  1624 ;;		_addrWriteLA
+  1625 ;;		_chipRelease
+  1626 ;;		_chipSelect
+  1627 ;;		_waitForSPI
+  1628 ;; This function is called by:
+  1629 ;;		_bitWriteLA
+  1630 ;;		_deviceInit
+  1631 ;;		_deviceChannelSelect
+  1632 ;; This function uses a non-reentrant model
+  1633 ;;
+  1634                           
+  1635                           
+  1636                           ;psect for function _byteWriteLA
+  1637  0641                     _byteWriteLA:	
+  1638                           
+  1639                           ;MRF24J40.c: 148: chipSelect();
+  1640                           
+  1641                           ;incstack = 0
+  1642                           ; Regs used in _byteWriteLA: [wreg+status,2+status,0+pclath+cstack]
+  1643  0641  118A  262C  118A   	fcall	_chipSelect
+  1644                           
+  1645                           ;MRF24J40.c: 149: addrWriteLA(addr, 0);
+  1646  0644  087A               	movf	byteWriteLA@addr+1,w
+  1647  0645  01F1               	clrf	addrWriteLA@addr+1
+  1648  0646  07F1               	addwf	addrWriteLA@addr+1,f
+  1649  0647  0879               	movf	byteWriteLA@addr,w
+  1650  0648  01F0               	clrf	addrWriteLA@addr
+  1651  0649  07F0               	addwf	addrWriteLA@addr,f
+  1652  064A  01F2               	clrf	addrWriteLA@op
+  1653  064B  118A  26AE  118A   	fcall	_addrWriteLA
+  1654                           
+  1655                           ;MRF24J40.c: 150: SSPBUF= data;
+  1656  064E  087B               	movf	byteWriteLA@data,w
+  1657  064F  1283               	bcf	3,5	;RP0=0, select bank0
+  1658  0650  1303               	bcf	3,6	;RP1=0, select bank0
+  1659  0651  0093               	movwf	19	;volatile
+  1660                           
+  1661                           ;MRF24J40.c: 151: waitForSPI();
+  1662  0652  118A  25A1  118A   	fcall	_waitForSPI
+  1663                           
+  1664                           ;MRF24J40.c: 152: chipRelease();
+  1665  0655  118A  2604         	fcall	_chipRelease
+  1666  0657  0008               	return
+  1667  0658                     __end_of_byteWriteLA:	
+  1668                           
+  1669                           	psect	text16
+  1670  062C                     __ptext16:	
+  1671 ;; *************** function _chipSelect *****************
+  1672 ;; Defined at:
+  1673 ;;		line 22 in file "MRF24J40.c"
+  1674 ;; Parameters:    Size  Location     Type
+  1675 ;;		None
+  1676 ;; Auto vars:     Size  Location     Type
+  1677 ;;		None
+  1678 ;; Return value:  Size  Location     Type
+  1679 ;;		None               void
+  1680 ;; Registers used:
+  1681 ;;		wreg, status,2, status,0
+  1682 ;; Tracked objects:
+  1683 ;;		On entry : 0/0
+  1684 ;;		On exit  : 0/0
+  1685 ;;		Unchanged: 0/0
+  1686 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1687 ;;      Params:         0       0       0       0       0
+  1688 ;;      Locals:         0       0       0       0       0
+  1689 ;;      Temps:          3       0       0       0       0
+  1690 ;;      Totals:         3       0       0       0       0
+  1691 ;;Total ram usage:        3 bytes
+  1692 ;; Hardware stack levels used:    1
+  1693 ;; This function calls:
+  1694 ;;		Nothing
+  1695 ;; This function is called by:
+  1696 ;;		_byteReadSA
+  1697 ;;		_byteWriteSA
+  1698 ;;		_byteReadLA
+  1699 ;;		_byteWriteLA
+  1700 ;;		_SPI_WriteByte
+  1701 ;;		_SPI_ReadByte
+  1702 ;;		_SPI_WriteArray
+  1703 ;;		_SPI_ReadArray
+  1704 ;;		_dataReadSA
+  1705 ;;		_dataWriteSA
+  1706 ;;		_dataReadLA
+  1707 ;;		_dataWriteLA
+  1708 ;; This function uses a non-reentrant model
+  1709 ;;
+  1710                           
+  1711                           
+  1712                           ;psect for function _chipSelect
+  1713  062C                     _chipSelect:	
+  1714                           
+  1715                           ;MRF24J40.c: 23: PORTB &= ~(1<<PORTBbits.RB5);
+  1716                           
+  1717                           ;incstack = 0
+  1718                           ; Regs used in _chipSelect: [wreg+status,2+status,0]
+  1719  062C  3001               	movlw	1
+  1720  062D  00F0               	movwf	??_chipSelect
+  1721  062E  1283               	bcf	3,5	;RP0=0, select bank0
+  1722  062F  1303               	bcf	3,6	;RP1=0, select bank0
+  1723  0630  0E06               	swapf	6,w	;volatile
+  1724  0631  00F1               	movwf	??_chipSelect+1
+  1725  0632  0C71               	rrf	??_chipSelect+1,w
+  1726  0633  3901               	andlw	1
+  1727  0634  3E01               	addlw	1
+  1728  0635  2E38               	goto	u444
+  1729  0636                     u445:	
+  1730  0636  1003               	clrc
+  1731  0637  0DF0               	rlf	??_chipSelect,f
+  1732  0638                     u444:	
+  1733  0638  3EFF               	addlw	-1
+  1734  0639  1D03               	skipz
+  1735  063A  2E36               	goto	u445
+  1736  063B  0870               	movf	??_chipSelect,w
+  1737  063C  3AFF               	xorlw	255
+  1738  063D  00F2               	movwf	??_chipSelect+2
+  1739  063E  0872               	movf	??_chipSelect+2,w
+  1740  063F  0586               	andwf	6,f	;volatile
+  1741  0640  0008               	return
+  1742  0641                     __end_of_chipSelect:	
+  1743                           
+  1744                           	psect	text17
+  1745  0604                     __ptext17:	
+  1746 ;; *************** function _chipRelease *****************
+  1747 ;; Defined at:
+  1748 ;;		line 26 in file "MRF24J40.c"
+  1749 ;; Parameters:    Size  Location     Type
+  1750 ;;		None
+  1751 ;; Auto vars:     Size  Location     Type
+  1752 ;;		None
+  1753 ;; Return value:  Size  Location     Type
+  1754 ;;		None               void
+  1755 ;; Registers used:
+  1756 ;;		wreg, status,2, status,0
+  1757 ;; Tracked objects:
+  1758 ;;		On entry : 0/0
+  1759 ;;		On exit  : 0/0
+  1760 ;;		Unchanged: 0/0
+  1761 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1762 ;;      Params:         0       0       0       0       0
+  1763 ;;      Locals:         0       0       0       0       0
+  1764 ;;      Temps:          3       0       0       0       0
+  1765 ;;      Totals:         3       0       0       0       0
+  1766 ;;Total ram usage:        3 bytes
+  1767 ;; Hardware stack levels used:    1
+  1768 ;; This function calls:
+  1769 ;;		Nothing
+  1770 ;; This function is called by:
+  1771 ;;		_byteReadSA
+  1772 ;;		_byteWriteSA
+  1773 ;;		_byteReadLA
+  1774 ;;		_byteWriteLA
+  1775 ;;		_SPI_WriteByte
+  1776 ;;		_SPI_ReadByte
+  1777 ;;		_SPI_WriteArray
+  1778 ;;		_SPI_ReadArray
+  1779 ;;		_dataReadSA
+  1780 ;;		_dataWriteSA
+  1781 ;;		_dataReadLA
+  1782 ;;		_dataWriteLA
+  1783 ;; This function uses a non-reentrant model
+  1784 ;;
+  1785                           
+  1786                           
+  1787                           ;psect for function _chipRelease
+  1788  0604                     _chipRelease:	
+  1789                           
+  1790                           ;MRF24J40.c: 27: PORTB |= (1<<PORTBbits.RB5);
+  1791                           
+  1792                           ;incstack = 0
+  1793                           ; Regs used in _chipRelease: [wreg+status,2+status,0]
+  1794  0604  3001               	movlw	1
+  1795  0605  00F0               	movwf	??_chipRelease
+  1796  0606  1283               	bcf	3,5	;RP0=0, select bank0
+  1797  0607  1303               	bcf	3,6	;RP1=0, select bank0
+  1798  0608  0E06               	swapf	6,w	;volatile
+  1799  0609  00F1               	movwf	??_chipRelease+1
+  1800  060A  0C71               	rrf	??_chipRelease+1,w
+  1801  060B  3901               	andlw	1
+  1802  060C  3E01               	addlw	1
+  1803  060D  2E10               	goto	u454
+  1804  060E                     u455:	
+  1805  060E  1003               	clrc
+  1806  060F  0DF0               	rlf	??_chipRelease,f
+  1807  0610                     u454:	
+  1808  0610  3EFF               	addlw	-1
+  1809  0611  1D03               	skipz
+  1810  0612  2E0E               	goto	u455
+  1811  0613  0870               	movf	??_chipRelease,w
+  1812  0614  00F2               	movwf	??_chipRelease+2
+  1813  0615  0872               	movf	??_chipRelease+2,w
+  1814  0616  0486               	iorwf	6,f	;volatile
+  1815  0617  0008               	return
+  1816  0618                     __end_of_chipRelease:	
+  1817                           
+  1818                           	psect	text18
+  1819  06AE                     __ptext18:	
+  1820 ;; *************** function _addrWriteLA *****************
+  1821 ;; Defined at:
+  1822 ;;		line 88 in file "MRF24J40.c"
+  1823 ;; Parameters:    Size  Location     Type
+  1824 ;;  addr            2    0[COMMON] unsigned int 
+  1825 ;;  op              1    2[COMMON] unsigned char 
+  1826 ;; Auto vars:     Size  Location     Type
+  1827 ;;  command         2    7[COMMON] unsigned int 
+  1828 ;; Return value:  Size  Location     Type
+  1829 ;;		None               void
+  1830 ;; Registers used:
+  1831 ;;		wreg, status,2, status,0, pclath, cstack
+  1832 ;; Tracked objects:
+  1833 ;;		On entry : 0/0
+  1834 ;;		On exit  : 0/0
+  1835 ;;		Unchanged: 0/0
+  1836 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1837 ;;      Params:         3       0       0       0       0
+  1838 ;;      Locals:         2       0       0       0       0
+  1839 ;;      Temps:          4       0       0       0       0
+  1840 ;;      Totals:         9       0       0       0       0
+  1841 ;;Total ram usage:        9 bytes
+  1842 ;; Hardware stack levels used:    1
+  1843 ;; Hardware stack levels required when called:    1
+  1844 ;; This function calls:
+  1845 ;;		_waitForSPI
+  1846 ;; This function is called by:
+  1847 ;;		_byteReadLA
+  1848 ;;		_byteWriteLA
+  1849 ;;		_dataReadLA
+  1850 ;;		_dataWriteLA
+  1851 ;; This function uses a non-reentrant model
+  1852 ;;
+  1853                           
+  1854                           
+  1855                           ;psect for function _addrWriteLA
+  1856  06AE                     _addrWriteLA:	
+  1857                           
+  1858                           ;MRF24J40.c: 91: uint16_t command= (op?(((addr<<1)&0b100000000000)|0b000000000001):(((ad
+      +                          dr<<1)|0b100000000000 )));
+  1859                           
+  1860                           ;incstack = 0
+  1861                           ; Regs used in _addrWriteLA: [wreg+status,2+status,0+pclath+cstack]
+  1862  06AE  08F2               	movf	addrWriteLA@op,f
+  1863  06AF  1D03               	skipz
+  1864  06B0  2EBE               	goto	l995
+  1865  06B1  0871               	movf	addrWriteLA@addr+1,w
+  1866  06B2  00F4               	movwf	??_addrWriteLA+1
+  1867  06B3  0870               	movf	addrWriteLA@addr,w
+  1868  06B4  00F3               	movwf	??_addrWriteLA
+  1869  06B5  1003               	clrc
+  1870  06B6  0DF3               	rlf	??_addrWriteLA,f
+  1871  06B7  0DF4               	rlf	??_addrWriteLA+1,f
+  1872  06B8  3000               	movlw	0
+  1873  06B9  0473               	iorwf	??_addrWriteLA,w
+  1874  06BA  00F7               	movwf	addrWriteLA@command
+  1875  06BB  3008               	movlw	8
+  1876  06BC  0474               	iorwf	??_addrWriteLA+1,w
+  1877  06BD  2ED0               	goto	L2
+  1878  06BE                     l995:	
+  1879  06BE  0871               	movf	addrWriteLA@addr+1,w
+  1880  06BF  00F4               	movwf	??_addrWriteLA+1
+  1881  06C0  0870               	movf	addrWriteLA@addr,w
+  1882  06C1  00F3               	movwf	??_addrWriteLA
+  1883  06C2  1003               	clrc
+  1884  06C3  0DF3               	rlf	??_addrWriteLA,f
+  1885  06C4  0DF4               	rlf	??_addrWriteLA+1,f
+  1886  06C5  3000               	movlw	0
+  1887  06C6  0573               	andwf	??_addrWriteLA,w
+  1888  06C7  00F5               	movwf	??_addrWriteLA+2
+  1889  06C8  3008               	movlw	8
+  1890  06C9  0574               	andwf	??_addrWriteLA+1,w
+  1891  06CA  00F6               	movwf	??_addrWriteLA+3
+  1892  06CB  3001               	movlw	1
+  1893  06CC  0475               	iorwf	??_addrWriteLA+2,w
+  1894  06CD  00F7               	movwf	addrWriteLA@command
+  1895  06CE  3000               	movlw	0
+  1896  06CF  0476               	iorwf	??_addrWriteLA+3,w
+  1897  06D0                     L2:	
+  1898  06D0  00F8               	movwf	addrWriteLA@command+1
+  1899                           
+  1900                           ;MRF24J40.c: 92: SSPBUF= (command>>8);
+  1901  06D1  0878               	movf	addrWriteLA@command+1,w
+  1902  06D2  1283               	bcf	3,5	;RP0=0, select bank0
+  1903  06D3  1303               	bcf	3,6	;RP1=0, select bank0
+  1904  06D4  0093               	movwf	19	;volatile
+  1905                           
+  1906                           ;MRF24J40.c: 93: waitForSPI();
+  1907  06D5  118A  25A1  118A   	fcall	_waitForSPI
+  1908                           
+  1909                           ;MRF24J40.c: 94: SSPBUF= (command&0xFF);
+  1910  06D8  0877               	movf	addrWriteLA@command,w
+  1911  06D9  1283               	bcf	3,5	;RP0=0, select bank0
+  1912  06DA  1303               	bcf	3,6	;RP1=0, select bank0
+  1913  06DB  0093               	movwf	19	;volatile
+  1914                           
+  1915                           ;MRF24J40.c: 95: waitForSPI();
+  1916  06DC  118A  25A1         	fcall	_waitForSPI
+  1917  06DE  0008               	return
+  1918  06DF                     __end_of_addrWriteLA:	
+  1919                           
+  1920                           	psect	text19
+  1921  05A1                     __ptext19:	
+  1922 ;; *************** function _waitForSPI *****************
+  1923 ;; Defined at:
+  1924 ;;		line 75 in file "MRF24J40.c"
+  1925 ;; Parameters:    Size  Location     Type
+  1926 ;;		None
+  1927 ;; Auto vars:     Size  Location     Type
+  1928 ;;		None
+  1929 ;; Return value:  Size  Location     Type
+  1930 ;;		None               void
+  1931 ;; Registers used:
+  1932 ;;		None
+  1933 ;; Tracked objects:
+  1934 ;;		On entry : 0/0
+  1935 ;;		On exit  : 0/0
+  1936 ;;		Unchanged: 0/0
+  1937 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1938 ;;      Params:         0       0       0       0       0
+  1939 ;;      Locals:         0       0       0       0       0
+  1940 ;;      Temps:          0       0       0       0       0
+  1941 ;;      Totals:         0       0       0       0       0
+  1942 ;;Total ram usage:        0 bytes
+  1943 ;; Hardware stack levels used:    1
+  1944 ;; This function calls:
+  1945 ;;		Nothing
+  1946 ;; This function is called by:
+  1947 ;;		_addrWriteSA
+  1948 ;;		_addrWriteLA
+  1949 ;;		_byteWriteSA
+  1950 ;;		_byteWriteLA
+  1951 ;;		_dataReadSA
+  1952 ;;		_dataWriteSA
+  1953 ;;		_dataReadLA
+  1954 ;;		_dataWriteLA
+  1955 ;; This function uses a non-reentrant model
+  1956 ;;
+  1957                           
+  1958                           
+  1959                           ;psect for function _waitForSPI
+  1960  05A1                     _waitForSPI:	
+  1961  05A1                     l115:	
+  1962                           ;MRF24J40.c: 76: while(SSPSTATbits.BF);
+  1963                           
+  1964                           ;incstack = 0
+  1965                           ; Regs used in _waitForSPI: []
+  1966                           
+  1967  05A1  1683               	bsf	3,5	;RP0=1, select bank1
+  1968  05A2  1303               	bcf	3,6	;RP1=0, select bank1
+  1969  05A3  1C14               	btfss	20,0	;volatile
+  1970  05A4  0008               	return
+  1971  05A5  2DA1               	goto	l115
+  1972  05A6                     __end_of_waitForSPI:	
+  1973  007E                     btemp	set	126	;btemp
+  1974  007E                     wtemp	set	126
+  1975  007E                     wtemp0	set	126
+  1976  0080                     wtemp1	set	128
+  1977  0082                     wtemp2	set	130
+  1978  0084                     wtemp3	set	132
+  1979  0086                     wtemp4	set	134
+  1980  0088                     wtemp5	set	136
+  1981  007F                     wtemp6	set	127
+  1982  007E                     ttemp	set	126
+  1983  007E                     ttemp0	set	126
+  1984  0081                     ttemp1	set	129
+  1985  0084                     ttemp2	set	132
+  1986  0087                     ttemp3	set	135
+  1987  007F                     ttemp4	set	127
+  1988  007E                     ltemp	set	126
+  1989  007E                     ltemp0	set	126
+  1990  0082                     ltemp1	set	130
+  1991  0086                     ltemp2	set	134
+  1992  0080                     ltemp3	set	128
 
 
 Data Sizes:
     Strings     0
     Constant    0
-    Data        3
+    Data        5
     BSS         0
     Persistent  0
     Stack       0
 
 Auto Spaces:
     Space          Size  Autos    Used
-    COMMON           14     13      14
-    BANK0            80      0       2
+    COMMON           14     14      14
+    BANK0            80      8      13
     BANK1            80      0       0
     BANK3            96      0       0
     BANK2            96      0       0
@@ -1109,14 +2022,25 @@ Pointer List with Targets:
 
 Critical Paths under _main in COMMON
 
-    _main->_deviceInit
     _readRSSI->_byteReadLA
+    _setCCAThreshold->_byteWriteSA
+    _deviceSetInterrupt->_byteWriteSA
+    _deviceIntPolarity->_bitWriteLA
+    _bitWriteLA->_byteReadLA
     _byteReadLA->_addrWriteLA
-    _deviceInit->_SPI_Init
+    _deviceChannelSelect->_resetRFStateMashine
+    _resetRFStateMashine->_bitWriteSA
+    _bitWriteSA->_byteReadSA
+    _byteWriteSA->_addrWriteSA
+    _byteReadSA->_addrWriteSA
+    _byteWriteLA->_addrWriteLA
 
 Critical Paths under _main in BANK0
 
-    None.
+    _main->_deviceInit
+    _deviceInit->_deviceChannelSelect
+    _deviceIntPolarity->_bitWriteLA
+    _resetRFStateMashine->_bitWriteSA
 
 Critical Paths under _main in BANK1
 
@@ -1135,18 +2059,86 @@ Call Graph Tables:
  ---------------------------------------------------------------------------------
  (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
  ---------------------------------------------------------------------------------
- (0) _main                                                 0     0      0     535
+ (0) _main                                                 0     0      0   10777
                          _deviceInit
                            _readRSSI
  ---------------------------------------------------------------------------------
- (1) _readRSSI                                             0     0      0     535
+ (1) _readRSSI                                             0     0      0     687
                          _byteReadLA
  ---------------------------------------------------------------------------------
- (2) _byteReadLA                                           4     2      2     535
+ (1) _deviceInit                                           2     2      0   10090
+                                              6 BANK0      2     2      0
+                        _byteWriteLA
+                        _byteWriteSA
+                _deviceChannelSelect
+                    _deviceIntEnable
+                    _setCCAThreshold
+ ---------------------------------------------------------------------------------
+ (2) _setCCAThreshold                                      2     2      0     868
+                                             10 COMMON     2     2      0
+                        _byteWriteSA
+ ---------------------------------------------------------------------------------
+ (2) _deviceIntEnable                                      0     0      0    3383
+                  _deviceIntPolarity
+                 _deviceSetInterrupt
+ ---------------------------------------------------------------------------------
+ (3) _deviceSetInterrupt                                   2     2      0     868
+                                             10 COMMON     2     2      0
+                        _byteWriteSA
+ ---------------------------------------------------------------------------------
+ (3) _deviceIntPolarity                                    0     0      0    2515
+                         _bitWriteLA
+ ---------------------------------------------------------------------------------
+ (4) _bitWriteLA                                           7     3      4    2515
+                                             13 COMMON     1     1      0
+                                              0 BANK0      6     2      4
+                         _byteReadLA
+                        _byteWriteLA
+ ---------------------------------------------------------------------------------
+ (2) _byteReadLA                                           4     2      2     687
                                               9 COMMON     4     2      2
                         _addrWriteLA
                         _chipRelease
                          _chipSelect
+ ---------------------------------------------------------------------------------
+ (2) _deviceChannelSelect                                  2     2      0    3437
+                                              4 BANK0      2     2      0
+                        _byteWriteLA
+                _resetRFStateMashine
+ ---------------------------------------------------------------------------------
+ (3) _resetRFStateMashine                                  1     1      0    1881
+                                             13 COMMON     1     1      0
+                         _bitWriteSA
+ ---------------------------------------------------------------------------------
+ (4) _bitWriteSA                                           6     4      2    1881
+                                             11 COMMON     2     0      2
+                                              0 BANK0      4     4      0
+                         _byteReadSA
+                        _byteWriteSA
+ ---------------------------------------------------------------------------------
+ (3) _byteWriteSA                                          2     1      1     846
+                                              8 COMMON     2     1      1
+                        _addrWriteSA
+                        _chipRelease
+                         _chipSelect
+                         _waitForSPI
+ ---------------------------------------------------------------------------------
+ (5) _byteReadSA                                           3     3      0     370
+                                              8 COMMON     3     3      0
+                        _addrWriteSA
+                        _chipRelease
+                         _chipSelect
+ ---------------------------------------------------------------------------------
+ (4) _addrWriteSA                                          8     7      1     325
+                                              0 COMMON     8     7      1
+                         _waitForSPI
+ ---------------------------------------------------------------------------------
+ (5) _byteWriteLA                                          3     0      3    1534
+                                              9 COMMON     3     0      3
+                        _addrWriteLA
+                        _chipRelease
+                         _chipSelect
+                         _waitForSPI
  ---------------------------------------------------------------------------------
  (3) _chipSelect                                           3     3      0       0
                                               0 COMMON     3     3      0
@@ -1154,27 +2146,79 @@ Call Graph Tables:
  (3) _chipRelease                                          3     3      0       0
                                               0 COMMON     3     3      0
  ---------------------------------------------------------------------------------
- (3) _addrWriteLA                                          9     6      3     419
+ (3) _addrWriteLA                                          9     6      3     536
                                               0 COMMON     9     6      3
                          _waitForSPI
  ---------------------------------------------------------------------------------
  (4) _waitForSPI                                           0     0      0       0
  ---------------------------------------------------------------------------------
- (1) _deviceInit                                           5     5      0       0
-                                              8 COMMON     5     5      0
-                           _SPI_Init
- ---------------------------------------------------------------------------------
- (2) _SPI_Init                                             8     8      0       0
-                                              0 COMMON     8     8      0
- ---------------------------------------------------------------------------------
- Estimated maximum stack depth 4
+ Estimated maximum stack depth 5
  ---------------------------------------------------------------------------------
 
  Call Graph Graphs:
 
  _main (ROOT)
    _deviceInit
-     _SPI_Init
+     _byteWriteLA
+       _addrWriteLA
+         _waitForSPI
+       _chipRelease
+       _chipSelect
+       _waitForSPI
+     _byteWriteSA
+       _addrWriteSA
+         _waitForSPI
+       _chipRelease
+       _chipSelect
+       _waitForSPI
+     _deviceChannelSelect
+       _byteWriteLA
+         _addrWriteLA
+           _waitForSPI
+         _chipRelease
+         _chipSelect
+         _waitForSPI
+       _resetRFStateMashine
+         _bitWriteSA
+           _byteReadSA
+             _addrWriteSA
+               _waitForSPI
+             _chipRelease
+             _chipSelect
+           _byteWriteSA
+             _addrWriteSA
+               _waitForSPI
+             _chipRelease
+             _chipSelect
+             _waitForSPI
+     _deviceIntEnable
+       _deviceIntPolarity
+         _bitWriteLA
+           _byteReadLA
+             _addrWriteLA
+               _waitForSPI
+             _chipRelease
+             _chipSelect
+           _byteWriteLA
+             _addrWriteLA
+               _waitForSPI
+             _chipRelease
+             _chipSelect
+             _waitForSPI
+       _deviceSetInterrupt
+         _byteWriteSA
+           _addrWriteSA
+             _waitForSPI
+           _chipRelease
+           _chipSelect
+           _waitForSPI
+     _setCCAThreshold
+       _byteWriteSA
+         _addrWriteSA
+           _waitForSPI
+         _chipRelease
+         _chipSelect
+         _waitForSPI
    _readRSSI
      _byteReadLA
        _addrWriteLA
@@ -1196,63 +2240,91 @@ BANK1               50      0       0       7        0.0%
 BITBANK1            50      0       0       6        0.0%
 SFR1                 0      0       0       2        0.0%
 BITSFR1              0      0       0       2        0.0%
-BANK0               50      0       2       5        2.5%
+BANK0               50      8       D       5       16.3%
 BITBANK0            50      0       0       4        0.0%
 SFR0                 0      0       0       1        0.0%
 BITSFR0              0      0       0       1        0.0%
-COMMON               E      D       E       1      100.0%
+COMMON               E      E       E       1      100.0%
 BITCOMMON            E      0       0       0        0.0%
 CODE                 0      0       0       0        0.0%
-DATA                 0      0      10      12        0.0%
-ABS                  0      0      10       3        0.0%
+DATA                 0      0      1B      12        0.0%
+ABS                  0      0      1B       3        0.0%
 NULL                 0      0       0       0        0.0%
 STACK                0      0       0       2        0.0%
 EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.31 build 56723 
-Symbol Table                                                                                   Fri May 23 21:54:15 2014
+Symbol Table                                                                                   Sat May 24 00:59:34 2014
 
-            _SSPSTATbits 0094                       l28 06B6                       l99 06A4  
-                     u24 06D7                       u25 06D5                       u34 06C3  
-                     u35 06C1                       u54 0733                       u55 0731  
-                     u64 0743                       u65 0741                       u74 0753  
-                     u75 0751                       u84 0769                       u85 0767  
-                     u94 077E                       u95 077C                      l171 07D0  
-                    l649 0708                      l687 07ED                      u114 0799  
-                    u115 0797                      u124 07A7                      u125 07A5  
-                    u134 07BE                      u135 07BC                      u145 07C6  
-                    u154 07DB                      u155 07D9                      u165 07E3  
-   __size_of_addrWriteLA 0031                     _main 06B0                     btemp 007E  
-                   ltemp 007E                     start 0000                     ttemp 007E  
-                   wtemp 007E                    ?_main 0070                    _PORTB 0006  
-                  _TRISB 0086         __end_of_SPI_Init 078C                    ltemp0 007E  
-                  ltemp1 0082                    ltemp2 0086                    ltemp3 0080  
-                  ttemp0 007E                    ttemp1 0081                    ttemp2 0084  
-                  ttemp3 0087                    ttemp4 007F                    status 0003  
-                  wtemp0 007E                    wtemp1 0080                    wtemp2 0082  
-                  wtemp3 0084                    wtemp4 0086                    wtemp5 0088  
-                  wtemp6 007F     __size_of_chipRelease 0014       addrWriteLA@command 0077  
-        __initialization 07F0             __end_of_main 06B7                   ??_main 007D  
-                 _SSPBUF 0013         __end_of_readRSSI 06B0           byteReadLA@addr 0079  
-           __pdataCOMMON 007D  __end_of__initialization 07FD           __pcstackCOMMON 0070  
-           __pidataBANK0 06A2                ?_SPI_Init 0070               _chipSelect 06CB  
-             __pmaintext 06B0               _deviceInit 078C               ??_SPI_Init 0070  
-          ??_addrWriteLA 0073                ?_readRSSI 0070               _byteReadLA 06E0  
-                __ptext1 06A9                  __ptext2 06E0                  __ptext3 06CB  
-                __ptext4 06B7                  __ptext5 06F8                  __ptext6 06A4  
-                __ptext7 078C                  __ptext8 0729     end_of_initialization 07FD  
-          ??_chipRelease 0070               ??_readRSSI 007D              ?_chipSelect 0070  
-    __end_of_addrWriteLA 0729               _waitForSPI 06A4              ?_deviceInit 0070  
-              _PORTBbits 0006          addrWriteLA@addr 0070          _aTurnaroundTime 007D  
-            ?_byteReadLA 0079      __end_of_chipRelease 06CB            __pidataCOMMON 06A1  
-      __size_of_SPI_Init 0063      start_initialization 07F0      __size_of_chipSelect 0015  
-            _addrWriteLA 06F8      __size_of_deviceInit 0064              ?_waitForSPI 0070  
-            __pdataBANK0 0020                ___latbits 0001      __size_of_byteReadLA 0018  
-            _chipRelease 06B7        __size_of_readRSSI 0007      __size_of_waitForSPI 0005  
-           ??_chipSelect 0070             ??_deviceInit 0078                 _SPI_Init 0729  
-     __end_of_chipSelect 06E0           _aMinLIFSPeriod 0020       __end_of_deviceInit 07F0  
-           ??_byteReadLA 007B       __end_of_byteReadLA 06F8           _aMinSIFSPeriod 0021  
-           ?_addrWriteLA 0070                 _readRSSI 06A9            __size_of_main 0007  
-           ??_waitForSPI 0070            addrWriteLA@op 0072       __end_of_waitForSPI 06A9  
-       byteReadLA@report 007C             ?_chipRelease 0070               _SSPCONbits 0014  
+           bitWriteSA@bitname 007B                   _SSPSTATbits 0094                            l32 05C0  
+     __end_of_setCCAThreshold 05D3                           l115 05A1                           l983 0697  
+                         l995 06BE                           u504 0702                           u505 0700  
+                         u444 0638                           u524 072B                           u445 0636  
+                         u525 0729                           u454 0610                           u534 0739  
+                         u455 060E                           u535 0737            setCCAThreshold@val 007B  
+                         u494 06F4                           u495 06F2                           u777 0685  
+__size_of_resetRFStateMashine 0019               byteWriteLA@addr 0079               byteWriteLA@data 007B  
+__size_of_deviceChannelSelect 0012   __size_of_deviceSetInterrupt 0009               byteWriteSA@addr 0079  
+             byteWriteSA@data 0078                          l1041 070A                          l1051 0741  
+                        l1039 06FC                          l1049 0733                          l1073 07DF  
+        __size_of_addrWriteLA 0031          __size_of_addrWriteSA 0025                          _main 05B9  
+             _deviceIntEnable 05AB                          btemp 007E                          ltemp 007E  
+                        start 0000                          ttemp 007E                          wtemp 007E  
+                ?_byteWriteLA 0079                  ?_byteWriteSA 0078                         ?_main 0070  
+                       _PORTB 0006                         _TRISB 0086                         ltemp0 007E  
+                       ltemp1 0082                         ltemp2 0086                         ltemp3 0080  
+                       ttemp0 007E                         ttemp1 0081                         ttemp2 0084  
+                       ttemp3 0087                         ttemp4 007F                         status 0003  
+                       wtemp0 007E                         wtemp1 0080                         wtemp2 0082  
+                       wtemp3 0084                         wtemp4 0086                         wtemp5 0088  
+                       wtemp6 007F          __size_of_chipRelease 0014            addrWriteLA@command 0077  
+             __initialization 07E8                  __end_of_main 05C1              ?_setCCAThreshold 0070  
+                      ??_main 007E       __end_of_deviceIntEnable 05B2                        _SSPBUF 0013  
+          addrWriteSA@command 0076       deviceChannelSelect@chan 0025              __end_of_readRSSI 05B9  
+             _addrWriteSA$258 0074                byteReadLA@addr 0079                byteReadSA@addr 0079  
+              bitWriteLA@addr 0020             _deviceIntPolarity 05D3                bitWriteLA@temp 007D  
+              bitWriteSA@addr 0023       __end_of__initialization 07FD            ?_deviceIntPolarity 0070  
+              bitWriteSA@temp 0022           _resetRFStateMashine 0670           ??_deviceIntPolarity 007E  
+              __pcstackCOMMON 0070           _deviceChannelSelect 05DF                  __pidataBANK0 05A6  
+        __size_of_byteWriteLA 0017          __size_of_byteWriteSA 0013          ?_resetRFStateMashine 0070  
+        ?_deviceChannelSelect 0070     __end_of_deviceIntPolarity 05DF              ?_deviceIntEnable 0070  
+                  _chipSelect 062C                    __pmaintext 05B9                    _bitWriteLA 0712  
+                  _bitWriteSA 06DF                    _deviceInit 074E         ??_resetRFStateMashine 007D  
+  __end_of_deviceSetInterrupt 05CA         ??_deviceChannelSelect 0024                 ??_addrWriteLA 0073  
+               ??_addrWriteSA 0071                     _BEACON_EN 0028                     ?_readRSSI 0070  
+                  _byteReadLA 0658                    _byteReadSA 0618                       __ptext1 05B2  
+                     __ptext2 074E                       __ptext3 05CA                       __ptext4 05AB  
+                     __ptext5 05C1                       __ptext6 05D3                       __ptext7 0712  
+                     __ptext8 0658                       __ptext9 05DF    __size_of_deviceIntPolarity 000C  
+        end_of_initialization 07FD                 ??_chipRelease 0070                    ??_readRSSI 007D  
+                 ?_chipSelect 0070           __end_of_addrWriteLA 06DF           __end_of_addrWriteSA 06AE  
+                  _waitForSPI 05A1                   ?_bitWriteLA 0020                   ?_bitWriteSA 007B  
+                 ?_deviceInit 0070                     _PORTBbits 0006               bitWriteLA@state 0023  
+    __size_of_setCCAThreshold 0009               bitWriteSA@state 007C               addrWriteLA@addr 0070  
+             _aTurnaroundTime 002C               addrWriteSA@addr 0077                   ?_byteReadLA 0079  
+                 ?_byteReadSA 0070           __end_of_chipRelease 0618           start_initialization 07E8  
+         __size_of_chipSelect 0015           __size_of_bitWriteLA 003C           __size_of_bitWriteSA 0033  
+                 _addrWriteLA 06AE                   _addrWriteSA 0689           __size_of_deviceInit 009A  
+              deviceInit@chan 0027                   ?_waitForSPI 0070                 ??_byteWriteLA 007C  
+               ??_byteWriteSA 0079                   __pdataBANK0 0028                     ___latbits 0001  
+               __pcstackBANK0 0020           __size_of_byteReadLA 0018           __size_of_byteReadSA 0014  
+                 _chipRelease 0604            _deviceSetInterrupt 05C1             ??_setCCAThreshold 007A  
+    __size_of_deviceIntEnable 0007             __size_of_readRSSI 0007           ?_deviceSetInterrupt 0070  
+ __end_of_resetRFStateMashine 0689   __end_of_deviceChannelSelect 05F1           __end_of_byteWriteLA 0658  
+         __end_of_byteWriteSA 0604           __size_of_waitForSPI 0005          ??_deviceSetInterrupt 007A  
+deviceSetInterrupt@interrupts 007B                  ??_chipSelect 0070                  ??_bitWriteLA 0024  
+                ??_bitWriteSA 0020                  ??_deviceInit 0026            __end_of_chipSelect 0641  
+          __end_of_bitWriteLA 074E            __end_of_bitWriteSA 0712                _aMinLIFSPeriod 002A  
+          __end_of_deviceInit 07E8                  ??_byteReadLA 007B                  ??_byteReadSA 0078  
+           ??_deviceIntEnable 007E                   _byteWriteLA 0641                   _byteWriteSA 05F1  
+                    __ptext10 0670                      __ptext11 06DF                      __ptext12 05F1  
+                    __ptext13 0618                      __ptext14 0689                      __ptext15 0641  
+                    __ptext16 062C                      __ptext17 0604                      __ptext18 06AE  
+                    __ptext19 05A1            __end_of_byteReadLA 0670            __end_of_byteReadSA 062C  
+              _aMinSIFSPeriod 002B                  ?_addrWriteLA 0070                  ?_addrWriteSA 0070  
+                    _readRSSI 05B2                 __size_of_main 0008                  ??_waitForSPI 0070  
+               addrWriteLA@op 0072                 addrWriteSA@op 0070               _setCCAThreshold 05CA  
+          __end_of_waitForSPI 05A6              byteReadLA@report 007C                  ?_chipRelease 0070  
+                 _RF_OPTIMISE 0029              byteReadSA@report 007A             bitWriteLA@bitname 0022  
+                  _SSPCONbits 0014  
