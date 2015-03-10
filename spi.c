@@ -23,7 +23,7 @@ void SPI_Init(void)
     SPI_CLOCK_EDGE= 0;
 }
 
-spiDevice_t SPI_deviceInit(unsigned char devDdr, unsigned char csPin, unsigned char * buffer, uint8_t pr) {
+spiDevice_t SPI_deviceInit(unsigned char devDdr, unsigned char csPin,  unsigned char * buffer, uint8_t pr) {
     devDdr= PIN_OUTPUT;
     spiDevice_t spd;
     spd.csPin= csPin;
