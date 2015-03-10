@@ -21,8 +21,9 @@ extern "C" {
 #include <stdint.h>
 //#include <assert.h>
 
-#define DEVICE_DDR  TRISB3
-#define DEVICE_CS   PORTBbits.RB3
+#include "spi_device.h"
+#include "Macro.h"
+
 
 // Pins Polarity
 #ifndef W_POL
@@ -35,12 +36,11 @@ extern "C" {
 #define I_POL 0 //INTEDGE polarity: 0 - Falling, 1 - Rising
 #endif
 
-#define DEVICE_ADDRESS
-
+#define DEVICE_ADDRESS  0x00
 
     typedef struct {
-        unsigned char tris;
-        unsigned char pin;
+        volatile unsigned char tris;
+        volatile unsigned char pin;
         uint8_t pol;
     }ctrlPin_t;
 
@@ -52,7 +52,8 @@ extern "C" {
 
     typedef struct {
         uint8_t devAddress;
-        ctrlPins_t * ctrl;
+        uint8_t devChannel;
+        ctrlPins_t ctrl;
         spiDevice_t * spiMRF24J40;
     } MRF24J40_t;
 
@@ -846,18 +847,18 @@ extern "C" {
     // SPI R\W prothocol
     // Short address
     void addrWriteSA(uint8_t, uint8_t);
-    uint8_t byteReadSA(uint8_t);
-    void byteWriteSA(uint8_t, uint8_t);
-    void bitWriteSA(uint8_t, uint8_t, bool);
-    void dataReadSA(uint8_t, uint8_t, uint8_t*);
-    void dataWriteSA(uint8_t, uint8_t, uint8_t*);
+    uint8_t byteReadSA(spiDevice_t *, uint8_t);
+    void byteWriteSA(spiDevice_t *, uint8_t, uint8_t);
+    void bitWriteSA(spiDevice_t *, uint8_t, uint8_t, bool);
+    void dataReadSA(spiDevice_t *, uint8_t, uint8_t *, uint8_t);
+    void dataWriteSA(spiDevice_t *, uint8_t, uint8_t *, uint8_t);
     // Long Address
     void addrWriteLA(uint16_t, uint8_t);
-    uint8_t byteReadLA(uint16_t);
-    void byteWriteLA(uint16_t, uint8_t);
-    void bitWriteLA(uint16_t, uint8_t, bool);
-    void dataReadLA(uint16_t, uint8_t, uint8_t*);
-    void dataWriteLA(uint16_t, uint8_t, uint8_t*);
+    uint8_t byteReadLA(spiDevice_t *, uint16_t);
+    void byteWriteLA(spiDevice_t *, uint16_t, uint8_t);
+    void bitWriteLA(spiDevice_t *, uint16_t, uint8_t, bool);
+    void dataReadLA(spiDevice_t *, uint16_t, uint8_t *, uint8_t);
+    void dataWriteLA(spiDevice_t *, uint16_t, uint8_t *, uint8_t);
 
     // mac-level functions
     void macBeaconOrder(uint8_t);
@@ -865,36 +866,36 @@ extern "C" {
     void macMinBE(uint8_t);
     void macMaxCSMABackoff(uint8_t);
     void macAckWaitDuration(uint8_t);
-    void setCCAThreshold(uint8_t);
-    void setCCAMode(uint8_t, uint8_t, uint8_t);
+    void setCCAThreshold(MRF24J40_t *, uint8_t);
+    void setCCAMode(MRF24J40_t *, uint8_t, uint8_t, uint8_t);
     void promiscEnable();
     void promiscDisable();
     // device control functions
-    void deviceReset();
-    void resetPower();
-    void resetBBand();
-    void resetMAC();
-    void deviceSoftReset();
-    void resetRFStateMashine();
+    void deviceReset(MRF24J40_t *);
+    void resetPower(MRF24J40_t *);
+    void resetBBand(MRF24J40_t *);
+    void resetMAC(MRF24J40_t *);
+    void deviceSoftReset(MRF24J40_t *);
+    void resetRFStateMashine(MRF24J40_t *);
 
-    void deviceStart(uint8_t);
-    void deviceInit(uint8_t);
+    void deviceStart(MRF24J40_t *, uint8_t);
+    void deviceInit(MRF24J40_t *, uint8_t);
 
-    void deviceSleep();
+    void deviceSleep(MRF24J40_t *);
     void setSleepClock(uint8_t);
     void setWakeTime(uint8_t);
     void startSleepCalibration();
 
-    void deviceIntEnable();
-    void deviceIntPolarity();
-    void deviceSetInterrupt(uint8_t);
-    uint8_t deviceCheckInterrupts();
+    void deviceIntEnable(MRF24J40_t *);
+    void deviceIntPolarity(MRF24J40_t *);
+    void deviceSetInterrupt(MRF24J40_t *, uint8_t);
+    uint8_t deviceCheckInterrupts(MRF24J40_t *);
 
-    void deviceChannelSelect(uint8_t);
+    void deviceChannelSelect(MRF24J40_t *, uint8_t);
     void clearChannelAssesstment(uint8_t);
 
-    void setRSSIMode(uint8_t, bool);
-    uint8_t readRSSI();
+    void setRSSIMode(MRF24J40_t *, uint8_t, bool);
+    uint8_t readRSSI(MRF24J40_t *);
     int8_t RSSItoDBM(uint8_t);
 
     void deviceSetAddress(uint32_t, uint32_t);

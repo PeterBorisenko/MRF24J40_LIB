@@ -1,6 +1,4 @@
 #include "MRF24J40.h"
-#include "spi_device.h"
-
 
 /******************************************************
  *  SPI R/W Interface Functions
@@ -39,7 +37,7 @@ void bitWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t bitname, bool state) {
     state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
     byteWriteSA(dev, addr, temp);
 }
-void dataReadSA(spiDevice_t * dev, uint8_t addr, uint8_t num, uint8_t *buffer) {
+void dataReadSA(spiDevice_t * dev, uint8_t addr, uint8_t *buffer, uint8_t num) {
     //assert(addr < (0x3F - num*8));
     chipSelect(dev);
     //addrWriteSA(addr, READ);
@@ -51,7 +49,7 @@ void dataReadSA(spiDevice_t * dev, uint8_t addr, uint8_t num, uint8_t *buffer) {
     }
     chipRelease(dev);
 }
-void dataWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t num, uint8_t *buffer) {
+void dataWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t *buffer, uint8_t num) {
     //assert(addr < (0x3F - num*8));
     chipSelect(dev);
     addrWriteSA(addr, WRITE);
@@ -81,7 +79,7 @@ void bitWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t bitname, bool state) {
     state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
     byteWriteLA(dev, addr, temp);
 }
-void dataReadLA(spiDevice_t * dev, uint16_t addr, uint8_t num, uint8_t *buffer) {
+void dataReadLA(spiDevice_t * dev, uint16_t addr, uint8_t *buffer, uint8_t num) {
     //assert(addr < (0x38F - num*8));
     chipSelect(dev);
     //addrWriteLA(addr, READ);
@@ -92,7 +90,7 @@ void dataReadLA(spiDevice_t * dev, uint16_t addr, uint8_t num, uint8_t *buffer) 
     }
     chipRelease(dev);
 }
-void dataWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t num, uint8_t *buffer) {
+void dataWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t *buffer, uint8_t num) {
     //assert(addr < (0x38F - num*8));
     chipSelect(dev);
     addrWriteLA(addr, WRITE);
@@ -112,47 +110,48 @@ void deviceReset(MRF24J40_t * dev) {
     __delay_ms(2);
     
 }
-void resetPower() {
-    bitWriteSA(SOFTRST, RSTPWR, 1);
+void resetPower(MRF24J40_t * dev) {
+    bitWriteSA(dev->spiMRF24J40, SOFTRST, RSTPWR, 1);
 }
-void resetBBand() {
-    bitWriteSA(SOFTRST, RSTBB, 1);
+void resetBBand(MRF24J40_t * dev) {
+    bitWriteSA(dev->spiMRF24J40, SOFTRST, RSTBB, 1);
 }
-void resetMAC() {
-    bitWriteSA(SOFTRST, RSTMAC, 1);
+void resetMAC(MRF24J40_t * dev) {
+    bitWriteSA(dev->spiMRF24J40, SOFTRST, RSTMAC, 1);
 }
-void deviceSoftReset() {
-    byteWriteSA(SOFTRST, 0x07);
+void deviceSoftReset(MRF24J40_t * dev) {
+    byteWriteSA(dev->spiMRF24J40, SOFTRST, 0x07);
 }
-void resetRFStateMashine(spiDevice_t * dev) {
-    bitWriteSA(dev, RFCTL, RFRST, 1);
-    bitWriteSA(dev, RFCTL, RFRST, 0);
+void resetRFStateMashine(MRF24J40_t * dev) {
+    bitWriteSA(dev->spiMRF24J40, RFCTL, RFRST, 1);
+    bitWriteSA(dev->spiMRF24J40, RFCTL, RFRST, 0);
     __delay_us(192);
 }
 
-void deviceInit(spiDevice_t * dev, uint8_t chan) {
-    byteWriteSA(dev, SOFTRST, 0x07);
-    byteWriteSA(dev, PACON2, 0xB0); // Initialize FIFOEN = 1 and TXONTS = 0x6
-    byteWriteSA(dev, TXSTBL, 0x95); // TXSTBL (0x2E) = 0x95 ? Initialize RFSTBL = 0x9
-    byteWriteLA(dev, RFCON0, 0x03); // RFCON0 (0x200) = 0x03 ? Initialize RFOPT = 0x03
-    byteWriteLA(dev, RFCON1, 0x01); // RFCON1 (0x201) = 0x01 ? Initialize VCOOPT = 0x02
-    byteWriteLA(dev, RFCON2, 0x80); // RFCON2 (0x202) = 0x80 ? Enable PLL (PLLEN = 1)
-    byteWriteLA(dev, RFCON6, 0x90); // RFCON6 (0x206) = 0x90 ? Initialize TXFIL = 1and 20MRECVR = 1
-    byteWriteLA(dev, RFCON7, 0x80); // RFCON7 (0x207) = 0x80 ? Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator)
-    byteWriteLA(dev, RFCON8, 0x10); // RFCON8 (0x208) = 0x10 ? Initialize RFVCO = 1
-    byteWriteLA(dev, SLPCON1, 0x21); // SLPCON1 (0x220) = 0x21 ? Initialize CLKOUTEN= 1and SLPCLKDIV = 0x01
+void deviceInit(MRF24J40_t * dev, uint8_t chan) {
+    byteWriteSA(dev->spiMRF24J40, SOFTRST, 0x07);
+    byteWriteSA(dev->spiMRF24J40, PACON2, 0xB0); // Initialize FIFOEN = 1 and TXONTS = 0x6
+    byteWriteSA(dev->spiMRF24J40, TXSTBL, 0x95); // TXSTBL (0x2E) = 0x95 ? Initialize RFSTBL = 0x9
+    byteWriteLA(dev->spiMRF24J40, RFCON0, 0x03); // RFCON0 (0x200) = 0x03 ? Initialize RFOPT = 0x03
+    byteWriteLA(dev->spiMRF24J40, RFCON1, 0x01); // RFCON1 (0x201) = 0x01 ? Initialize VCOOPT = 0x02
+    byteWriteLA(dev->spiMRF24J40, RFCON2, 0x80); // RFCON2 (0x202) = 0x80 ? Enable PLL (PLLEN = 1)
+    byteWriteLA(dev->spiMRF24J40, RFCON6, 0x90); // RFCON6 (0x206) = 0x90 ? Initialize TXFIL = 1and 20MRECVR = 1
+    byteWriteLA(dev->spiMRF24J40, RFCON7, 0x80); // RFCON7 (0x207) = 0x80 ? Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator)
+    byteWriteLA(dev->spiMRF24J40, RFCON8, 0x10); // RFCON8 (0x208) = 0x10 ? Initialize RFVCO = 1
+    byteWriteLA(dev->spiMRF24J40, SLPCON1, 0x21); // SLPCON1 (0x220) = 0x21 ? Initialize CLKOUTEN= 1and SLPCLKDIV = 0x01
     if(!BEACON_EN) {
-        byteWriteSA(dev, BBREG2, 0x80); // BBREG2 (0x3A) = 0x80 ? Set CCA mode to ED
-        setCCAThreshold(0x60); // CCAEDTH = 0x60 ? Set CCA ED threshold
-        byteWriteSA(dev, BBREG6, 0x40); // BBREG6 (0x3E) = 0x40 ? Set appended RSSI value to RXFIFO
+        byteWriteSA(dev->spiMRF24J40, BBREG2, 0x80); // BBREG2 (0x3A) = 0x80 ? Set CCA mode to ED
+        setCCAThreshold(dev, 0x60); // CCAEDTH = 0x60 ? Set CCA ED threshold
+        byteWriteSA(dev->spiMRF24J40, BBREG6, 0x40); // BBREG6 (0x3E) = 0x40 ? Set appended RSSI value to RXFIFO
     }
     else {
         //TODO: Init for Beacon-enabled Device
     }
-    deviceIntEnable();
+    deviceIntEnable(dev);
     //TODO: Set Transmitter Power function
-    deviceChannelSelect(chan);
+    deviceChannelSelect(dev, chan);
 }
+
 void deviceStart(MRF24J40_t * dev, uint8_t chan) {
     dev->ctrl.reset.tris= PIN_INPUT;
     dev->ctrl.wakeUp.tris= PIN_INPUT;
@@ -160,29 +159,30 @@ void deviceStart(MRF24J40_t * dev, uint8_t chan) {
     dev->ctrl.reset.pin= ((dev->ctrl.reset.pol)?(PIN_HI):(PIN_LO));
     dev->ctrl.wakeUp.pin= ((dev->ctrl.wakeUp.pol)?(PIN_HI):(PIN_LO));
     SPI_Init();
-    deviceInit(chan);
+    deviceInit(dev, chan);
     __delay_ms(2);
 }
 
-void deviceSleep();
+void deviceSleep(MRF24J40_t * dev);
 
-void deviceIntEnable() {
-    deviceIntPolarity();
-    deviceSetInterrupt(ALL);
+void deviceIntEnable(MRF24J40_t * dev) {
+    deviceIntPolarity(dev);
+    deviceSetInterrupt(dev, ALL);
 }
-void deviceSetInterrupt(uint8_t interrupts) {
-    byteWriteSA(INTCON, interrupts);
+void deviceSetInterrupt(MRF24J40_t * dev, uint8_t interrupts) {
+    byteWriteSA(dev->spiMRF24J40, INTCON, interrupts);
 }
-uint8_t deviceCheckInterrupts() {
-    return byteReadSA(INTSTAT);
+uint8_t deviceCheckInterrupts(MRF24J40_t * dev) {
+    return byteReadSA(dev->spiMRF24J40, INTSTAT);
 }
-void deviceIntPolarity() {
-    bitWriteLA(SLPCON0, INTEDGE, I_POL);
+void deviceIntPolarity(MRF24J40_t * dev) {
+    bitWriteLA(dev->spiMRF24J40, SLPCON0, INTEDGE, I_POL);
 }
 
-void deviceChannelSelect(uint8_t chan) {
-    byteWriteLA(RFCON0, (chan|RF_OPTIMISE));
-    resetRFStateMashine();
+void deviceChannelSelect(MRF24J40_t * dev, uint8_t chan) {
+    dev->devChannel= chan;
+    byteWriteLA(dev->spiMRF24J40, RFCON0, (chan|RF_OPTIMISE));
+    resetRFStateMashine(dev);
 }
 
 void clearChannelAssesstment(uint8_t val);
@@ -220,47 +220,37 @@ void macAckWaitDuration(uint8_t val);
 void promiscEnable();
 void promiscDisable();
 
-void setCCAThreshold(uint8_t val) {
-    byteWriteSA(CCAEDTH, val);
+void setCCAThreshold(MRF24J40_t * dev, uint8_t val) {
+    byteWriteSA(dev->spiMRF24J40, CCAEDTH, val);
 }
-void setCCAMode(uint8_t mode, uint8_t edthr, uint8_t csthr) {
+void setCCAMode(MRF24J40_t * dev, uint8_t mode, uint8_t edthr, uint8_t csthr) {
     switch(mode){
         case CCA_MODE_1:
-            byteWriteSA(BBREG2, (mode << CCAMODE0));
-            setCCAThreshold(edthr);
+            byteWriteSA(dev->spiMRF24J40, BBREG2, (mode << CCAMODE0));
+            setCCAThreshold(dev, edthr);
             break;
         case CCA_MODE_2:
-            byteWriteSA(BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
+            byteWriteSA(dev->spiMRF24J40, BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
             break;
         case CCA_MODE_3:
-            byteWriteSA(BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
-            setCCAThreshold(edthr);
+            byteWriteSA(dev->spiMRF24J40, BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
+            setCCAThreshold(dev, edthr);
             break;
     }
 }
 
-void setRSSIMode(uint8_t val, bool state) {
-    bitWriteSA(BBREG6, val, state);
+void setRSSIMode(MRF24J40_t * dev, uint8_t val, bool state) {
+    bitWriteSA(dev->spiMRF24J40, BBREG6, val, state);
 }
-void setRSSIAverage(uint8_t val){
-    uint8_t temp= byteReadSA(TXBCON1);
-    byteWriteSA(TXBCON1, (temp&(0b1100<<RSSINUM0)|(val<<RSSINUM0)));
+void setRSSIAverage(MRF24J40_t * dev, uint8_t val){
+    uint8_t temp= byteReadSA(dev->spiMRF24J40, TXBCON1);
+    byteWriteSA(dev->spiMRF24J40, TXBCON1, (temp&(0b1100<<RSSINUM0)|(val<<RSSINUM0)));
 }
-uint8_t readRSSI() {
-    bitWriteSA(BBREG6, RSSIMODE1, 1);
-    while(!(byteReadSA(BBREG6)&RSSIRDY));
-    return byteReadLA(RSSI);
+uint8_t readRSSI(MRF24J40_t * dev) {
+    bitWriteSA(dev->spiMRF24J40, BBREG6, RSSIMODE1, 1);
+    while(!(byteReadSA(dev->spiMRF24J40, BBREG6)&RSSIRDY));
+    return byteReadLA(dev->spiMRF24J40, RSSI);
 }
 int8_t RSSItoDBM(uint8_t rssi) {
-    int result;
-    if(rssi == 0) {
-        result= -90;
-    }
-    else if(rssi == 255) {
-        result= -35;
-    }
-    else {
-        //TODO: ??????? ????.
-    }
-    return result;
+    return (int8_t)(((int16_t)rssi*55)/((int16_t)255)-35);
 }
