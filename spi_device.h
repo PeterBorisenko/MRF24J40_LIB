@@ -30,7 +30,7 @@ extern "C" {
 typedef uint8_t spiMutex_t;
 
 typedef struct {
-    unsigned char * name;
+    unsigned char name[8];
     unsigned char csPin;
     uint8_t priority;
     spiMutex_t activity;

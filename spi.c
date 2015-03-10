@@ -1,4 +1,5 @@
 #include "spi_device.h"
+#include <string.h>
 
 volatile static spiMutex_t spiMutex;
 
@@ -26,7 +27,7 @@ spiDevice_t SPI_deviceInit(unsigned char devDdr, unsigned char csPin, unsigned c
     devDdr= PIN_OUTPUT;
     spiDevice_t spd;
     spd.csPin= csPin;
-    spd.name= buffer;
+    strcpy(spd.name, buffer);
     spd.priority= pr;
     return spd;
 }
