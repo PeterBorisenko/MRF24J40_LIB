@@ -13,8 +13,10 @@
 #include <stdint.h>
 #include <xc.h>
 
-//#include "spi.h"
+
+#include "spi_device.h"
 #include "MRF24J40.h"
+//#include "ring_buffer.h"
 /*
  * 
  */
@@ -23,6 +25,10 @@
 #define DEBUG_PORT PORTB
 #define DEBUG_DDR TRISB
 #define DEBUG_LED 7
+#define DEBUG_PIN 6
+
+#define DEVICE_DDR  TRISBbits.TRISB3
+#define DEVICE_CS   PORTBbits.RB3
 
 void blink(uint8_t pin){
     PORTB^= (1 << pin);
@@ -41,14 +47,57 @@ void exception() {
 #define ClearBit(x,y) x&=~(1<<y)
 #define WriteBit(x,y,z) (z?SetBit(x,y):ClearBit(x,y))
 
+MRF24J40_t  * pDevice;
+ctrlPins_t ctrls;
+spiDevice_t spiMRF24J40;
+
+void sendBuffer(char * buf) {
+    dataWriteLA(pDevice->spiMRF24J40, TX_FIFO, buf, 64);
+}
 
 void main() {
-    deviceInit(Ch11);
+
+    ctrls.wakeUp.tris= TRISAbits.TRISA0;
+    ctrls.wakeUp.pin= PORTAbits.RA0;
+    ctrls.wakeUp.pol= W_POL;
+
+    ctrls.wakeUp.tris= TRISAbits.TRISA1;
+    ctrls.wakeUp.pin= PORTAbits.RA1;
+    ctrls.wakeUp.pol= R_POL;
+
+    ctrls.wakeUp.tris= TRISBbits.TRISB0;
+    ctrls.wakeUp.pin= PORTBbits.RB0;
+    ctrls.wakeUp.pol= I_POL;
+
+    unsigned char devName[]= "MRF";
+    spiMRF24J40= SPI_deviceInit(DEVICE_DDR, DEVICE_CS, devName, 0);
+
+    MRF24J40_t device;
+    device.devAddress= DEVICE_ADDRESS;
+    device.ctrl= ctrls;
+    device.spiMRF24J40= &spiMRF24J40;
+    pDevice= &device;
+
+    char rxBuffer[64];
+    char * pRX= &rxBuffer;
+    char txBuffer[64];
+    char * pTX= &txBuffer;
+
+    deviceStart(pDevice, Ch11);
+    //rBuffer_t *H_queue= newRingBuffer(16);
     //uint16_t addr= 0x333;
     //unsigned char data= 0b01010111;
-    readRSSI();
+    
+    uint8_t cnt= 64;
     //ei();
     while (1) {
         //deviceSleep();
+        *pTX= readRSSI(pDevice);
+        cnt--;
+        pTX++;
+        if (cnt == 0) {
+            pTX= &txBuffer;
+            sendBuffer(pTX);
+        }
     }
 }
