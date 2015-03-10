@@ -1,189 +1,114 @@
 #include "MRF24J40.h"
-#include "spi.h"
+#include "spi_device.h"
 
-/******************************************************
- *  SPI Core Functions
- ******************************************************/
-#ifdef CORE_SPI
-void SPI_Init()
-{
-    // SPI I/O Ports Init
-    SPI_DDR&= ~(1 << CS_PIN)&~(1<<SDO_PIN)&~(1<<SCK_PIN);
-    SPI_DDR|= (1 << SDI_PIN);
-    SPI_PORT|= (1 << CS_PIN);
-    
-    // SPI Control & Status Registers Init
-    SSPCONbits.SSPEN= 1;
-    SSPCONbits.SSPM0= 1;
-    SSPSTATbits.SMP= 1;
-    SSPSTATbits.CKE= 0;
-}
 
-inline void chipSelect(){
-    SPI_PORT &= ~(1<<CS_PIN);
-}
-
-inline void chipRelease(){
-    SPI_PORT |= (1<<CS_PIN);
-}
-
-void SPI_WriteByte(uint8_t data)
-{
-   chipSelect();
-   SSPBUF = data;
-   while(SSPSTATbits.BF);
-   chipRelease();
-}
-
-uint8_t SPI_ReadByte(uint8_t addr)
-{
-   uint8_t report;
-   chipSelect();
-   SSPBUF = addr;
-   while(SSPSTATbits.BF);
-   report = SSPBUF;
-   chipRelease();
-
-   return report;
-}
-
-void SPI_WriteArray(uint8_t command, uint8_t num, uint8_t *buffer)
-{
-   chipSelect();
-   SPI_WriteByte(command);
-   while(SSPSTATbits.BF);
-   while(num--){
-      SSPBUF = *buffer++;
-      while(SSPSTATbits.BF);
-   }
-   chipRelease();
-}
-
-void SPI_ReadArray(uint8_t command, uint8_t num, uint8_t *buffer)
-{
-   chipSelect();
-   SPI_WriteByte(command);
-   while(SSPSTATbits.BF);
-   while(num--){
-      //SSPBUF = *buffer;
-      while(SSPSTATbits.BF);
-      *buffer++ = SSPBUF;
-   }
-   chipRelease();
-}
-#endif
-inline void waitForSPI(){
-    while(SSPSTATbits.BF);
-}
 /******************************************************
  *  SPI R/W Interface Functions
  ******************************************************/
 void addrWriteSA(uint8_t addr, uint8_t op) {
-// byteWrite doesn't include chipEnable function, which must be called implicitly
     //assert(addr < 0x3F);
     uint8_t command= ADDR_TO_SHORTCOM(addr, op);
-    SSPBUF= command;
+    SPI_BUFFER= command;
     waitForSPI();
 }
 void addrWriteLA(uint16_t addr, uint8_t op) {
-// byteWrite doesn't include chipEnable function, which must be called implicitly
     //assert(addr < 0x38F);
     uint16_t command= ADDR_TO_LONGCOM(addr, op);
-    SSPBUF= HI_16(command);
+    SPI_BUFFER= HI_16(command);
     waitForSPI();
-    SSPBUF= LO_16(command);
+    SPI_BUFFER= LO_16(command);
     waitForSPI();
 }
-uint8_t byteReadSA(uint8_t addr){
+uint8_t byteReadSA(spiDevice_t * dev, uint8_t addr){
     uint8_t report;
-    chipSelect();
+    chipSelect(dev);
     addrWriteSA(addr, READ);
-    report = SSPBUF;
-    chipRelease();
+    report = SPI_BUFFER;
+    chipRelease(dev);
     return report;
 }
-void byteWriteSA(uint8_t addr, uint8_t data){
-    chipSelect();
+void byteWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t data){
+    chipSelect(dev);
     addrWriteSA(addr, WRITE);
-    SSPBUF= data;
+    SPI_BUFFER= data;
     waitForSPI();
-    chipRelease();
+    chipRelease(dev);
 }
-void bitWriteSA(uint8_t addr, uint8_t bitname, bool state) {
-    uint8_t temp= byteReadSA(addr);
+void bitWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t bitname, bool state) {
+    uint8_t temp= byteReadSA(dev, addr);
     state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
-    byteWriteSA(addr, temp);
+    byteWriteSA(dev, addr, temp);
 }
-void dataReadSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+void dataReadSA(spiDevice_t * dev, uint8_t addr, uint8_t num, uint8_t *buffer) {
     //assert(addr < (0x3F - num*8));
-    chipSelect();
+    chipSelect(dev);
     //addrWriteSA(addr, READ);
     for(int i= num; i>0; i--){
         addrWriteSA(addr++, READ);
-        //SSPBUF = *buffer; //PENDING: ?????? ????? ??????? ????? ????????? ??????????????.
-        *buffer++ = SSPBUF;
+        //SPI_BUFFER = *buffer; //PENDING: ?????? ????? ??????? ????? ????????? ??????????????.
+        *buffer++ = SPI_BUFFER;
         waitForSPI();
     }
-    chipRelease();
+    chipRelease(dev);
 }
-void dataWriteSA(uint8_t addr, uint8_t num, uint8_t *buffer) {
+void dataWriteSA(spiDevice_t * dev, uint8_t addr, uint8_t num, uint8_t *buffer) {
     //assert(addr < (0x3F - num*8));
-    chipSelect();
+    chipSelect(dev);
     addrWriteSA(addr, WRITE);
     for(int i= num; i>0; i--){
-        SSPBUF= *buffer++;
+        SPI_BUFFER= *buffer++;
         waitForSPI();
     }
-    chipRelease();
+    chipRelease(dev);
 }
-uint8_t byteReadLA(uint16_t addr) {
+uint8_t byteReadLA(spiDevice_t * dev, uint16_t addr) {
     uint8_t report;
-    chipSelect();
+    chipSelect(dev);
     addrWriteLA(addr, READ);
-    report= SSPBUF;
-    chipRelease();
+    report= SPI_BUFFER;
+    chipRelease(dev);
     return report;
 }
-void byteWriteLA(uint16_t addr, uint8_t data){
-    chipSelect();
+void byteWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t data){
+    chipSelect(dev);
     addrWriteLA(addr, WRITE);
-    SSPBUF= data;
+    SPI_BUFFER= data;
     waitForSPI();
-    chipRelease();
+    chipRelease(dev);
 }
-void bitWriteLA(uint16_t addr, uint8_t bitname, bool state) {
-    uint8_t temp= byteReadLA(addr);
+void bitWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t bitname, bool state) {
+    uint8_t temp= byteReadLA(dev, addr);
     state?(temp|=(1<<bitname)):(temp&=~(1<<bitname));
-    byteWriteLA(addr, temp);
+    byteWriteLA(dev, addr, temp);
 }
-void dataReadLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+void dataReadLA(spiDevice_t * dev, uint16_t addr, uint8_t num, uint8_t *buffer) {
     //assert(addr < (0x38F - num*8));
-    chipSelect();
+    chipSelect(dev);
     //addrWriteLA(addr, READ);
     for(int i= num; i>0; i--){
         addrWriteLA(addr++, READ);        //SSPBUF = *buffer; //PENDING: ?????? ?????? ??? ????? ??????? ????? ????????? ??????????????.
-        *buffer++ = SSPBUF;
+        *buffer++ = SPI_BUFFER;
         waitForSPI();
     }
-    chipRelease();
+    chipRelease(dev);
 }
-void dataWriteLA(uint16_t addr, uint8_t num, uint8_t *buffer) {
+void dataWriteLA(spiDevice_t * dev, uint16_t addr, uint8_t num, uint8_t *buffer) {
     //assert(addr < (0x38F - num*8));
-    chipSelect();
+    chipSelect(dev);
     addrWriteLA(addr, WRITE);
     for(int i= num; i>0; i--){
-        SSPBUF= *buffer++;
+        SPI_BUFFER= *buffer++;
         waitForSPI();
     }
-    chipRelease();
+    chipRelease(dev);
 }
 /******************************************************
  *  Device Control Functions
  ******************************************************/
-void deviceReset() {
-    SPI_PORT&= ~(1<<RESET_PIN);
+void deviceReset(MRF24J40_t * dev) {
+    dev->ctrl.reset.pin= PIN_LO;
     __delay_us(5);
-    SPI_PORT|= (1<<RESET_PIN);
+    dev->ctrl.reset.pin= PIN_HI;
     __delay_ms(2);
     
 }
@@ -199,30 +124,27 @@ void resetMAC() {
 void deviceSoftReset() {
     byteWriteSA(SOFTRST, 0x07);
 }
-void resetRFStateMashine() {
-    bitWriteSA(RFCTL, RFRST, 1);
-    bitWriteSA(RFCTL, RFRST, 0);
+void resetRFStateMashine(spiDevice_t * dev) {
+    bitWriteSA(dev, RFCTL, RFRST, 1);
+    bitWriteSA(dev, RFCTL, RFRST, 0);
     __delay_us(192);
 }
 
-void setCCAThreshold(uint8_t val) {
-    byteWriteSA(CCAEDTH, val);
-}
-void deviceInit(uint8_t chan) {
-    byteWriteSA(SOFTRST, 0x07);
-    byteWriteSA(PACON2, 0xB0); // Initialize FIFOEN = 1 and TXONTS = 0x6
-    byteWriteSA(TXSTBL, 0x95); // TXSTBL (0x2E) = 0x95 ? Initialize RFSTBL = 0x9
-    byteWriteLA(RFCON0, 0x03); // RFCON0 (0x200) = 0x03 ? Initialize RFOPT = 0x03
-    byteWriteLA(RFCON1, 0x01); // RFCON1 (0x201) = 0x01 ? Initialize VCOOPT = 0x02
-    byteWriteLA(RFCON2, 0x80); // RFCON2 (0x202) = 0x80 ? Enable PLL (PLLEN = 1)
-    byteWriteLA(RFCON6, 0x90); // RFCON6 (0x206) = 0x90 ? Initialize TXFIL = 1and 20MRECVR = 1
-    byteWriteLA(RFCON7, 0x80); // RFCON7 (0x207) = 0x80 ? Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator)
-    byteWriteLA(RFCON8, 0x10); // RFCON8 (0x208) = 0x10 ? Initialize RFVCO = 1
-    byteWriteLA(SLPCON1, 0x21); // SLPCON1 (0x220) = 0x21 ? Initialize CLKOUTEN= 1and SLPCLKDIV = 0x01
+void deviceInit(spiDevice_t * dev, uint8_t chan) {
+    byteWriteSA(dev, SOFTRST, 0x07);
+    byteWriteSA(dev, PACON2, 0xB0); // Initialize FIFOEN = 1 and TXONTS = 0x6
+    byteWriteSA(dev, TXSTBL, 0x95); // TXSTBL (0x2E) = 0x95 ? Initialize RFSTBL = 0x9
+    byteWriteLA(dev, RFCON0, 0x03); // RFCON0 (0x200) = 0x03 ? Initialize RFOPT = 0x03
+    byteWriteLA(dev, RFCON1, 0x01); // RFCON1 (0x201) = 0x01 ? Initialize VCOOPT = 0x02
+    byteWriteLA(dev, RFCON2, 0x80); // RFCON2 (0x202) = 0x80 ? Enable PLL (PLLEN = 1)
+    byteWriteLA(dev, RFCON6, 0x90); // RFCON6 (0x206) = 0x90 ? Initialize TXFIL = 1and 20MRECVR = 1
+    byteWriteLA(dev, RFCON7, 0x80); // RFCON7 (0x207) = 0x80 ? Initialize SLPCLKSEL = 0x2 (100 kHz Internal oscillator)
+    byteWriteLA(dev, RFCON8, 0x10); // RFCON8 (0x208) = 0x10 ? Initialize RFVCO = 1
+    byteWriteLA(dev, SLPCON1, 0x21); // SLPCON1 (0x220) = 0x21 ? Initialize CLKOUTEN= 1and SLPCLKDIV = 0x01
     if(!BEACON_EN) {
-        byteWriteSA(BBREG2, 0x80); // BBREG2 (0x3A) = 0x80 ? Set CCA mode to ED
+        byteWriteSA(dev, BBREG2, 0x80); // BBREG2 (0x3A) = 0x80 ? Set CCA mode to ED
         setCCAThreshold(0x60); // CCAEDTH = 0x60 ? Set CCA ED threshold
-        byteWriteSA(BBREG6, 0x40); // BBREG6 (0x3E) = 0x40 ? Set appended RSSI value to RXFIFO
+        byteWriteSA(dev, BBREG6, 0x40); // BBREG6 (0x3E) = 0x40 ? Set appended RSSI value to RXFIFO
     }
     else {
         //TODO: Init for Beacon-enabled Device
@@ -231,10 +153,12 @@ void deviceInit(uint8_t chan) {
     //TODO: Set Transmitter Power function
     deviceChannelSelect(chan);
 }
-void deviceStart(uint8_t chan) {
-    SPI_DDR|= (1<<RESET_PIN)|(1<<WAKEUP_PIN);
-    R_POL?(SPI_PORT|= (1<<RESET_PIN)):(SPI_PORT&=~(1<<RESET_PIN));
-    W_POL?(SPI_PORT|= (1<<WAKEUP_PIN)):(SPI_PORT&=~(1<<WAKEUP_PIN));
+void deviceStart(MRF24J40_t * dev, uint8_t chan) {
+    dev->ctrl.reset.tris= PIN_INPUT;
+    dev->ctrl.wakeUp.tris= PIN_INPUT;
+    //SPI_DDR|= (1<<RESET_PIN)|(1<<WAKEUP_PIN);
+    dev->ctrl.reset.pin= ((dev->ctrl.reset.pol)?(PIN_HI):(PIN_LO));
+    dev->ctrl.wakeUp.pin= ((dev->ctrl.wakeUp.pol)?(PIN_HI):(PIN_LO));
     SPI_Init();
     deviceInit(chan);
     __delay_ms(2);
@@ -263,11 +187,6 @@ void deviceChannelSelect(uint8_t chan) {
 
 void clearChannelAssesstment(uint8_t val);
 
-void setRSSIMode(uint8_t val);
-
-uint8_t readRSSI() {
-    return byteReadLA(RSSI);
-}
 
 void deviceSetAddress(uint32_t addr_H, uint32_t addr_L);
 void deviceSetShortAddress(uint8_t addr);
@@ -300,3 +219,48 @@ void macMaxCSMABackoff(uint8_t val);
 void macAckWaitDuration(uint8_t val);
 void promiscEnable();
 void promiscDisable();
+
+void setCCAThreshold(uint8_t val) {
+    byteWriteSA(CCAEDTH, val);
+}
+void setCCAMode(uint8_t mode, uint8_t edthr, uint8_t csthr) {
+    switch(mode){
+        case CCA_MODE_1:
+            byteWriteSA(BBREG2, (mode << CCAMODE0));
+            setCCAThreshold(edthr);
+            break;
+        case CCA_MODE_2:
+            byteWriteSA(BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
+            break;
+        case CCA_MODE_3:
+            byteWriteSA(BBREG2, (mode << CCAMODE0)|(csthr << CCACSTH0));
+            setCCAThreshold(edthr);
+            break;
+    }
+}
+
+void setRSSIMode(uint8_t val, bool state) {
+    bitWriteSA(BBREG6, val, state);
+}
+void setRSSIAverage(uint8_t val){
+    uint8_t temp= byteReadSA(TXBCON1);
+    byteWriteSA(TXBCON1, (temp&(0b1100<<RSSINUM0)|(val<<RSSINUM0)));
+}
+uint8_t readRSSI() {
+    bitWriteSA(BBREG6, RSSIMODE1, 1);
+    while(!(byteReadSA(BBREG6)&RSSIRDY));
+    return byteReadLA(RSSI);
+}
+int8_t RSSItoDBM(uint8_t rssi) {
+    int result;
+    if(rssi == 0) {
+        result= -90;
+    }
+    else if(rssi == 255) {
+        result= -35;
+    }
+    else {
+        //TODO: ??????? ????.
+    }
+    return result;
+}

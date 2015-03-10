@@ -21,7 +21,45 @@ extern "C" {
 #include <stdint.h>
 //#include <assert.h>
 
+#define DEVICE_DDR  TRISB3
+#define DEVICE_CS   PORTBbits.RB3
+
+// Pins Polarity
+#ifndef W_POL
+#define W_POL 1 //WAKEUP pin polarity
+#endif
+#ifndef R_POL
+#define R_POL 1 //RESET pin polarity
+#endif
+#ifndef I_POL
+#define I_POL 0 //INTEDGE polarity: 0 - Falling, 1 - Rising
+#endif
+
 #define DEVICE_ADDRESS
+
+
+    typedef struct {
+        unsigned char tris;
+        unsigned char pin;
+        uint8_t pol;
+    }ctrlPin_t;
+
+    typedef struct {
+        ctrlPin_t wakeUp;
+        ctrlPin_t reset;
+        ctrlPin_t moduleInt;
+    }ctrlPins_t;
+
+    typedef struct {
+        uint8_t devAddress;
+        ctrlPins_t * ctrl;
+        spiDevice_t * spiMRF24J40;
+    } MRF24J40_t;
+
+#define PIN_HI  1
+#define PIN_LO  0
+
+
 // Transmit and Receive Storage registers
 #define TX_FIFO         0x000   //  TX Normal
 #define TXB_FIFO        0x080   //  TX Beacon
@@ -774,39 +812,7 @@ extern "C" {
 #define CCA_MODE_1  0x00
 #define CCA_MODE_2  0x01
 #define CCA_MODE_3  0x02
-/******************************************************
- *  SPI Port Definitions
- ******************************************************/
-#define SPI_PORT        PORTB
-#define SPI_PORT_BITS   PORTBbits
-#define SPI_DDR         TRISB
 
-#define SDI_PIN     SPI_PORT_BITS.RB1
-#define SDO_PIN     SPI_PORT_BITS.RB2
-#define SCK_PIN     SPI_PORT_BITS.RB4
-#define CS_PIN      SPI_PORT_BITS.RB5
-
-// Module Control Pins
-#ifndef WAKEUP_PIN
-#define WAKEUP_PIN      SPI_PORT_BITS.RB3
-#endif
-#ifndef RESET_PIN
-#define RESET_PIN       SPI_PORT_BITS.RB6
-#endif
-#ifndef MODULE_INT_PIN
-#define MODULE_INT_PIN  SPI_PORT_BITS.RB0
-#endif
-
-// Pins Polarity
-#ifndef W_POL
-#define W_POL 1 //WAKEUP pin polarity
-#endif
-#ifndef R_POL
-#define R_POL 1 //RESET pin polarity
-#endif
-#ifndef I_POL
-#define I_POL 0 //INTEDGE polarity: 0 - Falling, 1 - Rising
-#endif
 /******************************************************
  *  Special Macro
  ******************************************************/
@@ -837,19 +843,6 @@ extern "C" {
  *  Function Defenitions
  ******************************************************/
     
-#ifndef SPI_H
-#define SPI_H
-#define CORE_SPI
-    // SPI core functions
-    void SPI_Init(void);
-    inline void chipSelect(void);
-    inline void chipRelease(void);
-    inline void waitForSPI(void);
-    void SPI_WriteByte(uint8_t);
-    uint8_t SPI_ReadByte(uint8_t);
-    void SPI_WriteArray(uint8_t, uint8_t, uint8_t*);
-    void SPI_ReadArray(uint8_t, uint8_t, uint8_t*);
-#endif
     // SPI R\W prothocol
     // Short address
     void addrWriteSA(uint8_t, uint8_t);
@@ -873,6 +866,7 @@ extern "C" {
     void macMaxCSMABackoff(uint8_t);
     void macAckWaitDuration(uint8_t);
     void setCCAThreshold(uint8_t);
+    void setCCAMode(uint8_t, uint8_t, uint8_t);
     void promiscEnable();
     void promiscDisable();
     // device control functions
@@ -899,8 +893,9 @@ extern "C" {
     void deviceChannelSelect(uint8_t);
     void clearChannelAssesstment(uint8_t);
 
-    void setRSSIMode(uint8_t);
+    void setRSSIMode(uint8_t, bool);
     uint8_t readRSSI();
+    int8_t RSSItoDBM(uint8_t);
 
     void deviceSetAddress(uint32_t, uint32_t);
     void deviceSetShortAddress(uint8_t);
