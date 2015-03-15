@@ -16,6 +16,7 @@
 
 #include "spi_device.h"
 #include "MRF24J40.h"
+#include "AppConfig.h"
 //#include "ring_buffer.h"
 /*
  * 
@@ -57,19 +58,19 @@ void sendBuffer(char * buf) {
 
 void main() {
 
-    ctrls.wakeUp.tris= TRISAbits.TRISA0;
+    ctrls.wakeUp.tris= TRISAbits.TRISA0; // TODO: define pins/ports in AppConfig.h
     ctrls.wakeUp.pin= PORTAbits.RA0;
     ctrls.wakeUp.pol= W_POL;
 
-    ctrls.wakeUp.tris= TRISAbits.TRISA1;
-    ctrls.wakeUp.pin= PORTAbits.RA1;
-    ctrls.wakeUp.pol= R_POL;
+    ctrls.reset.tris= TRISAbits.TRISA1;
+    ctrls.reset.pin= PORTAbits.RA1;
+    ctrls.reset.pol= R_POL;
 
-    ctrls.wakeUp.tris= TRISBbits.TRISB0;
-    ctrls.wakeUp.pin= PORTBbits.RB0;
-    ctrls.wakeUp.pol= I_POL;
+    ctrls.interrupt.tris= TRISBbits.TRISB0;
+    ctrls.interrupt.pin= PORTBbits.RB0;
+    ctrls.interrupt.pol= I_POL;
 
-    unsigned char devName[]= "MRF";
+    unsigned char devName[]= "MRF_node01";
     spiMRF24J40= SPI_deviceInit(DEVICE_DDR, DEVICE_CS, devName, 0);
 
     MRF24J40_t device;
